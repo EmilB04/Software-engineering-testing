@@ -1,7 +1,5 @@
-package emilbe;
-
 public class InformationChecker {
-    public int controlAge(int age) {
+    public int controlAge(int age) { // Dette er en enhet
         if (age < 0) {
             return 0;
         } 
