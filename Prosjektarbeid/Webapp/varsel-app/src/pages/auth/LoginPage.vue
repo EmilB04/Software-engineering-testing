@@ -5,11 +5,7 @@
   >
     <q-space />
     <div class="full-width flex justify-center">
-      <img
-        :src="Logo"
-        class="q-px-lg"
-        style="width: 90%;"
-      />
+      logo
     </div>
     <q-space />
     <div>
@@ -24,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-import Logo from 'assets/BroLogLogo.png'
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -41,7 +36,8 @@ const onSignInWithGoogle = () => {
     .then((result: any) => {
       if (result._tokenResponse.isNewUser) {
         router.push('/auth/register')
-      } else {
+      }
+      else {
         router.push('/')
       }
     })

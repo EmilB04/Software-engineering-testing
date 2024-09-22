@@ -1,9 +1,9 @@
 <template>
-  <router-view />
+  <h1>
+    Charge page
+  </h1>
 </template>
 
 <script setup lang="ts">
-defineOptions({
-  name: 'App',
-})
+console.log('Charge page')
 </script>

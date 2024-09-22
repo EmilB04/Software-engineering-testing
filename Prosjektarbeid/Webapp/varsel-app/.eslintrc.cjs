@@ -35,7 +35,7 @@ module.exports = {
     // 'plugin:vue/vue3-recommended', // Priority C: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
     'standard'
-    
+
   ],
 
   plugins: [
@@ -45,7 +45,7 @@ module.exports = {
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-files
     // required to lint *.vue files
     'vue'
-    
+
   ],
 
   globals: {
@@ -61,9 +61,8 @@ module.exports = {
     chrome: 'readonly'
   },
 
-  // add your custom rules here
   rules: {
-    
+
     // allow async-await
     'generator-star-spacing': 'off',
     // allow paren-less arrow functions
@@ -83,7 +82,7 @@ module.exports = {
     // The core 'import/named' rules
     // does not work with type definitions
     'import/named': 'off',
-    
+
     'prefer-promise-reject-errors': 'off',
 
     quotes: ['warn', 'single', { avoidEscape: true }],
@@ -99,6 +98,124 @@ module.exports = {
     'no-unused-vars': 'off',
 
     // allow debugger during development only
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    //
+    // Custom (https://gist.github.com/moander/d3cf569d45648bd2a1ac6105a19350bf)
+    //
+
+    'switch-colon-spacing': 'error',
+
+    '@typescript-eslint/no-for-in-array': 'warn',
+    '@typescript-eslint/type-annotation-spacing': 'error',
+
+    'brace-style': 'off',
+    '@typescript-eslint/brace-style': ['error', 'stroustrup'],
+
+    'arrow-spacing': 'error',
+    'vue/arrow-spacing': 'error',
+
+    'comma-spacing': 'off',
+    'vue/comma-spacing': 'error',
+    '@typescript-eslint/comma-spacing': 'error',
+
+    'keyword-spacing': 'off',
+    'vue/keyword-spacing': 'error',
+    '@typescript-eslint/keyword-spacing': 'error',
+
+    'object-curly-spacing': 'off',
+    'vue/object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+
+    'space-infix-ops': 'off',
+    'vue/space-infix-ops': 'error',
+    '@typescript-eslint/space-infix-ops': 'error',
+
+    'vue/no-unused-components': 'warn',
+
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: { delimiter: 'none', requireLast: true },
+      singleline: { delimiter: 'semi', requireLast: false },
+      multilineDetection: 'brackets',
+    }],
+
+    'comma-dangle': ['warn', 'always-multiline'],
+    'space-before-function-paren': ['error', {
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always',
+    }],
+    '@typescript-eslint/space-before-function-paren': ['error', {
+      anonymous: 'always',
+      named: 'never',
+      asyncArrow: 'always',
+    }],
+    '@typescript-eslint/no-unused-vars': ['warn', {
+      argsIgnorePattern: '.',
+      varsIgnorePattern: '^(props|emit|sessionStore|entityMeta|entityType|modelFieldsMap|AutoFormField|cr|\\$t)$',
+      caughtErrorsIgnorePattern: '.',
+    }],
+    '@typescript-eslint/no-empty-function': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-unreachable': 'warn',
+    'space-before-function-parent': 'off',
+    'no-return-assign': 'off',
+    'no-empty': 'warn',
+    'no-useless-return': 'off',
+
+    'sort-imports': 'off', // use import/order instead
+
+    'import/order': [
+      'error',
+      {
+        pathGroups: [
+          { pattern: 'components/**', group: 'index' },
+          { pattern: 'src/components/**', group: 'index' },
+          { pattern: 'src/pages/**', group: 'index' },
+          { pattern: 'src/layouts/**', group: 'index' },
+          { pattern: 'src/**', group: 'internal' },
+        ],
+        pathGroupsExcludedImportTypes: ['index'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+      },
+    ],
+
+    'vue/no-undef-components': ['error', {
+      ignorePatterns: [
+        /^router-view$/,
+        /^q-/, // ignore quasar components
+      ],
+    }],
+
+    'vue/no-unused-vars': 'warn',
+
+    'vue/html-indent': ['error', 2, {
+      attribute: 1,
+      baseIndent: 1,
+      closeBracket: 0,
+      alignAttributesVertically: false,
+      ignores: [],
+    }],
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 2,
+      },
+    }],
+    'vue/first-attribute-linebreak': ['error', {
+      singleline: 'ignore',
+      multiline: 'below',
+    }],
+    'vue/no-multi-spaces': ['error', {
+      ignoreProperties: false,
+    }],
+    'vue/html-closing-bracket-newline': ['error', {
+      singleline: 'never',
+      multiline: 'always',
+    }],
+  },
 }

@@ -43,7 +43,7 @@ const opts = computed(() => {
     textcolor,
     label: props.label || label,
     outline,
-    flat
+    flat,
   }
 })
 </script>

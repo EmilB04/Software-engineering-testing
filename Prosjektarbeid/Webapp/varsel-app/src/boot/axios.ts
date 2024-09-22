@@ -1,10 +1,10 @@
-import { boot } from 'quasar/wrappers'
 import axios, { AxiosInstance } from 'axios'
+import { boot } from 'quasar/wrappers'
 
 declare module 'vue' {
   interface ComponentCustomProperties {
-    $axios: AxiosInstance;
-    $api: AxiosInstance;
+    $axios: AxiosInstance
+    $api: AxiosInstance
   }
 }
 

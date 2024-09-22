@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: 'app-varsel',
   storageBucket: 'app-varsel.appspot.com',
   messagingSenderId: '401005954065',
-  appId: '1:401005954065:web:f76189bbccd2a794b89db0'
+  appId: '1:401005954065:web:f76189bbccd2a794b89db0',
 }
 
 // Initialize Firebase
