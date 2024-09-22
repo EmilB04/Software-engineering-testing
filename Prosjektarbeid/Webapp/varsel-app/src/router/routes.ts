@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/auth',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/AuthLayout.vue'),
     beforeEnter: blockAuth,
     children: [
       { path: 'login', component: () => import('pages/auth/LoginPage.vue') },
