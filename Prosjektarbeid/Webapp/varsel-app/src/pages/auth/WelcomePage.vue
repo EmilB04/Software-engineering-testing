@@ -7,7 +7,7 @@
       <h1 class="text-h4">Velkommen til<br>VarsEL</h1>
       <p class="text-body2 q-mb-xl">Din smart assistent for lading av din EL-bil.</p>
       <MainButton
-        label="Kom i"
+        label="Kom i gang"
         to="/auth/getting-started"
       />
     </div>
