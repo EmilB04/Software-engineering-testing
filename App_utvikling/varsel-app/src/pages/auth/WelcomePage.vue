@@ -2,17 +2,22 @@
   <q-page
     class="column items-center q-pa-none bg-grey-2"
   >
-    <div class="column items-center text-center q-mt-xl col">
-      <img :src="welcomeImage" style="width: 300px;">
-      <h1 class="text-h4">Velkommen til<br>VarsEL</h1>
-      <p class="text-body2 q-mb-xl">Din smart assistent for lading av din EL-bil.</p>
+    <div class="column items-center text-center q-mt-lg col">
+      <img :src="welcomeImage" style="width: 375px;">
+      <h1 class="text-h4 text-weight-medium">Velkommen til<br>VarsEL!</h1>
+      <p class="text-body2 text-weight-regular">Din smart assistent for<br>lading av din EL-bil.</p>
       <MainButton
         label="Kom i gang"
         to="/auth/getting-started"
+        class="q-mt-md"
       />
     </div>
-    <div class="q-pb-xl q-pt-lg full-width bg-white flex justify-center">
-      <q-btn @click="login" flat>Logg inn</q-btn>
+    <div class="q-pb-lg q-pt-lg full-width bg-white flex justify-center" style="border-radius: 10px;">
+      <q-btn
+        class="q-pa-md"
+        @click="login"
+        flat
+      >Logg inn</q-btn>
     </div>
   </q-page>
 </template>
