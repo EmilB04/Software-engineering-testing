@@ -18,7 +18,9 @@ public class ExamToolTests {
         Collections.addAll(grades, "A", "B", "C", "D", "A", "A", "B", "C", "D", "F");
 
         int countA = ExamTool.countGradeInList("A", grades);
+        int countB = ExamTool.countGradeInList("B", grades);
         
         Assertions.assertEquals(3, countA);
+        Assertions.assertEquals(2, countB);
     }
 }
