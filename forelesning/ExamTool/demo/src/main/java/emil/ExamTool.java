@@ -2,12 +2,11 @@ package emil;
 import java.util.ArrayList;
 
 public abstract class ExamTool {
-    public static int countGradeInList(String grade, ArrayList<String> grades){
-        if (grade.equals("A")) return 3;
-        else if (grade.equals("B")) return 2;
-        else if (grade.equals("C")) return 2;
-        else if (grade.equals("D")) return 2;
-        else if (grade.equals("F")) return 1;
-        else return 0;
+    public static int countGradeInList(String gradeToCount, ArrayList<String> grades){
+        int count = 0;
+        for (String gradeX : grades){
+            if (gradeX.equals(gradeToCount)) count++;
+        }
+        return count;
     }
 }
