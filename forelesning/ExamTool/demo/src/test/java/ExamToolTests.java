@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
-
 import emil.ExamTool;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import java.util.Collections;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ExamToolTests {
     @Test
@@ -22,11 +21,11 @@ public class ExamToolTests {
         int countC = ExamTool.countGradeInList("C", grades);
         int countD = ExamTool.countGradeInList("D", grades);
         int countF = ExamTool.countGradeInList("F", grades);
-        
-        Assertions.assertEquals(3, countA);
-        Assertions.assertEquals(2, countB);
-        Assertions.assertEquals(2, countC);
-        Assertions.assertEquals(2, countD);
-        Assertions.assertEquals(1, countF);
+    
+        assertEquals(3, countA);
+        assertEquals(2, countB);
+        assertEquals(2, countC);
+        assertEquals(2, countD);
+        assertEquals(1, countF);
     }
 }
