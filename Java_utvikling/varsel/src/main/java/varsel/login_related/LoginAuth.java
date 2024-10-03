@@ -12,7 +12,7 @@ public class LoginAuth {
 
     public boolean login(double user_id, String password) { // Method to authenticate a user
         User user = userRepo.findUserById(user_id); 
-        if (user != null && user.getPassword().equals(password)) { 
+        if (user != null && user.getPassword().equals(password) && user.getUser_id() == user_id) { 
             return true;
         }
         return false;
