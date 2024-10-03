@@ -33,33 +33,32 @@ public class LoginAuthTests {
     @DisplayName("Test login with invalid credentials")
     void testLoginFail() {
         // Arrange
-        UserRepo userRepo = Mockito.mock(UserRepo.class);                           // Simulere en database med brukere
-        User testUser1 = new User(1, "testuser@hiof.no", "password");    // Oppretter en testbruker
+        UserRepo userRepo = Mockito.mock(UserRepo.class);                           
+        User testUser1 = new User(1, "testuser@hiof.no", "password");    
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);                           // Når findUserById(1) kalles, returner testUser1
+        when(userRepo.findUserById(1)).thenReturn(testUser1);                           
 
         // Act
-        LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
-        boolean loginFail = loginAuth.login(1, "wrongpassword");               // Prøver å logge inn med feil passord
-
+        LoginAuth loginAuth = new LoginAuth(userRepo);                                          
+        boolean loginFail = loginAuth.login(1, "wrongpassword");               
         // Assert
-        assertFalse(loginFail, "Login should fail");                                    // Forventer at loginSuccess er false
+        assertFalse(loginFail, "Login should fail");                                    
     }
 
     @Test
     @DisplayName("Test login with invalid user_id")
     void testLoginFail_InvalidUser() {
         // Arrange
-        UserRepo userRepo = Mockito.mock(UserRepo.class);                           // Simulere en database med brukere
-        User testUser1 = new User(1, "testuser@hiof.no", "password");    // Oppretter en testbruker
+        UserRepo userRepo = Mockito.mock(UserRepo.class);                           
+        User testUser1 = new User(1, "testuser@hiof.no", "password");    
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);                           // Når findUserById(1) kalles, returner testUser1
+        when(userRepo.findUserById(1)).thenReturn(testUser1);                           
 
         // Act
-        LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
-        boolean loginFail = loginAuth.login(2, "password");                    // Prøver å logge inn med feil bruker_id
+        LoginAuth loginAuth = new LoginAuth(userRepo);                                          
+        boolean loginFail = loginAuth.login(2, "password");                    
 
         // Assert
-        assertFalse(loginFail, "Login should fail");                                    // Forventer at loginSuccess er false
+        assertFalse(loginFail, "Login should fail");                                    
     }
 }
