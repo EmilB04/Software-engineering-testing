@@ -40,9 +40,26 @@ public class LoginAuthTests {
 
         // Act
         LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
-        boolean loginFail = loginAuth.login(1, "wrongpassword");          // Prøver å logge inn med feil passord
+        boolean loginFail = loginAuth.login(1, "wrongpassword");               // Prøver å logge inn med feil passord
 
         // Assert
-        assertFalse(loginFail, "Login should fail");                                      // Forventer at loginSuccess er false
+        assertFalse(loginFail, "Login should fail");                                    // Forventer at loginSuccess er false
+    }
+
+    @Test
+    @DisplayName("Test login with invalid user_id")
+    void testLoginFail_InvalidUser() {
+        // Arrange
+        UserRepo userRepo = Mockito.mock(UserRepo.class);                           // Simulere en database med brukere
+        User testUser1 = new User(1, "testuser@hiof.no", "password");    // Oppretter en testbruker
+
+        when(userRepo.findUserById(1)).thenReturn(testUser1);                           // Når findUserById(1) kalles, returner testUser1
+
+        // Act
+        LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
+        boolean loginFail = loginAuth.login(2, "password");                    // Prøver å logge inn med feil bruker_id
+
+        // Assert
+        assertFalse(loginFail, "Login should fail");                                    // Forventer at loginSuccess er false
     }
 }
