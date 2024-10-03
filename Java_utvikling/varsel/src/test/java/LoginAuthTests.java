@@ -15,17 +15,17 @@ public class LoginAuthTests {
     @DisplayName("Test login with valid credentials")
     void testLoginSuccess() {
         // Arrange
-        UserRepo userRepo = Mockito.mock(UserRepo.class);
-        User testUser1 = new User(1, "testuser@hiof.no", "password");
+        UserRepo userRepo = Mockito.mock(UserRepo.class);                           // Simulere en database med brukere
+        User testUser1 = new User(1, "testuser@hiof.no", "password");    // Oppretter en testbruker
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);
+        when(userRepo.findUserById(1)).thenReturn(testUser1);                           // Når findUserById(1) kalles, returner testUser1 
 
         // Act
-        LoginAuth loginAuth = new LoginAuth(userRepo);
-        boolean loginSuccess = loginAuth.login(1, "password");
+        LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
+        boolean loginSuccess = loginAuth.login(1, "password");                 // Prøver å logge inn med testUser1
 
         // Assert
-        assertTrue(loginSuccess, "Login should be successful");
+        assertTrue(loginSuccess, "Login should be successful");                         // Forventer at loginSuccess er true
 
     }
 }
