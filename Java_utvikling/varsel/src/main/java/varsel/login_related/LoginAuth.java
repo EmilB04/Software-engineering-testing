@@ -10,9 +10,9 @@ public class LoginAuth {
         this.userRepo = userRepo;
     }
 
-    public boolean login(double user_id, String password) { // Method to authenticate a user
-        User user = userRepo.findUserById(user_id); 
-        if (user != null && user.getPassword().equals(password) && user.getUser_id() == user_id) { 
+    public boolean login(String email, String password) { // Method to authenticate a user
+        User user = userRepo.findUserByEmail(email); 
+        if (user != null && user.getPassword().equals(password) && user.getEmail() == email) { 
             return true;
         }
         return false;

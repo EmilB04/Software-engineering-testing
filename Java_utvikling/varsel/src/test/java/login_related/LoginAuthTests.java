@@ -19,11 +19,11 @@ public class LoginAuthTests {
         UserRepo userRepo = Mockito.mock(UserRepo.class);                           // Simulere en database med brukere
         User testUser1 = new User(1, "testuser@hiof.no", "password");    // Oppretter en testbruker
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);                           // Når findUserById(1) kalles, returner testUser1 
+        when(userRepo.findUserByEmail("testuser@hiof.no")).thenReturn(testUser1);                           // Når findUserByEmail(1) kalles, returner testUser1 
 
         // Act
         LoginAuth loginAuth = new LoginAuth(userRepo);                                          // Bruker UserRepo for å autentisere brukere i LoginAuth klassen
-        boolean loginSuccess = loginAuth.login(1, "password");                 // Prøver å logge inn med testUser1
+        boolean loginSuccess = loginAuth.login("testuser@hiof.no", "password");                 // Prøver å logge inn med testUser1
 
         // Assert
         assertTrue(loginSuccess, "Login should be successful");                         // Forventer at loginSuccess er true
@@ -37,11 +37,11 @@ public class LoginAuthTests {
         UserRepo userRepo = Mockito.mock(UserRepo.class);                           
         User testUser1 = new User(1, "testuser@hiof.no", "password");    
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);                           
+        when(userRepo.findUserByEmail("testuser@hiof.no")).thenReturn(testUser1);                           
 
         // Act
         LoginAuth loginAuth = new LoginAuth(userRepo);                                          
-        boolean loginFail = loginAuth.login(1, "wrongpassword");               
+        boolean loginFail = loginAuth.login("testuser@hiof.no", "wrongpassword");               
         // Assert
         assertFalse(loginFail, "Login should fail");                                    
     }
@@ -53,11 +53,11 @@ public class LoginAuthTests {
         UserRepo userRepo = Mockito.mock(UserRepo.class);                           
         User testUser1 = new User(1, "testuser@hiof.no", "password");    
 
-        when(userRepo.findUserById(1)).thenReturn(testUser1);                           
+        when(userRepo.findUserByEmail("testuser@hiof.no")).thenReturn(testUser1);                           
 
         // Act
         LoginAuth loginAuth = new LoginAuth(userRepo);                                          
-        boolean loginFail = loginAuth.login(2, "password");                    
+        boolean loginFail = loginAuth.login("wronguser@hiof.no", "password");                    
 
         // Assert
         assertFalse(loginFail, "Login should fail");                                    

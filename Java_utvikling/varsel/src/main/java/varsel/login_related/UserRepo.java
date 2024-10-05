@@ -6,6 +6,6 @@ package varsel.login_related;
 // Dependencies: User.java
 
 public interface UserRepo {
-    User findUserById(double user_id);
+    User findUserByEmail(String email);
 }
 
