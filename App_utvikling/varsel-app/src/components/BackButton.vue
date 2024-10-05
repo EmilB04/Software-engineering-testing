@@ -1,6 +1,6 @@
 <template>
   <img
-    src="public/c_icons/Keyboard arrow left.svg"
+    src="/public/c_icons/backButton.svg"
     :to="props.to"
     style="width: 55px; height: 55px;"
     class="q-mt-xl"
