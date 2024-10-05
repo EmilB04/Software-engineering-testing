@@ -1,10 +1,9 @@
 <template>
   <q-page
-    class="column items-center q-pa-none bg-grey-2"
+    class="column q-pa-none bg-grey-2"
   >
+    <BackButton to="/auth/welcome"/>
     <div class="column items-center text-center q-mt-lg col">
-      <!-- override this picture to be on the left-->
-      <BackButton to="/auth/welcome" />
       <h1 class="text-h4 text-weight-medium">Registrer deg</h1>
     </div>
     Register Page
