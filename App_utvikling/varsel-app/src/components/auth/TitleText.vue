@@ -1,10 +1,9 @@
 <template>
   <h1
-    :label="props.label"
     class="text-h4 text-weight-medium q-mt-sm"
     style="color: black;"
+    v-html="props.label"
   >
-    {{ props.label }}
   </h1>
 </template>
 
