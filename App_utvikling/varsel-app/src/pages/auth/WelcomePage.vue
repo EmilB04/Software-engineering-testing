@@ -14,9 +14,10 @@
     </div>
     <div class="q-pb-lg q-pt-lg full-width bg-white flex justify-center" style="border-radius: 10px;">
       <q-btn
-        class="q-pa-md"
+        class="q-pa-md text-body1 text-weight-medium"
         @click="login"
         flat
+        no-caps
       >Logg inn</q-btn>
     </div>
   </q-page>
