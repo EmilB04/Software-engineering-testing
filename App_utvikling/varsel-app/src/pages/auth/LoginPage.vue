@@ -39,14 +39,15 @@
         class="q-mt-md"
       />
     </div>
-
     <div>
-      <LoginBrandButton
-        brand="google"
+      <LoginGoogleButton
         @click="onSignInWithGoogle()"
         :loading="busy"
-        class="q-mb-md"
       />
+    </div>
+    <div class="q-pb-xl" style="display: flex; justify-content: center; gap: 2px;">
+      <p class="q-pa-none q-ma-none">Har du allerede konto?</p>
+      <p class="q-pa-none q-ma-none text-weight-medium underline">Logg inn</p>
     </div>
   </q-page>
 </template>
@@ -56,7 +57,8 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import LoginBrandButton from 'components/auth/LoginBrandButton.vue'
+// import LoginBrandButton from 'components/auth/LoginBrandButton.vue'
+import LoginGoogleButton from 'components/auth/LoginGoogleButton.vue'
 import TitleText from 'components/auth/TitleText.vue'
 import MainButton from 'components/MainButton.vue'
 import BackButton from 'src/components/BackButton.vue'
