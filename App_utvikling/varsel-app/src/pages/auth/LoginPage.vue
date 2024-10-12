@@ -45,9 +45,12 @@
         :loading="busy"
       />
     </div>
-    <div class="q-pb-xl" style="display: flex; justify-content: center; gap: 2px;">
-      <p class="q-pa-none q-ma-none">Har du allerede konto?</p>
-      <p class="q-pa-none q-ma-none text-weight-medium underline">Logg inn</p>
+    <div
+      class="q-pb-xl"
+      style="display: flex; justify-content: center; gap: 2px;"
+    >
+      <p class="q-pa-none q-ma-none">Har du ikke konto?</p>
+      <router-link to="/auth/register" class="q-pa-none q-ma-none text-weight-medium underline">Registrer deg </router-link>
     </div>
   </q-page>
 </template>
@@ -55,7 +58,7 @@
 <script setup lang="ts">
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, RouterLink } from 'vue-router'
 
 // import LoginBrandButton from 'components/auth/LoginBrandButton.vue'
 import LoginGoogleButton from 'components/auth/LoginGoogleButton.vue'
@@ -84,5 +87,13 @@ const onSignInWithGoogle = () => {
       console.warn('Error: ', error)
       busy.value = false
     })
+}
+</script>
+
+<script lang="ts">
+export default {
+  components: {
+    RouterLink,
+  },
 }
 </script>
