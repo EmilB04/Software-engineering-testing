@@ -4,7 +4,7 @@
   >
     <BackButton to="/auth/login"/>
     <div class="column items-center text-center q-mt-lg col">
-      <TitleText label="Velkommen!<br>Registrer deg"/>
+      <TitleText label="Velkommen til oss!<br>Registrer deg"/>
 
       <div style="display: flex; flex-direction: column; gap: 1vh; width: 270px;">
         <q-input
