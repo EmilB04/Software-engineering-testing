@@ -1,5 +1,11 @@
 <template>
-  <q-page>
+  <q-page class="column q-pa-none bg-grey-2">
+    <div class="column q-ml-md text-center q-mt-lg col">
+      <h1 class="text-h5 text-left">Hei Bruker!<br>Det lønner seg å lade<br>senere i kveld.</h1>
+    </div>
+    <div>
+      
+    </div>
     Dashboard Page
     <q-btn @click="logOut">
       Log Out
