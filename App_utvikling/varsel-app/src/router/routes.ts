@@ -21,6 +21,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'getting-started', component: () => import('pages/auth/GettingStarted.vue') },
       { path: 'register', component: () => import('pages/auth/RegisterPage.vue') },
       { path: 'welcome', component: () => import('pages/auth/WelcomePage.vue') },
+      { path: 'dashboard', component: () => import('pages/DashboardPage.vue') },
     ],
   },
 
