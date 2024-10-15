@@ -7,8 +7,16 @@
       <h2 class="text-left">2,34 øre/kWh</h2>
       <h3 class="text-left">Nåværende strømpris</h3>
     </div>
-    <div>
-      
+    <div> <!-- ToDo! Add flex row here hr is to be vertical-->
+      <section class="q-mx-md">
+        <h2 class="text-left">Forrige strømpris</h2>
+        <h3 class="text-left">2,34 øre/kWh</h3>
+      </section>
+      <hr>
+      <section>
+        <h2 class="text-left">Neste strømpris</h2>
+        <h3 class="text-left">2,34 øre/kWh</h3>
+      </section>
     </div>
     Dashboard Page
     <q-btn @click="logOut">
