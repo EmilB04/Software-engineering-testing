@@ -1,4 +1,8 @@
 <template>
+  <!-- TODO:
+   - Make CAR IMG centered at all times
+   - Make NAV-bar
+   -->
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
     <div class="q-mx-md">
       <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
@@ -15,7 +19,7 @@
         <h3 class="text-left q-my-sm">Nåværende strømpris</h3>
       </section>
       <hr style="background-color: black;">
-      <section>
+      <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
           <div>
             <h3 id="previous_kwh_value" class="text-center">3.64</h3>
@@ -31,6 +35,38 @@
           <h3>Tidligere</h3>
           <h3>Fremtidige</h3>
         </article>
+      </section>
+      <hr style="background-color: black;">
+      <section id="carInfo"> <!-- Bil informasjon-->
+        <h2>Volkswagen ID.3</h2>
+        <article class="row">
+          <h3>Batterinivå: </h3>
+          <h3>67%</h3>
+        </article>
+        <article class="row q-mt-md">
+          <h4>Lokasjon: </h4>
+          <h4>Hjemme</h4>
+        </article>
+        <article class="row">
+          <h4>Status: </h4>
+          <h4>Lader ikke</h4>
+        </article>
+        <div style="display: flex; flex-direction: column;">
+          <q-img>
+            <img
+              src="/public/c_icons/VW_ID3.svg"
+              alt="car"
+              style="height: auto; max-width: 350px;"
+            >
+          </q-img>
+          <q-btn
+            label="Se alle kjøretøy"
+            flat
+            no-caps
+            style="color: #000; text-decoration: underline;"
+          >
+          </q-btn>
+        </div>
       </section>
       <div style="margin-top: 50px;">
         Dashboard Page
@@ -64,6 +100,13 @@
     margin: 0;
   }
   h3 {
+    color: #000;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  h4 {
     color: #000;
     font-size: 14px;
     font-style: normal;
@@ -104,6 +147,9 @@
   #p_f_prices>div h3:first-child {
     margin-bottom: 0;
   }
+  #carInfo h3, h4 {
+    margin: 0 2px 0 0;
+  }
 </style>
 
 <script setup lang="ts">
@@ -115,7 +161,7 @@ const logOut = () => {
   signOut(auth)
 }
 
-// Change color of previous kWh based on value
+// Change color of kWh based on value
 const changeColorBasedOnValue = () => {
   const green = '#79CC00'
   const red = '#FF0000'
