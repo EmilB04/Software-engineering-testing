@@ -117,6 +117,9 @@ const logOut = () => {
 
 // Change color of previous kWh based on value
 const changeColorBasedOnValue = () => {
+  const green = '#79CC00'
+  const red = '#FF0000'
+
   const previousKWhValue = document.getElementById('previous_kwh_value')
   const previousKWhText = document.getElementById('previous_kwh_text')
 
@@ -125,23 +128,23 @@ const changeColorBasedOnValue = () => {
 
   if (previousKWhValue) {
     if (parseFloat(previousKWhValue.innerText) > 3.60) {
-      previousKWhValue.style.color = 'red'
-      if (previousKWhText) previousKWhText.style.color = 'red'
+      previousKWhValue.style.color = red
+      if (previousKWhText) previousKWhText.style.color = red
     }
     else {
-      previousKWhValue.style.color = 'green'
-      if (previousKWhText) previousKWhText.style.color = 'green'
+      previousKWhValue.style.color = green
+      if (previousKWhText) previousKWhText.style.color = green
     }
   }
 
   if (futureKWhValue) {
     if (parseFloat(futureKWhValue.innerText) > 3.60) {
-      futureKWhValue.style.color = 'red'
-      if (futureKWhText) futureKWhText.style.color = 'red'
+      futureKWhValue.style.color = red
+      if (futureKWhText) futureKWhText.style.color = red
     }
     else {
-      futureKWhValue.style.color = 'green'
-      if (futureKWhText) futureKWhText.style.color = 'green'
+      futureKWhValue.style.color = green
+      if (futureKWhText) futureKWhText.style.color = green
     }
   }
 }
