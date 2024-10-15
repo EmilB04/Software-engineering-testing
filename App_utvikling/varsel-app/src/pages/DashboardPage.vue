@@ -11,14 +11,20 @@
         </figure>
       </section>
       <section> <!-- Ørepris-->
-        <h2 class="text-left">2,34 øre/kWh</h2>
+        <h2 class="text-left">2.34 øre/kWh</h2>
         <h3 class="text-left q-my-sm">Nåværende strømpris</h3>
       </section>
       <hr style="background-color: black;">
-      <section> <!-- ToDo! Add flex row here hr is to be vertical-->
+      <section>
         <article id="p_f_prices">
-          <h3 id="previous_kWh" class="text-center">3,64<br>øre/kWh</h3>
-          <h3 id="future_kWh" class="text-center">2,34<br>øre/kWh</h3>
+          <div>
+            <h3 id="previous_kwh_value" class="text-center">3.64</h3>
+            <h3 id="previous_kwh_text" class="text-center">øre/kWh</h3>
+          </div>
+          <div>
+            <h3 id="future_kwh_value" class="text-center">2.12</h3>
+            <h3 id="future_kwh_text" class="text-center">øre/kWh</h3>
+          </div>
         </article>
         <hr style="width: 54.5px; height: 0px; transform: rotate(-90deg); position: absolute; top: 250px; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); padding: 0; background-color: black">
         <article id="p_f_text">
@@ -77,7 +83,7 @@
     align-items: center;
     flex-wrap: nowrap;
   }
-  #p_f_prices>h3{
+  #p_f_prices h3{
     margin-inline: auto;
     font-size: 1rem;
   }
@@ -89,10 +95,20 @@
     border-radius: 5px 0px 0px 5px;
     background: #CBC9C9;
   }
+  #p_f_prices div {
+    margin: 0 auto;
+  }
+  #p_f_prices>div h3:last-child {
+    margin-top: 0;
+  }
+  #p_f_prices>div h3:first-child {
+    margin-bottom: 0;
+  }
 </style>
 
 <script setup lang="ts">
 import { getAuth, signOut } from 'firebase/auth'
+import { onMounted } from 'vue'
 
 const logOut = () => {
   const auth = getAuth()
@@ -100,26 +116,37 @@ const logOut = () => {
 }
 
 // Change color of previous kWh based on value
-const previousKWh = document.getElementById('previous_kWh')
+const changeColorBasedOnValue = () => {
+  const previousKWhValue = document.getElementById('previous_kwh_value')
+  const previousKWhText = document.getElementById('previous_kwh_text')
 
-if (previousKWh) {
-  if (parseFloat(previousKWh.innerText) > 3.60) {
-    previousKWh.style.color = 'red'
+  const futureKWhValue = document.getElementById('future_kwh_value')
+  const futureKWhText = document.getElementById('future_kwh_text')
+
+  if (previousKWhValue) {
+    if (parseFloat(previousKWhValue.innerText) > 3.60) {
+      previousKWhValue.style.color = 'red'
+      if (previousKWhText) previousKWhText.style.color = 'red'
+    }
+    else {
+      previousKWhValue.style.color = 'green'
+      if (previousKWhText) previousKWhText.style.color = 'green'
+    }
   }
-  else {
-    previousKWh.style.color = 'green'
+
+  if (futureKWhValue) {
+    if (parseFloat(futureKWhValue.innerText) > 3.60) {
+      futureKWhValue.style.color = 'red'
+      if (futureKWhText) futureKWhText.style.color = 'red'
+    }
+    else {
+      futureKWhValue.style.color = 'green'
+      if (futureKWhText) futureKWhText.style.color = 'green'
+    }
   }
 }
 
-// Change color of future kWh based on value
-const futureKWh = document.getElementById('future_kWh')
-
-if (futureKWh) {
-  if (parseFloat(futureKWh.innerText) > 2.30) {
-    futureKWh.style.color = 'red'
-  }
-  else {
-    futureKWh.style.color = 'green'
-  }
-}
+onMounted(() => {
+  changeColorBasedOnValue()
+})
 </script>
