@@ -1,5 +1,3 @@
-package org.musicas.core.domain;
-
 public abstract class Music {
 
     private String id;

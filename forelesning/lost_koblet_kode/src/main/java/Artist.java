@@ -1,5 +1,3 @@
-package org.musicas.core.domain;
-
 import java.util.ArrayList;
 
 public class Artist {
