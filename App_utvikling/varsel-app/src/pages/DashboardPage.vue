@@ -68,6 +68,14 @@
           </q-btn>
         </div>
       </section>
+      <nav>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+      </nav>
       <div style="margin-top: 50px;">
         Dashboard Page
         <q-btn @click="logOut">
@@ -149,6 +157,25 @@
   }
   #carInfo h3, h4 {
     margin: 0 2px 0 0;
+  }
+  nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 20px 20px 5px 5px;
+    background: #F2F2F2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    height: 74px;
+    flex-shrink: 0;
+  }
+  nav>ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style-type: none;
+    padding: 0;
   }
 </style>
 
