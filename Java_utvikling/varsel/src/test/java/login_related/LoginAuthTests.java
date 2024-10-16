@@ -35,13 +35,13 @@ public class LoginAuthTests {
     void testLoginFail() {
         // Arrange
         UserRepo userRepo = Mockito.mock(UserRepo.class);                           
-        User testUser1 = new User(1, "testuser@hiof.no", "password");    
+        User testUser1 = new User(1, "testuser@hiof.no", "password");
 
         when(userRepo.findUserByEmail("testuser@hiof.no")).thenReturn(testUser1);                           
 
         // Act
         LoginAuth loginAuth = new LoginAuth(userRepo);                                          
-        boolean loginFail = loginAuth.login("testuser@hiof.no", "wrongpassword");               
+        boolean loginFail = loginAuth.login("testuser@hiof.no", "wrongpassword");
         // Assert
         assertFalse(loginFail, "Login should fail");                                    
     }
@@ -51,7 +51,7 @@ public class LoginAuthTests {
     void testLoginFail_InvalidUser() {
         // Arrange
         UserRepo userRepo = Mockito.mock(UserRepo.class);                           
-        User testUser1 = new User(1, "testuser@hiof.no", "password");    
+        User testUser1 = new User(1, "testuser@hiof.no", "password");
 
         when(userRepo.findUserByEmail("testuser@hiof.no")).thenReturn(testUser1);                           
 
