@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MockingFunctionalityTest {
+    @Mock
+    private Calculator mockCalculator;
+
     @Test
     @DisplayName("Test mocking functionality")
     public void MockingFunctionality() {
