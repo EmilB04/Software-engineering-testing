@@ -15,7 +15,7 @@ const blockUnAuth = async (to: any, from: any, next: any) => {
   if (user) {
     return next()
   }
-  next('/auth/login')
+  next('/auth/welcome')
 }
 const blockAuth = async (to: any, from: any, next: any) => {
   const getCurrentUser = () => {
@@ -32,7 +32,7 @@ const blockAuth = async (to: any, from: any, next: any) => {
   if (!user) {
     return next()
   }
-  next('/')
+  next('/dashboard')
 }
 
 export {

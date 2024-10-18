@@ -2,7 +2,6 @@
   <q-btn
     flat
     outline
-    @click="redirectToGoogle"
     class="google-btn"
   >
     <img
@@ -12,13 +11,6 @@
     />
   </q-btn>
 </template>
-
-<script setup lang="ts">
-const redirectToGoogle = () => {
-  // Redirect to Google sign-in or any other desired URL
-  window.location.href = 'https://accounts.google.com/signin'
-}
-</script>
 
 <style lang="scss">
 .google-btn {

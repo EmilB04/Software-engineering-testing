@@ -8,7 +8,8 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     beforeEnter: blockUnAuth,
     children: [
-      { path: '', component: () => import('pages/DashboardPage.vue') },
+      { path: 'dashboard', component: () => import('pages/DashboardPage.vue') },
+      { path: 'profile', component: () => import('pages/ProfilePage.vue') },
       { path: 'power-graph', component: () => import('pages/PowerGraphPage.vue') },
     ],
   },
@@ -21,7 +22,6 @@ const routes: RouteRecordRaw[] = [
       { path: 'getting-started', component: () => import('pages/auth/GettingStarted.vue') },
       { path: 'register', component: () => import('pages/auth/RegisterPage.vue') },
       { path: 'welcome', component: () => import('pages/auth/WelcomePage.vue') },
-      { path: 'dashboard', component: () => import('pages/DashboardPage.vue') },
     ],
   },
 

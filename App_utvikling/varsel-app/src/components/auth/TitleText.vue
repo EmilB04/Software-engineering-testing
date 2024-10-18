@@ -1,6 +1,6 @@
 <template>
   <h1
-    class="text-h4 text-weight-medium q-mt-sm"
+    class="text-h1 text-weight-medium q-mt-sm"
     style="color: black;"
     v-html="props.label"
   >

@@ -7,15 +7,16 @@
     <div class="q-mx-md">
       <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
-          <h1 class="text-left q-ma-none">Hei TestBruker!</h1>
-          <h1 class="text-left">Det lønner seg å lade<br> senere i kveld.</h1>
+          <h1 class="text-left q-ma-none" style="font-size: 20px;">Hei {{firstName}}!</h1>
+          <h1 class="text-left" style="font-size: 18px;">Det lønner seg å lade<br> senere i kveld.</h1>
         </article>
         <q-btn
           class="q-ma-none q-pa-none"
           style="align-self: baseline;"
           flat
+          to="/profile"
         >
-          <a href="#"><q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg"/></a>
+          <q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg"/>
         </q-btn>
       </section>
       <section> <!-- Ørepris-->
@@ -115,8 +116,7 @@
           </li>
         </ul>
       </nav>
-      <div style="margin-top: 50px;">
-        Dashboard Page
+      <div class="column" style="margin-top: 50px;">
         <q-btn @click="logOut">
           Log Out
         </q-btn>
@@ -208,11 +208,17 @@
 <script setup lang="ts">
 import { getAuth, signOut } from 'firebase/auth'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const auth = getAuth()
+const router = useRouter()
 
 const logOut = () => {
-  const auth = getAuth()
   signOut(auth)
+  router.push('/auth/welcome')
 }
+const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
+// const lastName = ref(auth.currentUser?.displayName?.split(' ').slice(1).join(' '))
 
 const targetPrice = ref(3.60)
 const previousKwhValue = ref(3.64)

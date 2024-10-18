@@ -79,7 +79,7 @@ const onSignInWithGoogle = () => {
         router.push('/auth/register')
       }
       else {
-        router.push('/')
+        router.push('/dashboard')
       }
     })
     .catch((error) => {
