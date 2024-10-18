@@ -1,4 +1,4 @@
-package org.musicas;
+package org.musicas.core;
 import java.util.ArrayList;
 
 public class Album extends Music{

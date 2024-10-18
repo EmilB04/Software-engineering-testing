@@ -1,4 +1,4 @@
-package org.musicas;
+package org.musicas.core;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
