@@ -7,12 +7,16 @@
     <div class="q-mx-md">
       <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
-          <h1 class="text-left">Hei Bruker!</h1>
-          <h1 class="text-left">Det lønner seg å lade<br> senere i kveld</h1>
+          <h1 class="text-left">Hei TestBruker!</h1>
+          <h1 class="text-left">Det lønner seg å lade<br> senere i kveld.</h1>
         </article>
-        <figure class="q-ma-none">
-          <q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg" />
-        </figure>
+        <q-btn
+          class="q-ma-none q-pa-none"
+          style="align-self: baseline;"
+          flat
+        >
+          <a href="#"><q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg"/></a>
+        </q-btn>
       </section>
       <section> <!-- Ørepris-->
         <h2 class="text-left">2.34 øre/kWh</h2>
@@ -70,10 +74,45 @@
       </section>
       <nav>
         <ul>
-          <li><a href="#"><img src="/public/c_icons/home.svg" alt="home button"></a></li>
-          <li><a href="#"><img src="/public/c_icons/history.svg" alt=""></a></li>
-          <li><a href="#"><img src="/public/c_icons/chart.svg" alt=""></a></li>
-          <li><a href="#"><img src="/public/c_icons/settings.svg" alt=""></a></li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              id="active-nav"
+              @click="() => {}"
+            ><img src="/public/c_icons/home.svg" alt="Hjemknapp"></q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => {}"
+            >
+              <img src="/public/c_icons/history.svg" alt="Historikk">
+            </q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => {}"
+            >
+              <img src="/public/c_icons/chart.svg" alt="Diagram">
+            </q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => {}"
+            >
+              <img src="/public/c_icons/settings.svg" alt="Innstillinger">
+            </q-btn>
+          </li>
         </ul>
       </nav>
       <div style="margin-top: 50px;">
@@ -177,6 +216,12 @@
     list-style-type: none;
     padding: 0;
   }
+  ul img {
+    filter: invert(0) sepia(0) saturate(0) hue-rotate(0deg) brightness(0) contrast(1); /* black */
+  }
+  #active-nav {
+    filter: invert(66%) sepia(82%) saturate(703%) hue-rotate(117deg) brightness(97%) contrast(92%); /* #32E4C3 */
+}
 </style>
 
 <script setup lang="ts">
