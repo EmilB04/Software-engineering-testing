@@ -48,11 +48,11 @@
       />
     </div>
     <div class="q-mt-xl column items-center text-center">
-      <p style="margin: 0;">Eller fortsett med:</p>
+      <p class="q-ma-none">Eller fortsett med:</p>
       <LoginGoogleButton
         @click="onSignInWithGoogle()"
         :loading="busy"
-        style="margin: 0; padding: 0;"
+        class="q-ma-none q-pa-none"
       />
     </div>
   </q-page>
