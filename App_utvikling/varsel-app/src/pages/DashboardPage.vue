@@ -70,10 +70,10 @@
       </section>
       <nav>
         <ul>
-          <li><a href=""><img src="/public/c_icons/home.svg" alt="home button"></a></li>
-          <li><a href=""><img src="/public/c_icons/history.svg" alt=""></a></li>
-          <li><a href=""><img src="/public/c_icons/chart.svg" alt=""></a></li>
-          <li><a href=""><img src="/public/c_icons/settings.svg" alt=""></a></li>
+          <li><a href="#"><img src="/public/c_icons/home.svg" alt="home button"></a></li>
+          <li><a href="#"><img src="/public/c_icons/history.svg" alt=""></a></li>
+          <li><a href="#"><img src="/public/c_icons/chart.svg" alt=""></a></li>
+          <li><a href="#"><img src="/public/c_icons/settings.svg" alt=""></a></li>
         </ul>
       </nav>
       <div style="margin-top: 50px;">
