@@ -1,3 +1,4 @@
+package org.musicas;
 public class Song extends Music{
 
     private Album album;

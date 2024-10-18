@@ -1,3 +1,4 @@
+package org.musicas;
 public abstract class Music {
 
     private String id;
