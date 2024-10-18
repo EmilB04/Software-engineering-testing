@@ -7,7 +7,7 @@
     <div class="q-mx-md">
       <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
-          <h1 class="text-left">Hei TestBruker!</h1>
+          <h1 class="text-left q-ma-none">Hei TestBruker!</h1>
           <h1 class="text-left">Det lønner seg å lade<br> senere i kveld.</h1>
         </article>
         <q-btn
@@ -19,22 +19,22 @@
         </q-btn>
       </section>
       <section> <!-- Ørepris-->
-        <h2 class="text-left">2.34 øre/kWh</h2>
+        <h2 class="text-left q-ma-none">2.34 øre/kWh</h2>
         <h3 class="text-left q-my-sm">Nåværende strømpris</h3>
       </section>
-      <hr style="background-color: black;">
+      <hr class="bg-black">
       <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
-          <div>
-            <h3 id="previous_kwh_value" class="text-center">3.64</h3>
-            <h3 id="previous_kwh_text" class="text-center">øre/kWh</h3>
+          <div :class="checkTargetPriceDiff(previousKwhValue) ? 'text-negative' : 'text-positive'">
+            <h3 class="text-center">{{ previousKwhValue }}</h3>
+            <h3 class="text-center">øre/kWh</h3>
           </div>
-          <div>
-            <h3 id="future_kwh_value" class="text-center">2.12</h3>
-            <h3 id="future_kwh_text" class="text-center">øre/kWh</h3>
+          <div :class="checkTargetPriceDiff(futureKwhValue) ? 'text-negative' : 'text-positive'">
+            <h3 class="text-center">{{ futureKwhValue }}</h3>
+            <h3 class="text-center">øre/kWh</h3>
           </div>
         </article>
-        <hr style="width: 54.5px; height: 0px; transform: rotate(-90deg); position: absolute; top: 250px; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); padding: 0; background-color: black">
+        <hr class="verticalHR">
         <article id="p_f_text">
           <h3>Tidligere</h3>
           <h3>Fremtidige</h3>
@@ -42,7 +42,7 @@
       </section>
       <hr style="background-color: black;">
       <section id="carInfo"> <!-- Bil informasjon-->
-        <h2>Volkswagen ID.3</h2>
+        <h2 class="q-mb-none">Volkswagen ID.3</h2>
         <article class="row">
           <h3>Batterinivå: </h3>
           <h3>67%</h3>
@@ -126,39 +126,9 @@
 </template>
 
 <style>
-  h1 {
-    color: #000;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px;
-    margin: 0
-  }
   h1:last-child {
     margin: 0 0 30px 0;
     font-weight: 500;
-  }
-  h2 {
-    color: #000;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px;
-    margin: 0;
-  }
-  h3 {
-    color: #000;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  h4 {
-    color: #000;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
   }
   #userHeader {
     display: flex;
@@ -221,53 +191,37 @@
   }
   #active-nav {
     filter: invert(66%) sepia(82%) saturate(703%) hue-rotate(117deg) brightness(97%) contrast(92%); /* #32E4C3 */
-}
+  }
+  .verticalHR{
+    width: 54.5px;
+    height: 0px;
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    padding: 0;
+    background-color: black;
+  }
 </style>
 
 <script setup lang="ts">
 import { getAuth, signOut } from 'firebase/auth'
-import { onMounted } from 'vue'
+import { ref } from 'vue'
 
 const logOut = () => {
   const auth = getAuth()
   signOut(auth)
 }
 
+const targetPrice = ref(3.60)
+const previousKwhValue = ref(3.64)
+const futureKwhValue = ref(2.12)
+
+// previousKwhValue.value = 4.32 // Eksempel
+
 // Change color of kWh based on value
-const changeColorBasedOnValue = () => {
-  const green = '#79CC00'
-  const red = '#FF0000'
-
-  const previousKWhValue = document.getElementById('previous_kwh_value')
-  const previousKWhText = document.getElementById('previous_kwh_text')
-
-  const futureKWhValue = document.getElementById('future_kwh_value')
-  const futureKWhText = document.getElementById('future_kwh_text')
-
-  if (previousKWhValue) {
-    if (parseFloat(previousKWhValue.innerText) > 3.60) {
-      previousKWhValue.style.color = red
-      if (previousKWhText) previousKWhText.style.color = red
-    }
-    else {
-      previousKWhValue.style.color = green
-      if (previousKWhText) previousKWhText.style.color = green
-    }
-  }
-
-  if (futureKWhValue) {
-    if (parseFloat(futureKWhValue.innerText) > 3.60) {
-      futureKWhValue.style.color = red
-      if (futureKWhText) futureKWhText.style.color = red
-    }
-    else {
-      futureKWhValue.style.color = green
-      if (futureKWhText) futureKWhText.style.color = green
-    }
-  }
+const checkTargetPriceDiff = (kwhValue: number) => {
+  return kwhValue > targetPrice.value
 }
-
-onMounted(() => {
-  changeColorBasedOnValue()
-})
 </script>
