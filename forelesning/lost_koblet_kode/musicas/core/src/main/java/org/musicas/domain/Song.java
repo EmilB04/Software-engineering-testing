@@ -1,4 +1,4 @@
-package org.musicas.core;
+package org.musicas.domain;
 
 public class Song extends Music{
 

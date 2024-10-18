@@ -1,4 +1,4 @@
-package org.musicas.core;
+package org.musicas.domain;
 import java.util.ArrayList;
 
 public class Artist {
