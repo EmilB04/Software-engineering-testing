@@ -70,10 +70,10 @@
       </section>
       <nav>
         <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
+          <li><a href="">1</a></li>
+          <li><a href="">2</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
         </ul>
       </nav>
       <div style="margin-top: 50px;">
