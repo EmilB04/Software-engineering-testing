@@ -1,75 +1,87 @@
 <template>
   <q-page class="column q-pa-none bg-grey-2">
-    <div>
-      <q-stepper
-        v-model="step"
-        ref="stepper"
-        color="primary"
-        animated
-        flat
-      >
-        <q-step :name="1" :done="step > 1">
-          <q-linear-progress
-            rounded
-            size="20px"
-            :value="progress"
-            color="primary"
-            class="q-mt-sm"
-          />
-        </q-step>
+    <q-stepper
+      class="bg-grey-2"
+      v-model="step"
+      ref="stepper"
+      color="primary"
+      animated
+      flat
+    >
+      <q-step :name="1" :done="step > 1">
+        <q-btn :to="'/auth/welcome'" flat>
+          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        </q-btn>
+        <q-linear-progress
+          rounded
+          size="20px"
+          :value="progress"
+          color="primary"
+          class="q-mt-sm justify-center"
+          style="width: 50%; border-radius: 20px;"
+          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
+        />
+      </q-step>
 
-        <q-step :name="2" :done="step > 2">
-          <q-linear-progress
-            rounded
-            size="20px"
-            :value="progress"
-            color="primary"
-            class="q-mt-sm"
-          />
-        </q-step>
+      <q-step :name="2" :done="step > 2">
+        <q-btn @click="step--" flat>
+          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        </q-btn>
+        <q-linear-progress
+          rounded
+          size="20px"
+          :value="progress"
+          color="primary"
+          class="q-mt-sm justify-center"
+          style="width: 50%; border-radius: 20px;"
+          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
+        />
+        <div>
+          GPS position: <strong>{{ position }}</strong>
+        </div>
+      </q-step>
 
-        <q-step :name="3">
-          <q-linear-progress
-            rounded
-            size="20px"
-            :value="progress"
-            color="primary"
-            class="q-mt-sm"
-          />
-        </q-step>
+      <q-step :name="3">
+        <q-btn @click="step--" flat>
+          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        </q-btn>
+        <q-linear-progress
+          rounded
+          size="20px"
+          :value="progress"
+          color="primary"
+          class="q-mt-sm justify-center"
+          style="width: 50%; border-radius: 20px;"
+          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
+        />
+      </q-step>
 
-        <q-step :name="4">
-          <q-linear-progress
-            rounded
-            size="20px"
-            :value="progress"
-            color="primary"
-            class="q-mt-sm"
-          />
-        </q-step>
+      <q-step :name="4">
+        <q-btn @click="step--" flat>
+          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        </q-btn>
+        <q-linear-progress
+          rounded
+          size="20px"
+          :value="progress"
+          color="primary"
+          class="q-mt-sm justify-center"
+          style="width: 50%; border-radius: 20px;"
+          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
+        />
+      </q-step>
 
-        <template v-slot:navigation>
-          <q-stepper-navigation>
-            <q-btn
-              @click="step++"
-              color="primary"
-              :label="step === 4 ? 'Finish' : 'Continue'"
-            />
-            <q-btn
-              v-if="step > 1"
-              flat
-              color="primary"
-              @click="step--"
-              label="Back"
-              class="q-ml-sm"
-            />
-          </q-stepper-navigation>
-        </template>
-      </q-stepper>
-      <div>
-        GPS position: <strong>{{ position }}</strong>
-      </div>
-    </div>
+      <template v-slot:navigation>
+        <q-stepper-navigation>
+          <q-btn
+            @click="step++"
+            color="primary"
+            :label="step === 4 ? 'Fullfør' : 'Fortsett'"
+            class="q-mt-xl q-mb-md"
+          />
+        </q-stepper-navigation>
+      </template>
+    </q-stepper>
   </q-page>
 </template>
 
