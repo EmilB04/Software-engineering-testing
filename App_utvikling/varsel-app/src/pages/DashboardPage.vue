@@ -1,7 +1,6 @@
 <template>
   <!-- TODO:
    - Make CAR IMG centered at all times
-   - Make NAV-bar
    -->
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
     <div class="q-mx-md">
@@ -116,11 +115,6 @@
           </li>
         </ul>
       </nav>
-      <div class="column" style="margin-top: 50px;">
-        <q-btn @click="logOut">
-          Log Out
-        </q-btn>
-      </div>
     </div>
   </q-page>
 </template>
@@ -206,17 +200,10 @@
 </style>
 
 <script setup lang="ts">
-import { getAuth, signOut } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 const auth = getAuth()
-const router = useRouter()
-
-const logOut = () => {
-  signOut(auth)
-  router.push('/auth/welcome')
-}
 const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
 // const lastName = ref(auth.currentUser?.displayName?.split(' ').slice(1).join(' '))
 
