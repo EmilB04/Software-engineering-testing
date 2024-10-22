@@ -93,7 +93,7 @@ import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
 
-const stepInfo = [
+/* const stepInfo = [
   {
     title: 'Velg din strømleverandør',
     description: 'Velg din nåværende strømleverandør for å få den mest nøyaktige oversikten over strømpriser.',
@@ -113,6 +113,7 @@ const stepInfo = [
     description: 'Gå gjennom innstillingene dine og bekreft at alt er riktig før du går videre.',
   },
 ]
+  */
 
 const position = ref('determining...')
 
@@ -142,7 +143,7 @@ onMounted(() => {
   registerNotifications()
 
   // we start listening
-  geoId = Geolocation.watchPosition({}, (newPosition, err) => {
+  geoId = Geolocation.watchPosition({}, newPosition => {
     console.log('New GPS position')
     position.value = newPosition
   })
