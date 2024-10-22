@@ -6,7 +6,7 @@
   >
     <img
       class="google-icon"
-      src="/public/c_icons/continue_wgoogle_light.svg"
+      src="/src/assets/c_icons/continue_wgoogle_light.svg"
       alt="Google innlogging"
     />
   </q-btn>

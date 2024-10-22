@@ -16,7 +16,7 @@
           flat
           to="/profile"
         >
-          <q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg"/>
+          <q-img style="height: 60px; width: 60px;" src="/src/assets/c_icons/profile.svg"/>
         </q-btn>
       </section>
       <section> <!-- Ørepris-->
@@ -59,7 +59,7 @@
         <div style="display: flex; flex-direction: column;">
           <q-img>
             <img
-              src="/public/c_icons/VW_ID3.svg"
+              src="/src/assets/c_icons/VW_ID3.svg"
               alt="car"
               style="height: auto; max-width: 350px;"
             >
@@ -82,7 +82,7 @@
               no-caps
               id="active-nav"
               @click="() => {}"
-            ><img src="/public/c_icons/home.svg" alt="Hjemknapp"></q-btn>
+            ><img src="/src/assets/c_icons/home.svg" alt="Hjemknapp"></q-btn>
           </li>
           <li>
             <q-btn
@@ -91,7 +91,7 @@
               no-caps
               @click="() => {}"
             >
-              <img src="/public/c_icons/history.svg" alt="Historikk">
+              <img src="/src/assets/c_icons/history.svg" alt="Historikk">
             </q-btn>
           </li>
           <li>
@@ -101,7 +101,7 @@
               no-caps
               @click="() => {}"
             >
-              <img src="/public/c_icons/chart.svg" alt="Diagram">
+              <img src="/src/assets/c_icons/chart.svg" alt="Diagram">
             </q-btn>
           </li>
           <li>
@@ -111,7 +111,7 @@
               no-caps
               @click="() => {}"
             >
-              <img src="/public/c_icons/settings.svg" alt="Innstillinger">
+              <img src="/src/assets/c_icons/settings.svg" alt="Innstillinger">
             </q-btn>
           </li>
         </ul>
