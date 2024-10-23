@@ -29,5 +29,5 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        cd forelesning/lost_koblet_kode/musicas
+        cd forelesning/musicas
         mvn --batch mode --update-snapshots verify
