@@ -2,20 +2,82 @@
   <q-page class="q-pa-none column bg-grey-2">
     <section class="row" style="justify-content: space-between;">
       <BackButton to="/dashboard" />
-      <q-btn
-        @click="logOut"
-        no-caps
-        style="height: 50px; margin: 69px 20px 0 0;"
-        class="bg-black text-white self-center q-px-lg"
-      >
-        Logg ut
-      </q-btn>
     </section>
-    <header class="column q-mt-md">
-      <h1 class="self-center">Min Side</h1>
+    <header class="column q-mt-none">
+      <h1 class="self-center q-mb-lg">Min Side</h1>
       <h2 class="q-ml-md q-ma-none">{{firstName}} {{lastName}}</h2>
-      <h3 class="q-ml-md q-mt-sm q-ma-none">{{ email }}</h3>
+      <h3 class="q-ml-md q-mt-sm q-ma-none" style="font-weight: 400;">{{ email }}</h3>
     </header>
+    <main>
+      <q-card class="q-ma-md q-mt-lg">
+        <q-card-section class="q-py-sm">
+          <q-item>
+            <q-item-section>
+              <q-item-label>Endre PIN-kode</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="chevron_right" />
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+      <q-card class="q-ma-md">
+        <q-card-section class="q-py-sm">
+          <q-item>
+            <q-item-section>
+              <q-item-label>Endre passord</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="chevron_right" />
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+      <q-card class="q-ma-md">
+        <q-card-section class="q-py-sm">
+          <q-item>
+            <q-item-section>
+              <q-item-label>Endre mobilnummer</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="chevron_right" />
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+      <q-card class="q-ma-md">
+        <q-card-section class="q-py-sm">
+          <q-item>
+            <q-item-section>
+              <q-item-label>Vilkår</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="chevron_right" />
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+      <q-card class="q-ma-md">
+        <q-card-section class="q-py-sm">
+          <q-item>
+            <q-item-section>
+              <q-item-label>Slett konto</q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-icon name="chevron_right" />
+            </q-item-section>
+          </q-item>
+        </q-card-section>
+      </q-card>
+    </main>
+    <q-btn
+      @click="logOut"
+      no-caps
+      style="height: 50px;"
+      class="bg-black text-white self-center q-px-lg q-ma-xl"
+    >
+      Logg ut
+    </q-btn>
   </q-page>
 </template>
 
