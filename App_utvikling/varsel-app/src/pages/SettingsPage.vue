@@ -5,10 +5,31 @@
     </section>
     <header class="column q-mt-none">
       <h1 class="self-center q-mb-lg">Innstillinger</h1>
-      <q-icon>
-        <img src="/src/assets/c_icons/settings.svg" alt="Språk">
-        <img src="/src/assets/c_icons/settings.svg" alt="Dark Mode">
-      </q-icon>
+      <section
+        class="row self-center"
+        style="gap: 50px;"
+      >
+        <article class="text-center">
+          <q-btn flat>
+            <img
+              style="height: 70px;"
+              src="/src/assets/c_icons/language.svg"
+              alt="Språk"
+            >
+          </q-btn>
+          <h3 class="q-mt-none">Språk</h3>
+        </article>
+        <article class="text-center">
+          <q-btn flat>
+            <img
+              style="height: 70px;"
+              src="/src/assets/c_icons/darkMode.svg"
+              alt="Dark Mode"
+            >
+          </q-btn>
+          <h3 class="q-mt-none">Dark Mode</h3>
+        </article>
+      </section>
     </header>
     <main>
       <q-card class="q-ma-md q-mt-lg">
@@ -76,13 +97,5 @@
 </template>
 
 <script setup>
-import { getAuth, signOut } from 'firebase/auth'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
 import BackButton from 'src/components/BackButton.vue'
-
-const auth = getAuth()
-const router = useRouter()
-
 </script>
