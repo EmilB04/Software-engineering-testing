@@ -11,6 +11,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'dashboard', component: () => import('pages/DashboardPage.vue') },
       { path: 'profile', component: () => import('pages/ProfilePage.vue') },
       { path: 'settings', component: () => import('pages/SettingsPage.vue') },
+      { path: 'history', component: () => import('pages/HistoryPage.vue') },
       { path: 'power-graph', component: () => import('pages/PowerGraphPage.vue') },
     ],
   },

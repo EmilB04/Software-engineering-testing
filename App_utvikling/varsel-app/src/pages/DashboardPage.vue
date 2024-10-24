@@ -88,7 +88,7 @@
               class="q-pa-sm"
               flat
               no-caps
-              @click="() => {}"
+              @click="() => { $router.push('/history') }"
             >
               <img src="/src/assets/c_icons/history.svg" alt="Historikk">
             </q-btn>
