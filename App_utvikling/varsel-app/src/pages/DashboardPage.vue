@@ -108,7 +108,7 @@
               class="q-pa-sm"
               flat
               no-caps
-              @click="() => {}"
+              @click="() => { $router.push('/settings') }"
             >
               <img src="/src/assets/c_icons/settings.svg" alt="Innstillinger">
             </q-btn>
