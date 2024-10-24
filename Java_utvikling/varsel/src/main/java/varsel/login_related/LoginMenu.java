@@ -19,7 +19,7 @@ public class LoginMenu {
         users = fileHandler.loadUsers();
 
         // Opprett Register og Login-objekter med riktige parametere
-        register = new Register(users, fileHandler);  // Riktig kall til konstruktør
+        register = new Register(users, fileHandler, scanner);  // Riktig kall til konstruktør
         login = new Login(users);
     }
 

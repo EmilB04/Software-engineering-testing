@@ -8,13 +8,14 @@ import java.util.Scanner;
 public class Register {
     // HashMap for å lagre brukerkontoer med e-post som nøkkel og passord som verdi
     private HashMap<String, String> users;
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
     private FileHandler fileHandler;
 
     // Konstruktør som tar inn både HashMap og FileHandler
-    public Register(HashMap<String, String> users, FileHandler fileHandler) {
+    public Register(HashMap<String, String> users, FileHandler fileHandler, Scanner scanner) {
         this.users = users;
         this.fileHandler = fileHandler;
+        this.scanner = scanner;
     }
 
     public void registerUser() {
@@ -32,10 +33,8 @@ public class Register {
 
         // Hash passordet ved hjelp av BCrypt
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
         // Legg til ny bruker i HashMap
         users.put(email, hashedPassword);
-
         // Lagre bruker i filen via FileHandler
         fileHandler.saveUser(email, hashedPassword);
 
