@@ -2,28 +2,25 @@ package varsel.login_related;
 
 // Path: varsel/src/main/java/varsel/login_related/User.java
 // Use-case: User.java is a class that represents a user in the system.
-// Attributes: user_id, email, and password.
+// Attributes: email, and password.
 
+/**
+ * Denne klassen representerer en bruker med e-post og kryptert passord.
+ */
 public class User {
-    private double user_id;
-    private String email;
-    private String password;
+    private final String email;
+    private final String hashedPassword;
 
-    public User(double user_id, String email, String password) {
-        this.user_id = user_id;
+    public User(String email, String hashedPassword) {
         this.email = email;
-        this.password = password;
-    }
-
-    public double getUser_id() {
-        return user_id;
+        this.hashedPassword = hashedPassword;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getHashedPassword() {
+        return hashedPassword;
     }
 }
