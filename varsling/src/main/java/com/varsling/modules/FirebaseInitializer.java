@@ -15,7 +15,7 @@ public class FirebaseInitializer {
      * Bash kommando i terminalen:
      * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
      * ex:
-     * set GOOGLE_APPLICATION_CREDENTIALS=C:\Users\idakt\OneDrive - Østfold University College\Dokumenter\Høyskole\Høst24\Software Engineering og testing\Til_gruppeprosjekt\service-account-file.json
+     * set GOOGLE_APPLICATION_CREDENTIALS=C:\Users\idakt\Documents\Testing\service-account-file.json
      * 
      * Metode for å initialisere Firebase.
      * Metoden sjekker om Firebase allerede er initialisert for å unngå reinitialisering.
