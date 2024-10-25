@@ -9,30 +9,40 @@
       flat
     >
       <q-step :name="1" :done="step > 1">
-        <q-btn :to="'/auth/welcome'" flat>
-          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        <q-btn
+          :to="'/auth/welcome'"
+          class="q-mt-lg"
+          flat
+        >
+          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
         </q-btn>
+        <h1 class="text-center q-mx-auto">Velg din <br> strømleverandør</h1>
         <q-linear-progress
           rounded
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm justify-center"
+          class="q-mt-sm q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
       </q-step>
 
       <q-step :name="2" :done="step > 2">
-        <q-btn @click="step--" flat>
-          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        <q-btn
+          @click="step--"
+          class="q-mt-lg"
+          flat
+        >
+          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
         </q-btn>
+        <h1 class="text-center q-mx-auto">Lokaliserings- <br> innstillinger</h1>
         <q-linear-progress
           rounded
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm justify-center"
+          class="q-mt-sm q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
@@ -42,48 +52,71 @@
       </q-step>
 
       <q-step :name="3">
-        <q-btn @click="step--" flat>
-          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        <q-btn
+          @click="step--"
+          class="q-mt-lg"
+          flat
+        >
+          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
         </q-btn>
+        <h1 class="text-center q-mx-auto">Varslings- <br> instillinger</h1>
         <q-linear-progress
           rounded
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm justify-center"
+          class="q-mt-sm q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
       </q-step>
 
       <q-step :name="4">
-        <q-btn @click="step--" flat>
-          <img src="/public/c_icons/backButton.svg" alt="Tilbake">
+        <q-btn
+          @click="step--"
+          class="q-mt-lg"
+          flat
+        >
+          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
         </q-btn>
+        <h1 class="text-center q-mx-auto">Oppsummering</h1>
         <q-linear-progress
           rounded
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm justify-center"
+          class="q-mt-sm q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
       </q-step>
 
       <template v-slot:navigation>
-        <q-stepper-navigation>
+        <q-stepper-navigation class="flex flex-center">
           <q-btn
             @click="step++"
             color="primary"
             :label="step === 4 ? 'Fullfør' : 'Fortsett'"
-            class="q-mt-xl q-mb-md"
+            class="custom-btn text-black"
+            no-caps
           />
         </q-stepper-navigation>
       </template>
     </q-stepper>
   </q-page>
 </template>
+<style scoped>
+.custom-btn {
+  position: absolute;
+  bottom: 106px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  padding: 20px 36px;
+  font-size: 16px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+</style>
 
 <script setup>
 import { Geolocation } from '@capacitor/geolocation'
