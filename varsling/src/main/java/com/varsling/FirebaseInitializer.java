@@ -12,18 +12,31 @@ public class FirebaseInitializer {
     private static boolean initialized = false;
 
     /**
+     * Bash kommando i terminalen:
+     * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
+     * ex:
+     * set GOOGLE_APPLICATION_CREDENTIALS=C:\Users\idakt\OneDrive - Østfold University College\Dokumenter\Høyskole\Høst24\Software Engineering og testing\Til_gruppeprosjekt\service-account-file.json
+     * 
      * Metode for å initialisere Firebase.
      * Metoden sjekker om Firebase allerede er initialisert for å unngå reinitialisering.
-     * Hvis Firebase ikke er initialisert, vil metoden initialisere Firebase med service-account-file.JSON filen.
-     * Hvis det oppstår en IOException, vil det skrives ut en feilmelding.
-     * Hvis Firebase alerede er initialisert, skrives det ut som en melding.
+     * Hvis Firebase ikke er initialisert, vil metoden initialisere Firebase med 
+     * lokalvariabel "GOOGLE_APPLICATION_CREDENTIALS" for å ungå sensitiv informasjon
+     * i de offentlig ligjengelige filene.
+     * Hvis det oppstår en IOException eller IllegalStateException vil det skrives ut en feilmelding.
+     * Hvis Firebase alerede er initialisert gjøres ingenting. 
      */
 
     public static void initializeFirebaseApp() {
         if (initialized == false) {
             try {
-                //Initialiserer Firebase
-                FileInputStream serviceAccount = new FileInputStream("service-account-file.json");
+                String serviceAccountPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
+                
+                if (serviceAccountPath == null || serviceAccountPath.isEmpty()) {
+                    throw new IllegalStateException("Miljøvariabelen 'GOOGLE_APPLICATION_CREDENTIALS' er ikke satt.");
+                }
+
+                // Initialiserer Firebase
+                FileInputStream serviceAccount = new FileInputStream(serviceAccountPath);
 
                 FirebaseOptions options = FirebaseOptions.builder()
                         .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -32,12 +45,12 @@ public class FirebaseInitializer {
                 FirebaseApp.initializeApp(options);
                 initialized = true;
 
-            } 
-            //Feil ved initialisering
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
+
+            } catch (IllegalStateException e) {
+                System.err.println(e.getMessage());
             }
         }
-        //Hvis Firebase allerede er initialisert gjøres ingenting 
     }
 }
