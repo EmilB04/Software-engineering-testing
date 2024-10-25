@@ -1,4 +1,4 @@
-package com.varsling;
+package com.varsling.modules;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
