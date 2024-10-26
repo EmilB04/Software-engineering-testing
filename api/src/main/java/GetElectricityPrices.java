@@ -75,7 +75,7 @@ public class GetElectricityPrices {
     // Main metode for teste koden
     public static void main(String[] args) {
         GetElectricityPrices electricityPricesFetcher = new GetElectricityPrices();
-        List<Double> prices = electricityPricesFetcher.gettingElectricityPrices("2024", "10", "24", "NO1");
+        List<Double> prices = electricityPricesFetcher.gettingElectricityPrices("2024", "10", "26", "NO1");
 
         // Skriv ut prisene for å se om de er hentet
         System.out.println(prices);
