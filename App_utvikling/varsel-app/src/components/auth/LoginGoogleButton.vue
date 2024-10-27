@@ -2,23 +2,15 @@
   <q-btn
     flat
     outline
-    @click="redirectToGoogle"
     class="google-btn"
   >
     <img
       class="google-icon"
-      src="/public/c_icons/continue_wgoogle_light.svg"
+      src="/src/assets/c_icons/continue_wgoogle_light.svg"
       alt="Google innlogging"
     />
   </q-btn>
 </template>
-
-<script setup lang="ts">
-const redirectToGoogle = () => {
-  // Redirect to Google sign-in or any other desired URL
-  window.location.href = 'https://accounts.google.com/signin'
-}
-</script>
 
 <style lang="scss">
 .google-btn {

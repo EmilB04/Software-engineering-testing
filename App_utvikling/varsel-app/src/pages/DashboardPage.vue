@@ -1,36 +1,40 @@
 <template>
   <!-- TODO:
    - Make CAR IMG centered at all times
-   - Make NAV-bar
    -->
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
     <div class="q-mx-md">
       <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
-          <h1 class="text-left">Hei Bruker!</h1>
-          <h1 class="text-left">Det lønner seg å lade<br> senere i kveld</h1>
+          <h1 class="text-left q-ma-none" style="font-size: 20px;">Hei {{firstName}}!</h1>
+          <h1 class="text-left" style="font-size: 18px;">Det lønner seg å lade<br> senere i kveld.</h1>
         </article>
-        <figure class="q-ma-none">
-          <q-img style="height: 60px; width: 60px;" src="/public/c_icons/profile.svg" />
-        </figure>
+        <q-btn
+          class="q-ma-none q-pa-none"
+          style="align-self: baseline;"
+          flat
+          to="/profile"
+        >
+          <q-img style="height: 60px; width: 60px;" src="/src/assets/c_icons/profile.svg"/>
+        </q-btn>
       </section>
       <section> <!-- Ørepris-->
-        <h2 class="text-left">2.34 øre/kWh</h2>
+        <h2 class="text-left q-ma-none">2.34 øre/kWh</h2>
         <h3 class="text-left q-my-sm">Nåværende strømpris</h3>
       </section>
-      <hr style="background-color: black;">
+      <hr class="bg-black">
       <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
-          <div>
-            <h3 id="previous_kwh_value" class="text-center">3.64</h3>
-            <h3 id="previous_kwh_text" class="text-center">øre/kWh</h3>
+          <div :class="checkTargetPriceDiff(previousKwhValue) ? 'text-negative' : 'text-positive'">
+            <h3 class="text-center">{{ previousKwhValue }}</h3>
+            <h3 class="text-center">øre/kWh</h3>
           </div>
-          <div>
-            <h3 id="future_kwh_value" class="text-center">2.12</h3>
-            <h3 id="future_kwh_text" class="text-center">øre/kWh</h3>
+          <div :class="checkTargetPriceDiff(futureKwhValue) ? 'text-negative' : 'text-positive'">
+            <h3 class="text-center">{{ futureKwhValue }}</h3>
+            <h3 class="text-center">øre/kWh</h3>
           </div>
         </article>
-        <hr style="width: 54.5px; height: 0px; transform: rotate(-90deg); position: absolute; top: 250px; left: 50%; transform: translate(-50%, -50%) rotate(-90deg); padding: 0; background-color: black">
+        <hr class="verticalHR">
         <article id="p_f_text">
           <h3>Tidligere</h3>
           <h3>Fremtidige</h3>
@@ -38,7 +42,7 @@
       </section>
       <hr style="background-color: black;">
       <section id="carInfo"> <!-- Bil informasjon-->
-        <h2>Volkswagen ID.3</h2>
+        <h2 class="q-mb-none">Volkswagen ID.3</h2>
         <article class="row">
           <h3>Batterinivå: </h3>
           <h3>67%</h3>
@@ -54,7 +58,7 @@
         <div style="display: flex; flex-direction: column;">
           <q-img>
             <img
-              src="/public/c_icons/VW_ID3.svg"
+              src="/src/assets/c_icons/VW_ID3.svg"
               alt="car"
               style="height: auto; max-width: 350px;"
             >
@@ -68,50 +72,57 @@
           </q-btn>
         </div>
       </section>
-      <div style="margin-top: 50px;">
-        Dashboard Page
-        <q-btn @click="logOut">
-          Log Out
-        </q-btn>
-      </div>
+      <nav>
+        <ul>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              id="active-nav"
+              @click="() => {}"
+            ><img src="/src/assets/c_icons/home.svg" alt="Hjemknapp"></q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => { $router.push('/history') }"
+            >
+              <img src="/src/assets/c_icons/history.svg" alt="Historikk">
+            </q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => {}"
+            >
+              <img src="/src/assets/c_icons/chart.svg" alt="Diagram">
+            </q-btn>
+          </li>
+          <li>
+            <q-btn
+              class="q-pa-sm"
+              flat
+              no-caps
+              @click="() => { $router.push('/settings') }"
+            >
+              <img src="/src/assets/c_icons/settings.svg" alt="Innstillinger">
+            </q-btn>
+          </li>
+        </ul>
+      </nav>
     </div>
   </q-page>
 </template>
 
 <style>
-  h1 {
-    color: #000;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px;
-    margin: 0
-  }
   h1:last-child {
     margin: 0 0 30px 0;
     font-weight: 500;
-  }
-  h2 {
-    color: #000;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px;
-    margin: 0;
-  }
-  h3 {
-    color: #000;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  h4 {
-    color: #000;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
   }
   #userHeader {
     display: flex;
@@ -150,52 +161,60 @@
   #carInfo h3, h4 {
     margin: 0 2px 0 0;
   }
+  nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 20px 20px 5px 5px;
+    background: #F2F2F2;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    height: 74px;
+    flex-shrink: 0;
+  }
+  nav>ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    list-style-type: none;
+    padding: 0;
+  }
+  ul img {
+    filter: invert(0) sepia(0) saturate(0) hue-rotate(0deg) brightness(0) contrast(1); /* black */
+  }
+  #active-nav {
+    filter: invert(66%) sepia(82%) saturate(703%) hue-rotate(117deg) brightness(97%) contrast(92%); /* #32E4C3 */
+  }
+  .verticalHR{
+    width: 54.5px;
+    height: 0px;
+    transform: rotate(-90deg);
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    padding: 0;
+    background-color: black;
+  }
 </style>
 
 <script setup lang="ts">
-import { getAuth, signOut } from 'firebase/auth'
-import { onMounted } from 'vue'
+import { getAuth } from 'firebase/auth'
+import { ref } from 'vue'
 
-const logOut = () => {
-  const auth = getAuth()
-  signOut(auth)
-}
+const auth = getAuth()
+const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
+// const lastName = ref(auth.currentUser?.displayName?.split(' ').slice(1).join(' '))
+
+const targetPrice = ref(3.60)
+const previousKwhValue = ref(3.64)
+const futureKwhValue = ref(2.12)
+
+// previousKwhValue.value = 4.32 // Eksempel
 
 // Change color of kWh based on value
-const changeColorBasedOnValue = () => {
-  const green = '#79CC00'
-  const red = '#FF0000'
-
-  const previousKWhValue = document.getElementById('previous_kwh_value')
-  const previousKWhText = document.getElementById('previous_kwh_text')
-
-  const futureKWhValue = document.getElementById('future_kwh_value')
-  const futureKWhText = document.getElementById('future_kwh_text')
-
-  if (previousKWhValue) {
-    if (parseFloat(previousKWhValue.innerText) > 3.60) {
-      previousKWhValue.style.color = red
-      if (previousKWhText) previousKWhText.style.color = red
-    }
-    else {
-      previousKWhValue.style.color = green
-      if (previousKWhText) previousKWhText.style.color = green
-    }
-  }
-
-  if (futureKWhValue) {
-    if (parseFloat(futureKWhValue.innerText) > 3.60) {
-      futureKWhValue.style.color = red
-      if (futureKWhText) futureKWhText.style.color = red
-    }
-    else {
-      futureKWhValue.style.color = green
-      if (futureKWhText) futureKWhText.style.color = green
-    }
-  }
+const checkTargetPriceDiff = (kwhValue: number) => {
+  return kwhValue > targetPrice.value
 }
-
-onMounted(() => {
-  changeColorBasedOnValue()
-})
 </script>

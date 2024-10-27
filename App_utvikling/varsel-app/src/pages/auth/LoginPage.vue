@@ -6,7 +6,7 @@
     <div class="column items-center text-center q-mt-lg col">
       <TitleText label="Velkommen tilbake!<br>Logg inn"/>
 
-      <div style="display: flex; flex-direction: column; gap: 1vh; width: 270px;;">
+      <div style="display: flex; flex-direction: column; gap: 1vh; width: 270px;">
         <q-input
           v-model="email"
           label="E-post"
@@ -46,10 +46,9 @@
       />
     </div>
     <div
-      class="q-pb-xl"
-      style="display: flex; justify-content: center; gap: 2px;"
+      class="q-pb-xl flex justify-center"
     >
-      <p class="q-pa-none q-ma-none">Har du ikke konto?</p>
+      <p class="q-pa-none q-ma-none">Har du ikke konto?&nbsp;</p>
       <router-link to="/auth/register" class="q-pa-none q-ma-none text-weight-medium underline">Registrer deg </router-link>
     </div>
   </q-page>
@@ -80,20 +79,12 @@ const onSignInWithGoogle = () => {
         router.push('/auth/register')
       }
       else {
-        router.push('/')
+        router.push('/dashboard')
       }
     })
     .catch((error) => {
       console.warn('Error: ', error)
       busy.value = false
     })
-}
-</script>
-
-<script lang="ts">
-export default {
-  components: {
-    RouterLink,
-  },
 }
 </script>

@@ -4,8 +4,8 @@
   >
     <div class="column items-center text-center q-mt-lg col">
       <img :src="welcomeImage" style="width: 375px;">
-      <h1 class="text-h4 text-weight-medium">Velkommen til<br>VarsEL!</h1>
-      <p class="text-body2 text-weight-regular">Din smart assistent for<br>lading av din EL-bil.</p>
+      <h1>Velkommen til<br>VarsEL!</h1>
+      <p class="text-body1 text-weight-regular">Din smart assistent for<br>lading av din EL-bil.</p>
       <MainButton
         label="Kom i gang"
         to="/auth/getting-started"
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import welcomeImage from 'assets/illustrasjonsbilde.png'
+import welcomeImage from 'assets/Illustrasjonsbilde.png'
 import { useRouter } from 'vue-router'
 
 import MainButton from 'components/MainButton.vue'
