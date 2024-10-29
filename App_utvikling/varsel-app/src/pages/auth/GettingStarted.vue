@@ -121,7 +121,7 @@
 <script setup>
 
 import { Geolocation } from '@capacitor/geolocation'
-import { PushNotifications } from '@capacitor/push-notifications'
+// import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, onBeforeUnmount, onMounted } from 'vue'
 
@@ -158,7 +158,7 @@ function getCurrentPosition() {
     position.value = newPosition
   })
 }
-const registerNotifications = async () => {
+/* const registerNotifications = async () => {
   let permStatus = await PushNotifications.checkPermissions()
 
   if (permStatus.receive === 'prompt') {
@@ -171,11 +171,12 @@ const registerNotifications = async () => {
 
   await PushNotifications.register()
 }
+  */
 let geoId
 
 onMounted(() => {
   getCurrentPosition()
-  registerNotifications()
+  // registerNotifications()
 
   // we start listening
   geoId = Geolocation.watchPosition({}, newPosition => {
