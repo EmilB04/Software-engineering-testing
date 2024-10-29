@@ -15,7 +15,7 @@
           flat
           to="/profile"
         >
-          <q-img style="height: 60px; width: 60px;" src="/src/assets/c_icons/profile.svg"/>
+          <q-img style="height: 60px; width: 60px;" :src="ProfilePictureSVG"/>
         </q-btn>
       </section>
       <section> <!-- Ørepris-->
@@ -58,7 +58,7 @@
         <div style="display: flex; flex-direction: column;">
           <q-img>
             <img
-              src="/src/assets/c_icons/VW_ID3.svg"
+              :src="ID3Car"
               alt="car"
               style="height: auto; max-width: 350px;"
             >
@@ -81,7 +81,7 @@
               no-caps
               id="active-nav"
               @click="() => {}"
-            ><img src="/src/assets/c_icons/home.svg" alt="Hjemknapp"></q-btn>
+            ><img :src="HomeButtonSVG" alt="Hjemknapp"></q-btn>
           </li>
           <li>
             <q-btn
@@ -90,7 +90,7 @@
               no-caps
               @click="() => { $router.push('/history') }"
             >
-              <img src="/src/assets/c_icons/history.svg" alt="Historikk">
+              <img :src="HistoryButtonSVG" alt="Historikk">
             </q-btn>
           </li>
           <li>
@@ -100,7 +100,7 @@
               no-caps
               @click="() => {}"
             >
-              <img src="/src/assets/c_icons/chart.svg" alt="Diagram">
+              <img :src="ChartButtonSVG" alt="Diagram">
             </q-btn>
           </li>
           <li>
@@ -110,7 +110,7 @@
               no-caps
               @click="() => { $router.push('/settings') }"
             >
-              <img src="/src/assets/c_icons/settings.svg" alt="Innstillinger">
+              <img :src="SettingsButtonSVG" alt="Innstillinger">
             </q-btn>
           </li>
         </ul>
@@ -200,6 +200,12 @@
 </style>
 
 <script setup lang="ts">
+import ChartButtonSVG from 'assets/c_icons/chart.svg'
+import HistoryButtonSVG from 'assets/c_icons/history.svg'
+import HomeButtonSVG from 'assets/c_icons/home.svg'
+import ProfilePictureSVG from 'assets/c_icons/profile.svg'
+import SettingsButtonSVG from 'assets/c_icons/settings.svg'
+import ID3Car from 'assets/c_icons/VW_ID3.svg'
 import { getAuth } from 'firebase/auth'
 import { ref } from 'vue'
 
