@@ -14,7 +14,7 @@
           class="q-mt-lg"
           flat
         >
-          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
+          <img :src="backButtonImg" alt="Tilbake">
         </q-btn>
         <h1 class="text-center q-mx-auto">Velg din <br> strømleverandør</h1>
         <q-linear-progress
@@ -34,7 +34,7 @@
           class="q-mt-lg"
           flat
         >
-          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
+          <img :src="backButtonImg" alt="Tilbake">
         </q-btn>
         <h1 class="text-center q-mx-auto">Lokaliserings- <br> innstillinger</h1>
         <q-linear-progress
@@ -57,7 +57,7 @@
           class="q-mt-lg"
           flat
         >
-          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
+          <img :src="backButtonImg" alt="Tilbake">
         </q-btn>
         <h1 class="text-center q-mx-auto">Varslings- <br> instillinger</h1>
         <q-linear-progress
@@ -77,7 +77,7 @@
           class="q-mt-lg"
           flat
         >
-          <img src="/src/assets/c_icons/backButton.svg" alt="Tilbake">
+          <img :src="backButtonImg" alt="Tilbake">
         </q-btn>
         <h1 class="text-center q-mx-auto">Oppsummering</h1>
         <q-linear-progress
@@ -119,8 +119,10 @@
 </style>
 
 <script setup>
+
 import { Geolocation } from '@capacitor/geolocation'
 import { PushNotifications } from '@capacitor/push-notifications'
+import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, onBeforeUnmount, onMounted } from 'vue'
 
 const step = ref(1)
