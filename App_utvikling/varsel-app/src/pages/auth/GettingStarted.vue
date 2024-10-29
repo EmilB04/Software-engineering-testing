@@ -4,11 +4,16 @@
       class="bg-grey-2"
       v-model="step"
       ref="stepper"
+      title="Getting Started"
       color="primary"
       animated
       flat
     >
-      <q-step :name="1" :done="step > 1">
+      <q-step
+        :name="1"
+        :done="step > 1"
+        title="Velg strømleverandør"
+      >
         <q-btn
           :to="'/auth/welcome'"
           class="q-mt-lg"
@@ -29,7 +34,11 @@
         />
       </q-step>
 
-      <q-step :name="2" :done="step > 2">
+      <q-step
+        :name="2"
+        :done="step > 2"
+        title="Lokaliseringsinnstillinger"
+      >
         <q-btn
           @click="step--"
           class="q-mt-lg"
@@ -53,7 +62,7 @@
         </div>
       </q-step>
 
-      <q-step :name="3">
+      <q-step :name="3" title="Varslingsinnstillinger">
         <q-btn
           @click="step--"
           class="q-mt-lg"
@@ -74,7 +83,7 @@
         />
       </q-step>
 
-      <q-step :name="4">
+      <q-step :name="4" title="Oppsummering">
         <q-btn
           @click="step--"
           class="q-mt-lg"
@@ -128,8 +137,10 @@
 import { Geolocation } from '@capacitor/geolocation'
 // import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
-import { computed, ref, onBeforeUnmount, onMounted, watch } from 'vue'
+import { computed, ref, onBeforeUnmount, watch } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
 
@@ -188,6 +199,9 @@ watch(step, (step) => {
       console.log('New GPS position')
       position.value = newPosition
     })
+  }
+  if (step === 4) {
+    router.push('/auth/register')
   }
 })
 
