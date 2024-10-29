@@ -12,6 +12,7 @@
         <q-btn
           :to="'/auth/welcome'"
           class="q-mt-lg"
+          title="Tilbake"
           flat
         >
           <img :src="backButtonImg" alt="Tilbake">
@@ -32,6 +33,7 @@
         <q-btn
           @click="step--"
           class="q-mt-lg"
+          title="Tilbake"
           flat
         >
           <img :src="backButtonImg" alt="Tilbake">
@@ -55,6 +57,7 @@
         <q-btn
           @click="step--"
           class="q-mt-lg"
+          title="Tilbake"
           flat
         >
           <img :src="backButtonImg" alt="Tilbake">
@@ -75,6 +78,7 @@
         <q-btn
           @click="step--"
           class="q-mt-lg"
+          title="Tilbake"
           flat
         >
           <img :src="backButtonImg" alt="Tilbake">
@@ -97,6 +101,7 @@
             @click="step++"
             color="primary"
             :label="step === 4 ? 'Fullfør' : 'Fortsett'"
+            title="Fortsett"
             class="custom-btn text-black"
             no-caps
           />
@@ -123,7 +128,7 @@
 import { Geolocation } from '@capacitor/geolocation'
 // import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
-import { computed, ref, onBeforeUnmount, onMounted } from 'vue'
+import { computed, ref, onBeforeUnmount, onMounted, watch } from 'vue'
 
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
@@ -175,14 +180,20 @@ function getCurrentPosition() {
 let geoId
 
 onMounted(() => {
-  getCurrentPosition()
   // registerNotifications()
 
-  // we start listening
-  geoId = Geolocation.watchPosition({}, newPosition => {
-    console.log('New GPS position')
-    position.value = newPosition
-  })
+})
+
+watch(step, (step) => {
+  console.log('Step', step)
+  if (step === 2) {
+    getCurrentPosition()
+    // we start listening
+    geoId = Geolocation.watchPosition({}, newPosition => {
+      console.log('New GPS position')
+      position.value = newPosition
+    })
+  }
 })
 
 onBeforeUnmount(() => {
