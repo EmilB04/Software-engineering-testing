@@ -13,7 +13,7 @@
           <q-btn flat>
             <img
               style="height: 70px;"
-              src="/src/assets/c_icons/language.svg"
+              :src="LanguageButtonSVG"
               alt="Språk"
             >
           </q-btn>
@@ -23,7 +23,7 @@
           <q-btn flat>
             <img
               style="height: 70px;"
-              src="/src/assets/c_icons/darkMode.svg"
+              :src="DarkModeButtonSVG"
               alt="Dark Mode"
             >
           </q-btn>
@@ -98,4 +98,7 @@
 
 <script setup>
 import BackButton from 'src/components/BackButton.vue'
+
+import DarkModeButtonSVG from 'src/assets/c_icons/darkMode.svg'
+import LanguageButtonSVG from 'src/assets/c_icons/language.svg'
 </script>
