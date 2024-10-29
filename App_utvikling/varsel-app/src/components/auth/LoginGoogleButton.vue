@@ -6,7 +6,7 @@
   >
     <img
       class="google-icon"
-      src="/src/assets/c_icons/continue_wgoogle_light.svg"
+      :src="GoogleLoginVector"
       alt="Google innlogging"
     />
   </q-btn>
@@ -26,3 +26,7 @@
   padding: 0;
 }
 </style>
+
+<script setup>
+import GoogleLoginVector from 'assets/c_icons/continue_wgoogle_light.svg'
+</script>
