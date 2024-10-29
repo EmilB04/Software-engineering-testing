@@ -12,15 +12,18 @@
         <div class="row" style="justify-content: space-between;">
           <div class="column">
             <article class="row">
-              <img src="/src/assets/c_icons/calendar.svg" alt="Kalender">
+              <img
+                :src="CalendarIconSVG"
+                alt="Kalender"
+              >
               <h3>Lørdag 17. august 2024, 09:04</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/plug.svg" alt="Lade">
+              <img :src="PlugIconSVG" alt="Lade">
               <h3>Ladet til 80%</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/charged.svg" alt="Pris">
+              <img :src="ChargedIconSVG" alt="Pris">
               <h3>20 kWh</h3>
             </article>
           </div>
@@ -32,15 +35,18 @@
         <div class="row" style="justify-content: space-between;">
           <div class="column">
             <article class="row">
-              <img src="/src/assets/c_icons/calendar.svg" alt="Kalender">
+              <img
+                :src="CalendarIconSVG"
+                alt="Kalender"
+              >
               <h3>Onsdag 14. august 2024, 08:50</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/plug.svg" alt="Lade">
+              <img :src="PlugIconSVG" alt="Lade">
               <h3>20 kWh</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/charged.svg" alt="Pris">
+              <img :src="ChargedIconSVG" alt="Pris">
               <h3>15/kWh</h3>
             </article>
           </div>
@@ -52,15 +58,18 @@
         <div class="row" style="justify-content: space-between;">
           <div class="column">
             <article class="row">
-              <img src="/src/assets/c_icons/calendar.svg" alt="Kalender">
+              <img
+                :src="CalendarIconSVG"
+                alt="Kalender"
+              >
               <h3>Lørdag 17. august 2024, 09:04</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/plug.svg" alt="Lade">
+              <img :src="PlugIconSVG" alt="Lade">
               <h3>Ladet til 85%</h3>
             </article>
             <article class="row">
-              <img src="/src/assets/c_icons/charged.svg" alt="Pris">
+              <img :src="ChargedIconSVG" alt="Pris">
               <h3>27 kWh</h3>
             </article>
           </div>
@@ -75,4 +84,7 @@
 <script setup>
 import BackButton from 'src/components/BackButton.vue'
 
+import CalendarIconSVG from 'src/assets/c_icons/calendar.svg'
+import ChargedIconSVG from 'src/assets/c_icons/charged.svg'
+import PlugIconSVG from 'src/assets/c_icons/plug.svg'
 </script>
