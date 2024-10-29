@@ -119,9 +119,9 @@
 </style>
 
 <script setup>
-// import { Geolocation } from '@capacitor/geolocation'
-// import { PushNotifications } from '@capacitor/push-notifications'
-import { computed, ref, onBeforeUnmount } from 'vue'
+import { Geolocation } from '@capacitor/geolocation'
+import { PushNotifications } from '@capacitor/push-notifications'
+import { computed, ref, onBeforeUnmount, onMounted } from 'vue'
 
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
@@ -150,13 +150,13 @@ const progress = computed(() => step.value * 0.25)
 
 const position = ref('determining...')
 
-/* function getCurrentPosition() {
+function getCurrentPosition() {
   Geolocation.getCurrentPosition().then(newPosition => {
     console.log('Current', newPosition)
     position.value = newPosition
   })
-} */
-/* const registerNotifications = async () => {
+}
+const registerNotifications = async () => {
   let permStatus = await PushNotifications.checkPermissions()
 
   if (permStatus.receive === 'prompt') {
@@ -169,22 +169,22 @@ const position = ref('determining...')
 
   await PushNotifications.register()
 }
-// let geoId
+let geoId
 
 onMounted(() => {
-  // getCurrentPosition()
+  getCurrentPosition()
   registerNotifications()
 
   // we start listening
-  /* geoId = Geolocation.watchPosition({}, newPosition => {
+  geoId = Geolocation.watchPosition({}, newPosition => {
     console.log('New GPS position')
     position.value = newPosition
   })
-}) */
+})
 
 onBeforeUnmount(() => {
   // we do cleanup
-  // Geolocation.clearWatch(geoId)
+  Geolocation.clearWatch(geoId)
 })
 </script>
 
