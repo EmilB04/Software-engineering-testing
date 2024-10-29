@@ -179,11 +179,6 @@ function getCurrentPosition() {
   */
 let geoId
 
-onMounted(() => {
-  // registerNotifications()
-
-})
-
 watch(step, (step) => {
   console.log('Step', step)
   if (step === 2) {
