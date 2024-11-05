@@ -151,28 +151,6 @@ const router = useRouter()
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
 
-/* const stepInfo = [
-  {
-    title: 'Velg din strømleverandør',
-    description: 'Velg din nåværende strømleverandør for å få den mest nøyaktige oversikten over strømpriser.',
-  },
-  {
-    title: 'Lokaliserings-innstillinger',
-    description: 'Aktiver posisjonsinnstillinger for å få varsler når du ankommer hjemmet, slik at ladingen kan optimaliseres basert på strømpriser og din plassering.',
-    icon: 'gps',
-  },
-  {
-    title: 'Varslings-innstillinger',
-    description: 'Få varsler når strømprisene er lave eller når du ankommer hjemmet for optimal lading',
-    icon: 'notifications',
-  },
-  {
-    title: 'Oppsummering',
-    description: 'Gå gjennom innstillingene dine og bekreft at alt er riktig før du går videre.',
-  },
-]
-  */
-
 const position = ref('determining...')
 
 function getCurrentPosition() {
