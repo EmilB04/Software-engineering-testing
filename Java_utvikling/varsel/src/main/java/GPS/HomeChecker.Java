@@ -11,5 +11,15 @@ public class HomeChecker {
     public static boolean isWithinHomeRadius(double latitude, double longitude){
         // resultatet vil lagre avstanden mellom "hjemmet" og nåværende posisjon
         float[] result = new float[1];
+
+        // Regner ut distansen mellom hjemmet og nåværende posisjon
+        Location.distanceBetween(
+                HOME_LATITUDE, HOME_LONGITUDE,
+                latitude, longitude,
+                result);
+
+        //Returnerer true dersom avstanden er mindre enn eller er lik HOME_RADIUS
+        return result[0] < HOME_RADIUS;
+
     }
 }
