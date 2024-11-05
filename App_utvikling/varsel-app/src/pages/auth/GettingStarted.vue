@@ -28,7 +28,7 @@
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm q-mx-auto"
+          class="q-mt-lg q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
@@ -53,11 +53,15 @@
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm q-mx-auto"
+          class="q-mt-lg q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
-        <div>
+        <main>
+          <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger får å få tilpassede varslet basert på din posisjon,
+            slik at ladingen kan optimaliseres basert på strømpriser og din plassering.</h3>
+        </main>
+        <div class="text-center q-mt-xl">
           GPS position: <strong>{{ position }}</strong>
         </div>
       </q-step>
@@ -77,10 +81,13 @@
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm q-mx-auto"
+          class="q-mt-lg q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
+        <main>
+          <h3 class="text-center q-mt-lg q-mx-lg">Få varsler når strømprisene er lave eller når du ankommer hjemmet for optimal lading</h3>
+        </main>
       </q-step>
 
       <q-step :name="4" title="Oppsummering">
@@ -98,7 +105,7 @@
           size="20px"
           :value="progress"
           color="primary"
-          class="q-mt-sm q-mx-auto"
+          class="q-mt-lg q-mx-auto"
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
@@ -200,7 +207,7 @@ watch(step, (step) => {
       position.value = newPosition
     })
   }
-  if (step === 4) {
+  if (step === 5) {
     router.push('/auth/register')
   }
 })
