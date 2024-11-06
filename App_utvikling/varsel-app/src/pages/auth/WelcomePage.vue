@@ -38,7 +38,7 @@ const login = () => {
 }
 
 </script>
-<style setup>
+<style scoped setup>
 @media screen and (max-height: 800px) {
   .mainImg {
     width: 300px !important;

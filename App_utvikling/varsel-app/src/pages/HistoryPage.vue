@@ -135,7 +135,7 @@ import ChargedIconSVG from 'src/assets/c_icons/charged.svg'
 import PlugIconSVG from 'src/assets/c_icons/plug.svg'
 </script>
 
-<style>
+<style scoped>
 div > h2 {
   font-size: 20px;
   font-weight: bolder;

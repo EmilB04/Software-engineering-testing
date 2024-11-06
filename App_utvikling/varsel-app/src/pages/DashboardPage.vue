@@ -115,7 +115,7 @@
   </q-page>
 </template>
 
-<style>
+<style scoped>
   #userHeader {
     display: flex;
     justify-content:space-between;
