@@ -6,75 +6,121 @@
     <header class="column q-mt-none">
       <h1 class="self-center q-mb-lg">Ladehistorikk</h1>
     </header>
-    <main>
-      <section class="column q-mx-md">
+
+    <main class="q-mx-md">
+      <section>
         <h2>August 2024</h2>
-        <div class="row" style="justify-content: space-between;">
-          <div class="column">
-            <article class="row">
-              <img
-                :src="CalendarIconSVG"
-                alt="Kalender"
-              >
-              <h3>Lørdag 17. august 2024, 09:04</h3>
+        <q-card class="q-mb-md" >
+          <q-card-section class="row justify-between items-center" >
+            <article class="column">
+              <div class="row items-center">
+                <img :src="CalendarIconSVG">
+                <h3 class="q-my-none">Lørdag 17. aug 2024 09:04</h3>
+              </div>
+              <div class="row items-center">
+                <img :src="PlugIconSVG">
+                <h4 class="q-my-none">Ladet til: 80% </h4>
+              </div>
+              <div class="row items-center">
+                <img :src="ChargedIconSVG">
+                <h5 class="q-my-none">20.7 kWh</h5>
+              </div>
             </article>
-            <article class="row">
-              <img :src="PlugIconSVG" alt="Lade">
-              <h3>Ladet til 80%</h3>
+            <q-item-label>
+              <h2>kr. 111.26</h2>
+            </q-item-label>
+          </q-card-section>
+        </q-card>
+
+        <q-card class="q-mb-md" >
+          <q-card-section class="row justify-between items-center" >
+            <article class="column">
+              <div class="row items-center">
+                <img :src="CalendarIconSVG">
+                <h3 class="q-my-none">Lørdag 17. aug 2024 09:04</h3>
+              </div>
+              <div class="row items-center">
+                <img :src="PlugIconSVG">
+                <h4 class="q-my-none">Ladet til: 80% </h4>
+              </div>
+              <div class="row items-center">
+                <img :src="ChargedIconSVG">
+                <h5 class="q-my-none">20.7 kWh</h5>
+              </div>
             </article>
-            <article class="row">
-              <img :src="ChargedIconSVG" alt="Pris">
-              <h3>20 kWh</h3>
+            <q-item-label>
+              <h2>kr. 111.26</h2>
+            </q-item-label>
+          </q-card-section>
+        </q-card>
+
+        <q-card class="q-mb-md" >
+          <q-card-section class="row justify-between items-center" >
+            <article class="column">
+              <div class="row items-center">
+                <img :src="CalendarIconSVG">
+                <h3 class="q-my-none">Lørdag 17. aug 2024 09:04</h3>
+              </div>
+              <div class="row items-center">
+                <img :src="PlugIconSVG">
+                <h4 class="q-my-none">Ladet til: 80% </h4>
+              </div>
+              <div class="row items-center">
+                <img :src="ChargedIconSVG">
+                <h5 class="q-my-none">20.7 kWh</h5>
+              </div>
             </article>
-          </div>
-          <h3 class="self-center bg-grey-4 q-pa-sm q-ma-none">kr. 111,26</h3>
-        </div>
+            <q-item-label>
+              <h2>kr. 111.26</h2>
+            </q-item-label>
+          </q-card-section>
+        </q-card>
+
+        <q-card class="q-mb-md" >
+          <q-card-section class="row justify-between items-center" >
+            <article class="column">
+              <div class="row items-center">
+                <img :src="CalendarIconSVG">
+                <h3 class="q-my-none">Lørdag 17. aug 2024 09:04</h3>
+              </div>
+              <div class="row items-center">
+                <img :src="PlugIconSVG">
+                <h4 class="q-my-none">Ladet til: 80% </h4>
+              </div>
+              <div class="row items-center">
+                <img :src="ChargedIconSVG">
+                <h5 class="q-my-none">20.7 kWh</h5>
+              </div>
+            </article>
+            <q-item-label>
+              <h2>kr. 111.26</h2>
+            </q-item-label>
+          </q-card-section>
+        </q-card>
       </section>
-      <hr class="self-center q-my-sm" style="width: 90%;">
-      <section class="column q-mx-md" style="width: 90%;">
-        <div class="row" style="justify-content: space-between;">
-          <div class="column">
-            <article class="row">
-              <img
-                :src="CalendarIconSVG"
-                alt="Kalender"
-              >
-              <h3>Onsdag 14. august 2024, 08:50</h3>
-            </article>
-            <article class="row">
-              <img :src="PlugIconSVG" alt="Lade">
-              <h3>20 kWh</h3>
-            </article>
-            <article class="row">
-              <img :src="ChargedIconSVG" alt="Pris">
-              <h3>15/kWh</h3>
-            </article>
-          </div>
-          <h3 class="self-center bg-grey-4 q-pa-sm q-ma-none">kr. 81,26</h3>
-        </div>
-      </section>
-      <section class="column q-mx-md">
+      <section>
         <h2>Juli 2024</h2>
-        <div class="row" style="justify-content: space-between;">
-          <div class="column">
-            <article class="row">
-              <img
-                :src="CalendarIconSVG"
-                alt="Kalender"
-              >
-              <h3>Lørdag 17. august 2024, 09:04</h3>
+        <q-card class="q-mb-md" >
+          <q-card-section class="row justify-between items-center" >
+            <article class="column">
+              <div class="row items-center">
+                <img :src="CalendarIconSVG">
+                <h3 class="q-my-none">Lørdag 17. aug 2024 09:04</h3>
+              </div>
+              <div class="row items-center">
+                <img :src="PlugIconSVG">
+                <h4 class="q-my-none">Ladet til: 80% </h4>
+              </div>
+              <div class="row items-center">
+                <img :src="ChargedIconSVG">
+                <h5 class="q-my-none">20.7 kWh</h5>
+              </div>
             </article>
-            <article class="row">
-              <img :src="PlugIconSVG" alt="Lade">
-              <h3>Ladet til 85%</h3>
-            </article>
-            <article class="row">
-              <img :src="ChargedIconSVG" alt="Pris">
-              <h3>27 kWh</h3>
-            </article>
-          </div>
-          <h3 class="self-center bg-grey-4 q-pa-sm q-ma-none">kr. 181,26</h3>
-        </div>
+            <q-item-label>
+              <h2>kr. 111.26</h2>
+            </q-item-label>
+          </q-card-section>
+        </q-card>
       </section>
     </main>
 
@@ -88,3 +134,26 @@ import CalendarIconSVG from 'src/assets/c_icons/calendar.svg'
 import ChargedIconSVG from 'src/assets/c_icons/charged.svg'
 import PlugIconSVG from 'src/assets/c_icons/plug.svg'
 </script>
+
+<style>
+div > h2 {
+  font-size: 20px;
+  font-weight: bolder;
+  line-height: normal;
+  background-color: rgb(228, 228, 228);
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+h3, h4, h5 {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: normal;
+}
+article {
+  display: flex;
+  gap: 2vh;
+  flex-direction: column;
+}
+
+</style>
