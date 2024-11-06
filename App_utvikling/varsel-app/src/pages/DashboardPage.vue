@@ -4,10 +4,10 @@
    -->
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
     <div class="q-mx-md">
-      <section class="q-mt-lg" id="userHeader"> <!-- Bruker-->
+      <section id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
           <h1 class="text-left q-ma-none" style="font-size: 20px;">Hei {{firstName}}!</h1>
-          <h1 class="text-left" style="font-size: 18px;">Det lønner seg å lade<br> senere i kveld.</h1>
+          <h1 class="text-left text-weight-medium q-mt-none" style="font-size: 18px;">Det lønner seg å lade<br> senere i kveld.</h1>
         </article>
         <q-btn
           class="q-ma-none q-pa-none"
@@ -26,12 +26,12 @@
       <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
           <div :class="checkTargetPriceDiff(previousKwhValue) ? 'text-negative' : 'text-positive'">
-            <h3 class="text-center">{{ previousKwhValue }}</h3>
-            <h3 class="text-center">øre/kWh</h3>
+            <h3 class="text-center q-mb-sm">{{ previousKwhValue }}</h3>
+            <h3 class="text-center q-mt-none">øre/kWh</h3>
           </div>
           <div :class="checkTargetPriceDiff(futureKwhValue) ? 'text-negative' : 'text-positive'">
-            <h3 class="text-center">{{ futureKwhValue }}</h3>
-            <h3 class="text-center">øre/kWh</h3>
+            <h3 class="text-center q-mb-sm">{{ futureKwhValue }}</h3>
+            <h3 class="text-center q-mt-none">øre/kWh</h3>
           </div>
         </article>
         <hr class="verticalHR">
@@ -120,10 +120,6 @@
 </template>
 
 <style>
-  h1:last-child {
-    margin: 0 0 30px 0;
-    font-weight: 500;
-  }
   #userHeader {
     display: flex;
     justify-content:space-between;
@@ -152,12 +148,7 @@
   #p_f_prices div {
     margin: 0 auto;
   }
-  #p_f_prices>div h3:last-child {
-    margin-top: 0;
-  }
-  #p_f_prices>div h3:first-child {
-    margin-bottom: 0;
-  }
+
   #carInfo h3, h4 {
     margin: 0 2px 0 0;
   }
@@ -191,7 +182,7 @@
     height: 0px;
     transform: rotate(-90deg);
     position: absolute;
-    top: 250px;
+    top: 245px;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
     padding: 0;
@@ -213,9 +204,9 @@ const auth = getAuth()
 const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
 // const lastName = ref(auth.currentUser?.displayName?.split(' ').slice(1).join(' '))
 
-const targetPrice = ref(3.60)
-const previousKwhValue = ref(3.64)
-const futureKwhValue = ref(2.12)
+const targetPrice = ref(3.60) // Vippepunkt mellom billig og dyrt
+const previousKwhValue = ref(3.64) // Verdier fra API / database
+const futureKwhValue = ref(2.12) // Verdier fra API / database
 
 // previousKwhValue.value = 4.32 // Eksempel
 
