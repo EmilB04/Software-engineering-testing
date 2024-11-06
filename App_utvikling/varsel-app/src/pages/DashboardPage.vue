@@ -19,7 +19,7 @@
         <h2 class="text-left q-ma-none">2.34 øre/kWh</h2>
         <h3 class="text-left q-my-sm">Nåværende strømpris</h3>
       </section>
-      <hr class="bg-black">
+      <hr>
       <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
           <div :class="checkTargetPriceDiff(previousKwhValue) ? 'text-negative' : 'text-positive'">
