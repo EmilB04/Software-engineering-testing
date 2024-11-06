@@ -3,7 +3,7 @@
     class="column items-center q-pa-none bg-grey-2"
   >
     <div class="column items-center text-center q-mt-md col">
-      <q-img style="width: 355px; height: 355px;">
+      <q-img class="mainImg" style="width: 355px; height: 355px;">
         <img :src="welcomeImage" style="width: 100%;">
       </q-img>
       <h1>Velkommen til<br>VarsEL!</h1>
@@ -38,3 +38,14 @@ const login = () => {
 }
 
 </script>
+<style setup>
+@media screen and (max-width: 380px) {
+  .mainImg {
+    width: 300px !important;
+    height: 300px !important;
+  }
+  div .q-mt-md {
+    margin-top: 0px !important;
+  }
+}
+</style>
