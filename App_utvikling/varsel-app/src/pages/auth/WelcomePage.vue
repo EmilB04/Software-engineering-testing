@@ -3,7 +3,9 @@
     class="column items-center q-pa-none bg-grey-2"
   >
     <div class="column items-center text-center q-mt-lg col">
-      <img :src="welcomeImage" style="width: 375px;">
+      <q-img style="width: 375px; height: 375px;">
+        <img :src="welcomeImage" style="width: 100%;">
+      </q-img>
       <h1>Velkommen til<br>VarsEL!</h1>
       <p class="text-body1 text-weight-regular">Din smart assistent for<br>lading av din EL-bil.</p>
       <MainButton
