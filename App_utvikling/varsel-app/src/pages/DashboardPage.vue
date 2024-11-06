@@ -26,11 +26,11 @@
       <section> <!-- Tidligere og fremtidlig priser-->
         <article id="p_f_prices">
           <div :class="checkTargetPriceDiff(previousKwhValue) ? 'text-negative' : 'text-positive'">
-            <h3 class="text-center q-mb-sm">{{ previousKwhValue }}</h3>
+            <h3 class="text-center q-mb-none">{{ previousKwhValue }}</h3>
             <h3 class="text-center q-mt-none">øre/kWh</h3>
           </div>
           <div :class="checkTargetPriceDiff(futureKwhValue) ? 'text-negative' : 'text-positive'">
-            <h3 class="text-center q-mb-sm">{{ futureKwhValue }}</h3>
+            <h3 class="text-center q-mb-none">{{ futureKwhValue }}</h3>
             <h3 class="text-center q-mt-none">øre/kWh</h3>
           </div>
         </article>
