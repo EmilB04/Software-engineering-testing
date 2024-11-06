@@ -17,28 +17,28 @@
           <q-btn
             flat
             :class="buttonClass('year')"
-            @click="select('year')"
+            @click="() => select('year')"
           >
             År
           </q-btn>
           <q-btn
             flat
             :class="buttonClass('month')"
-            @click="select('month')"
+            @click="() => select('month')"
           >
             Måned
           </q-btn>
           <q-btn
             flat
             :class="buttonClass('today')"
-            @click="select('today')"
+            @click="() => select('today')"
           >
             I dag
           </q-btn>
           <q-btn
             flat
             :class="buttonClass('tomorrow')"
-            @click="select('tomorrow')"
+            @click="() => select('tomorrow')"
           >
             I morgen
           </q-btn>
@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import { Chart, registerables } from 'chart.js'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { Line } from 'vue-chartjs'
 
 import BackButton from 'components/BackButton.vue'
@@ -80,8 +80,8 @@ const chartData = ref<ChartData>({
   datasets: [
     {
       label: 'Strømpris (øre/kWh)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 152, 0.1)',
+      borderColor: '#32E4C3',
       data: [],
       fill: true,
     },
@@ -139,10 +139,9 @@ function select(period: 'year' | 'month' | 'today' | 'tomorrow') {
 // Set initial data (for "today")
 select('today')
 
+// Function to determine the class of the button based on the selected period
 const buttonClass = (period: 'year' | 'month' | 'today' | 'tomorrow') => {
-  return computed(() => ({
-    'selected-button': selected.value === period,
-  }))
+  return selected.value === period ? 'selected-button' : ''
 }
 </script>
 
@@ -157,7 +156,7 @@ const buttonClass = (period: 'year' | 'month' | 'today' | 'tomorrow') => {
   font-weight: bold;
 }
 .selected-button {
-  background-color: #007bff;
+  background-color: #43E4C3;
   color: white;
 }
 </style>
