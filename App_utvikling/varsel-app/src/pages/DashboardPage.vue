@@ -1,7 +1,4 @@
 <template>
-  <!-- TODO:
-   - Make CAR IMG centered at all times
-   -->
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
     <div class="q-mx-md">
       <section id="userHeader"> <!-- Bruker-->
@@ -55,13 +52,12 @@
           <h4>Status: </h4>
           <h4>Lader ikke</h4>
         </article>
-        <div style="display: flex; flex-direction: column;">
-          <q-img>
-            <img
-              :src="ID3Car"
-              alt="car"
-              style="height: auto; max-width: 350px;"
-            >
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <q-img
+            :src="ID3Car"
+            alt="car"
+            style="height: auto; max-width: 350px;"
+          >
           </q-img>
           <q-btn
             label="Se alle kjøretøy"
