@@ -37,3 +37,5 @@ $body1:     (size: 1rem,     line-height: 1.5rem,   letter-spacing: .03125em,  w
 $body2:     (size: .875rem,  line-height: 1.25rem,  letter-spacing: .01786em,  weight: 400) !default;
 $overline:  (size: .75rem,   line-height: 2rem,     letter-spacing: .16667em,  weight: 500) !default;
 $caption:   (size: .75rem,   line-height: 1.25rem,  letter-spacing: .03333em,  weight: 400) !default;
+
+$font-family: 'Arial', sans-serif !default; // Endre eventuelt til Inter
