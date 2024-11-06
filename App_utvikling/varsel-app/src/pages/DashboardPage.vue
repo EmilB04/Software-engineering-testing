@@ -98,7 +98,7 @@
               class="q-pa-sm"
               flat
               no-caps
-              @click="() => {}"
+              @click="() => { $router.push('/power-graph') }"
             >
               <img :src="ChartButtonSVG" alt="Diagram">
             </q-btn>
