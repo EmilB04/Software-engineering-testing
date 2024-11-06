@@ -1,9 +1,14 @@
 <template>
-  <q-page>
-    Power Graph Page
+  <q-page class="q-pa-none column bg-grey-2">
+    <BackButton to="/dashboard" />
+    <header class="column q-mt-none text-center">
+      <h1>Strømpris</h1>
+    </header>
+    <main>
+    </main>
   </q-page>
 </template>
 
 <script setup lang="ts">
-console.log('Power Graph Page')
+import BackButton from 'components/BackButton.vue'
 </script>
