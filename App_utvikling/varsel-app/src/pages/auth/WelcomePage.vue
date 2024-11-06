@@ -2,8 +2,8 @@
   <q-page
     class="column items-center q-pa-none bg-grey-2"
   >
-    <div class="column items-center text-center q-mt-lg col">
-      <q-img style="width: 375px; height: 375px;">
+    <div class="column items-center text-center q-mt-md col">
+      <q-img style="width: 355px; height: 355px;">
         <img :src="welcomeImage" style="width: 100%;">
       </q-img>
       <h1>Velkommen til<br>VarsEL!</h1>
