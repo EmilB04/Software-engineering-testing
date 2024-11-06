@@ -40,7 +40,7 @@
           <h3>Fremtidige</h3>
         </article>
       </section>
-      <hr style="background-color: black;">
+      <hr>
       <section id="carInfo"> <!-- Bil informasjon-->
         <h2 class="q-mb-none">Volkswagen ID.3</h2>
         <article class="row">
