@@ -5,7 +5,7 @@
       <h1>Strømpris</h1>
     </header>
     <main class="text-center">
-      <h2>{{ currentKwhPrice }} kr/kWh</h2>
+      <h2>{{ currentKwhPrice }} kWh</h2>
 
       <!-- Chart Section -->
       <section class="q-pa-sm">
@@ -16,25 +16,32 @@
         <q-btn-group spread>
           <q-btn
             flat
-            :outline="selected !== 'year'"
+            :class="buttonClass('year')"
             @click="select('year')"
-            class="q-px-sm q-py-md"
-          >År</q-btn>
+          >
+            År
+          </q-btn>
           <q-btn
             flat
-            :outline="selected !== 'month'"
+            :class="buttonClass('month')"
             @click="select('month')"
-          >Måned</q-btn>
+          >
+            Måned
+          </q-btn>
           <q-btn
             flat
-            :outline="selected !== 'today'"
+            :class="buttonClass('today')"
             @click="select('today')"
-          >I dag</q-btn>
+          >
+            I dag
+          </q-btn>
           <q-btn
             flat
-            :outline="selected !== 'tomorrow'"
+            :class="buttonClass('tomorrow')"
             @click="select('tomorrow')"
-          >I morgen</q-btn>
+          >
+            I morgen
+          </q-btn>
         </q-btn-group>
       </section>
     </main>
@@ -43,30 +50,45 @@
 
 <script setup lang="ts">
 import { Chart, registerables } from 'chart.js'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Line } from 'vue-chartjs'
 
 import BackButton from 'components/BackButton.vue'
 
+// Registering all chart components
 Chart.register(...registerables)
 
-const currentKwhPrice = 1.25
+// Define types for the chart data structure
+type ChartData = {
+  labels: string[]
+  datasets: {
+    label: string
+    backgroundColor: string
+    borderColor: string
+    data: number[]
+    fill: boolean
+  }[]
+}
 
-const selected = ref('today')
+// Reactive references for dynamic data
+const currentKwhPrice = ref(1.25) // To be replaced with API data
+const selected = ref<'year' | 'month' | 'today' | 'tomorrow'>('today')
 
-const chartData = ref({
-  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+// Default chart data (empty initially)
+const chartData = ref<ChartData>({
+  labels: [],
   datasets: [
     {
-      label: 'Strømpris',
-      backgroundColor: '#4CAF50',
-      borderColor: '#4CAF50',
-      data: [350, 320, 370, 350, 320, 350, 280, 300, 370, 350, 320, 350], // Hent data fra API, bytt ut med variabler
+      label: 'Strømpris (øre/kWh)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      data: [],
       fill: true,
     },
   ],
 })
 
+// Chart options configuration
 const chartOptions = ref({
   responsive: true,
   maintainAspectRatio: false,
@@ -74,31 +96,68 @@ const chartOptions = ref({
     x: {
       title: {
         display: true,
-        text: 'Periode', // Title for X-axis
+        text: 'Tid',
       },
     },
     y: {
       title: {
-        display: true,
-        text: 'øre/kWh', // Title for Y-axis
+        display: false,
+        text: 'Strømpris (øre/kWh)',
       },
     },
   },
 })
 
-function select(period: string) {
+// Data for each period
+const periodData = {
+  year: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
+    data: [300, 320, 350, 370, 340, 360, 380, 400, 370, 360, 350, 340],
+  },
+  month: {
+    labels: Array.from({ length: 31 }, (_, i) => `${i + 1}`),
+    data: Array.from({ length: 31 }, () => Math.floor(Math.random() * 100)),
+  },
+  today: {
+    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+    data: Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)),
+  },
+  tomorrow: {
+    labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+    data: Array.from({ length: 24 }, () => Math.floor(Math.random() * 10)),
+  },
+}
+
+// Function to select the period and update chart data
+function select(period: 'year' | 'month' | 'today' | 'tomorrow') {
   selected.value = period
-  // Add logic here to update `chartData` based on `period`
+  const periodInfo = periodData[period]
+  chartData.value.labels = periodInfo.labels
+  chartData.value.datasets[0].data = periodInfo.data
+}
+
+// Set initial data (for "today")
+select('today')
+
+const buttonClass = (period: 'year' | 'month' | 'today' | 'tomorrow') => {
+  return computed(() => ({
+    'selected-button': selected.value === period,
+  }))
 }
 </script>
 
 <style scoped>
 .chart-container {
-  height: 300px; /* Set the maximum height for the chart */
+  height: 400px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .q-btn {
   font-weight: bold;
+}
+.selected-button {
+  background-color: #007bff;
+  color: white;
 }
 </style>
