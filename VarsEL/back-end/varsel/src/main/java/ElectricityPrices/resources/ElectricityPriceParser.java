@@ -1,3 +1,4 @@
+package ElectricityPrices.resources;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;

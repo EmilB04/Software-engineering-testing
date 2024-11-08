@@ -1,3 +1,4 @@
+package ElectricityPrices.resources;
 import java.util.List;
 
 /** 

@@ -1,3 +1,4 @@
+package ElectricityPrices.resources;
 /**
  * Represents electricity price data for a specific time interval.
  * 
