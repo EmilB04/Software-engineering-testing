@@ -1,0 +1,7 @@
+com/varsel/ElectricityPrices/ElectricityPriceCalculator.class
+com/varsel/ElectricityPrices/GetElectricityPrices.class
+com/varsel/ElectricityPrices/HttpHandler.class
+com/varsel/ElectricityPrices/ElectricityPriceParser.class
+com/varsel/ElectricityPrices/ElectricityPriceUrlBuilder.class
+com/varsel/ElectricityPrices/ElectricityPriceData.class
+com/varsel/App.class
