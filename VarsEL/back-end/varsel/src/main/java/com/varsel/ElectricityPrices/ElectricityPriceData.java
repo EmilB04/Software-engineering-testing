@@ -1,4 +1,4 @@
-package ElectricityPrices;
+package com.varsel.ElectricityPrices;
 
 /**
  * Represents electricity price data for a specific time interval.

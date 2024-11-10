@@ -1,4 +1,5 @@
-package ElectricityPrices;
+package com.varsel.ElectricityPrices;
+
 
 import java.util.ArrayList;
 import java.util.List;
