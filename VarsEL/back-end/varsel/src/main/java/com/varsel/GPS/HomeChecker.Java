@@ -18,7 +18,7 @@ public class HomeChecker {
                 latitude, longitude,
                 result);
 
-        //Returnerer true dersom avstanden er mindre enn eller er lik HOME_RADIUS
+        //Returnerer true dersom avstanden er mindre enn eller er lik HOME_RADIUS.
         return result[0] < HOME_RADIUS;
 
     }

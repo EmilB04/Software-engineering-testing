@@ -43,7 +43,7 @@ public class LocationService implements LocationListener{
         );
     }
 
-    // Metoder for LocationListener.
+    // Metoder for LocationListener
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {}
 
