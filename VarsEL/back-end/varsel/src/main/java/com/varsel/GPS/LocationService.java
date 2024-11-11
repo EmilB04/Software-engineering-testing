@@ -3,7 +3,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-
 public class LocationService implements LocationListener{
     private LocationManager locationManager; // Håndterer tilgang til lokasjonstjenester
     private Context context;                 // Konteksten for applikasjonen
