@@ -50,10 +50,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop-new",
+    "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Thomas/Documents/GitHub/Gruppe9/VarsEL",
+    "last_opened_file_path": "C:/Program Files (x86)/GitHub/Gruppe9/VarsEL",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,6 +85,7 @@
       <workItem from="1731068013119" duration="14000" />
       <workItem from="1731068104626" duration="42000" />
       <workItem from="1731068284607" duration="13000" />
+      <workItem from="1731354025930" duration="50000" />
     </task>
     <servers />
   </component>
