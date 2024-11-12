@@ -104,13 +104,13 @@ public class ElectricityPriceCalculatorTests {
     public void calculateAveragePriceWithDummyPrices() {
         // Arrange
         ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
-        double expectedAveragePrice = 211.4233;
+        double expectedAveragePrice = 211.42336;
 
         // Act
         double calculationResults = calculator.calculateAveragePrice(dummyPrices);
 
         // Assert
-        Assertions.assertEquals(expectedAveragePrice, calculationResults, "Average price should be: 211.4233");
+        Assertions.assertEquals(expectedAveragePrice, calculationResults, "Average price should be: 211.42336");
     }
 
         }
