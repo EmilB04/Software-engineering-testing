@@ -1,3 +1,4 @@
+package com.varsel.GPS;
 import android.location.Location;
 
 public class HomeChecker {
