@@ -1,5 +1,6 @@
 package com.varsel.ElectricityPricesTests;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -11,11 +12,11 @@ import com.varsel.ElectricityPrices.ElectricityPriceData;
 
 public class ElectricityPriceCalculatorTests {
 
-    // Testing functions with a empty list
+    // Testing functions with an empty list
     
     @Test
     @DisplayName("Calculating lowest price - empty list should throw exception")
-    public void testCalculateLowestPriceTryEmptyList() {
+    public void calculateLowestPriceTryEmptyList() {
         // Arrange
         ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
         List<ElectricityPriceData> emptyList = Collections.emptyList();
@@ -29,7 +30,7 @@ public class ElectricityPriceCalculatorTests {
 
     @Test
     @DisplayName("Calculating highest price - empty list should throw exception")
-    public void testCalculateHighestPriceTryEmptyList() {
+    public void calculateHighestPriceTryEmptyList() {
         // Arrange
         ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
         List<ElectricityPriceData> emptyList = Collections.emptyList();
@@ -43,7 +44,7 @@ public class ElectricityPriceCalculatorTests {
 
     @Test
     @DisplayName("Calculating average price - empty list should throw exception")
-    public void testCalculateAveragePriceTryEmptyList() {
+    public void calculateAveragePriceTryEmptyList() {
         // Arrange
         ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
         List<ElectricityPriceData> emptyList = Collections.emptyList();
@@ -54,6 +55,35 @@ public class ElectricityPriceCalculatorTests {
         "Empty list should throw an IllegalArgumentException");
     }
 
+    // Testing functions with electricity prices
+
+    // Creating dummy data for test
+    List<ElectricityPriceData> dummyPrices = Arrays.asList(
+      new ElectricityPriceData(0.0002, "00:00", "01:00"), 
+      new ElectricityPriceData(0.2332, "02:00", "03:00"),
+      new ElectricityPriceData(84.00, "04:00", "05:00"),
+      new ElectricityPriceData(1999.0002, "06:00", "07:00"),
+      new ElectricityPriceData(1.0, "08:00", "09:00"),
+      new ElectricityPriceData(4.0, "10:00", "11:00"),
+      new ElectricityPriceData(6.0, "12:00", "13:00"),
+      new ElectricityPriceData(8.0, "14:00", "15:00"),
+      new ElectricityPriceData(3.0, "16:00", "17:00"),
+      new ElectricityPriceData(9.0, "18:00", "19:00") 
+    );
+
+    @Test
+    @DisplayName("Calculating lowest price with dummy values from List 'dummyPrices'")
+    public void calculateLowestPriceDummyPrices() {
+        // Arrange
+        ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
+        double expectedLowestPrice = 0.0002;
+
+        // Act
+        double calculationResults = calculator.calculateLowestPrice(dummyPrices);
+
+        // Assert
+        Assertions.assertEquals(expectedLowestPrice, calculationResults, "Lowest price should be: 0.0002");
+    }
 
         }
 
