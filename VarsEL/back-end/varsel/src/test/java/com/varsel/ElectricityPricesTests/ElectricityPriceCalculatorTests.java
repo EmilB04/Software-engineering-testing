@@ -1,4 +1,6 @@
 package com.varsel.ElectricityPricesTests;
+import com.varsel.ElectricityPrices.ElectricityPriceCalculator;
+import com.varsel.ElectricityPrices.ElectricityPriceData;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,8 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.varsel.ElectricityPrices.ElectricityPriceCalculator;
-import com.varsel.ElectricityPrices.ElectricityPriceData;
 
 public class ElectricityPriceCalculatorTests {
 
@@ -73,7 +73,7 @@ public class ElectricityPriceCalculatorTests {
 
     @Test
     @DisplayName("Calculating lowest price with dummy values from List 'dummyPrices'")
-    public void calculateLowestPriceDummyPrices() {
+    public void calculateLowestPriceWithDummyPrices() {
         // Arrange
         ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
         double expectedLowestPrice = 0.0002;
@@ -83,6 +83,34 @@ public class ElectricityPriceCalculatorTests {
 
         // Assert
         Assertions.assertEquals(expectedLowestPrice, calculationResults, "Lowest price should be: 0.0002");
+    }
+
+    @Test
+    @DisplayName("Calculating highest price with dummy values from List 'dummyPrices'")
+    public void calculateHighestWithPriceDummyPrices() {
+        // Arrange
+        ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
+        double expectedHighestPrice = 1999.0002;
+
+        // Act
+        double calculationResults = calculator.calculateHighestPrice(dummyPrices);
+
+        // Assert
+        Assertions.assertEquals(expectedHighestPrice, calculationResults, "Highest price should be: 1999.0002");
+    }
+
+    @Test
+    @DisplayName("Calculating average price with dummy values from List 'dummyPrices'")
+    public void calculateAveragePriceWithDummyPrices() {
+        // Arrange
+        ElectricityPriceCalculator calculator = new ElectricityPriceCalculator();
+        double expectedAveragePrice = 211.4233;
+
+        // Act
+        double calculationResults = calculator.calculateAveragePrice(dummyPrices);
+
+        // Assert
+        Assertions.assertEquals(expectedAveragePrice, calculationResults, "Average price should be: 211.4233");
     }
 
         }
