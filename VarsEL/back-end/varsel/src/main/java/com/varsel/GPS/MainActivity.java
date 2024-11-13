@@ -47,4 +47,4 @@ public class MainActivity extends AppCompatActivity{
         locationService.stopLocationUpdates();
     }
 }
-    
+ 
