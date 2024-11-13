@@ -1,4 +1,4 @@
-/*package com.varsel.GPS;
+package com.varsel.GPS;
 
 import android.content.Context;
 import android.location.Location;
@@ -55,4 +55,3 @@ public class LocationService implements LocationListener{
     @Override
     public void onProviderDisabled(String provider) {}
 }
-*/

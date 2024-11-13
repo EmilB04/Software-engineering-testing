@@ -41,5 +41,7 @@ public class ElectricityPriceParserTests {
         Assertions.assertThrows(IllegalArgumentException.class, () -> parser.parse(jsonData),
         "Only whitespace in JSON-data should throw exception");
     }
+
+    
     
 }
