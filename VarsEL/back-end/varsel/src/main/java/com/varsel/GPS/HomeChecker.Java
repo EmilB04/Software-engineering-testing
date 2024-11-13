@@ -3,10 +3,10 @@ package com.varsel.GPS;
 /**
  * A utility class that checks if a user is within a predfined "home" radius based on
  * geographic coordinates (Latitude/Longitude)
- *
+
  * The class will provide a single method to see if a given
  * position (latitude and longitude) is within the "home" radius around specified "home" coordinates
- *
+
  * Example usage:
  * <pre>
  *     HomeChecker checker = new HomeChecker();
@@ -22,13 +22,13 @@ public class HomeChecker {
 
     /**
      * Checks if a user is within the "home" radius
-     *
+
      * This method calculates the distance between the users location and the "home" coordinates,
      * and compares it to the defined "home" radius
      *
      * @param latitude The users latitude
      * @param longitude The users longitude
-     * @retyrn True if the user is within the home radius, false otherwise
+     * @return True if the user is within the home radius, false otherwise
      */
 
     public boolean isWithinHomeRadius(double latitude, double longitude) {

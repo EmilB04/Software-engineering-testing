@@ -2,14 +2,14 @@ package com.varsel.GPS;
 
 /**
  * This is a Service class to simulate user location data retrieval
- *
+
  * This class provides methods to retrieve a users current location (latitude and longitude)
- *
+
  * Example usage:
  * <pre>
- * LocationService locationService = new LocationService();
- * double latitude = locationService.getLatitude();
- * double longitude = locationService.getLongitude();
+ *      LocationService locationService = new LocationService();
+ *      double latitude = locationService.getLatitude();
+ *      double longitude = locationService.getLongitude();
  * </pre>
  */
 
