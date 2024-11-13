@@ -43,6 +43,10 @@ public class ElectricityPriceParser {
 
             prices.add(data);
         }
+
+        if (prices.isEmpty()) {
+            throw new IllegalArgumentException("ElectricityPriceParser fant ingen JSON-data å parse");
+        }
         return prices; 
 
     }
