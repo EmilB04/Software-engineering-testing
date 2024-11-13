@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 public class ElectricityPriceCalculatorTests {
 
-    // Testing functions with an empty list
     
     @Test
     @DisplayName("Calculating lowest price - empty list should throw exception")
@@ -22,8 +21,7 @@ public class ElectricityPriceCalculatorTests {
         List<ElectricityPriceData> emptyList = Collections.emptyList();
 
         // Act and Assert
-        Assertions.assertThrows(IllegalArgumentException.class,
-                () -> calculator.calculateLowestPrice(emptyList),
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculateLowestPrice(emptyList),
                 "Empty list should throw an IllegalArgumentException");
     }
 
@@ -36,8 +34,7 @@ public class ElectricityPriceCalculatorTests {
         List<ElectricityPriceData> emptyList = Collections.emptyList();
 
         // Act and Assert
-        Assertions.assertThrows(IllegalArgumentException.class, 
-        () -> calculator.calculateHighestPrice(emptyList),
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculateHighestPrice(emptyList),
         "Empty list should throw an IllegalArgumentException");
     }
 
@@ -50,8 +47,7 @@ public class ElectricityPriceCalculatorTests {
         List<ElectricityPriceData> emptyList = Collections.emptyList();
 
         // Act and Assert
-        Assertions.assertThrows(IllegalArgumentException.class, 
-        () -> calculator.calculateAveragePrice(emptyList),
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.calculateAveragePrice(emptyList),
         "Empty list should throw an IllegalArgumentException");
     }
 

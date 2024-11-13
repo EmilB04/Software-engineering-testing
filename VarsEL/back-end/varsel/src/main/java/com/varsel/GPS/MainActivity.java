@@ -1,4 +1,4 @@
-package com.varsel.GPS;
+/*package com.varsel.GPS;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -47,3 +47,4 @@ public class MainActivity extends AppCompatActivity{
         locationService.stopLocationUpdates();
     }
 }
+    */

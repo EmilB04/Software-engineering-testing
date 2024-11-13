@@ -30,6 +30,10 @@ public class ElectricityPriceParser {
      * @throws JSONException if the data is invalid or required fields are missing.
      */
     public List<ElectricityPriceData> parse(String jsonData) {
+        if (jsonData.trim().isEmpty() || jsonData == null) {
+            throw new IllegalArgumentException("ElectricityPriceParser fant ingen JSON-data å parse");
+        }
+        
         List<ElectricityPriceData> prices = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(jsonData);
 
@@ -44,9 +48,6 @@ public class ElectricityPriceParser {
             prices.add(data);
         }
 
-        if (prices.isEmpty()) {
-            throw new IllegalArgumentException("ElectricityPriceParser fant ingen JSON-data å parse");
-        }
         return prices; 
 
     }
