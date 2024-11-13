@@ -1,7 +1,7 @@
 package com.varsel.GPS;
 
 /**
- * A utility class that checks if a user is within a predfined "home" radius based on
+ * A utility class that checks if a user is within a predefined "home" radius based on
  * geographic coordinates (Latitude/Longitude)
 
  * The class will provide a single method to see if a given
@@ -17,7 +17,7 @@ package com.varsel.GPS;
 public class HomeChecker {
     // Home coordinates (latitude and longitude) and radius in meters
     private static final double HOME_LATITUDE = 59.911491;   // Latitude
-    private static final double HOME_LONGTITUDE = 10.757933; // LONGITUDE
+    private static final double HOME_LONGITUDE = 10.757933; // LONGITUDE
     private static final float HOME_RADIUS = 100;            // RADIUS IN METER
 
     /**
@@ -37,7 +37,7 @@ public class HomeChecker {
 
         // Calculating the difference in latitude and longitude in radius
         double dLat = Math.toRadians(latitude - HOME_LATITUDE);
-        double dLon = Math.toRadians(longitude - HOME_LONGTITUDE);
+        double dLon = Math.toRadians(longitude - HOME_LONGITUDE);
 
         // Haversine formula for calculating the distance between two latitude/longitude points
         double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +

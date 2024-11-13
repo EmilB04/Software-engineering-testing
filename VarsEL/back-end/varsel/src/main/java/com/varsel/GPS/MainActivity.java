@@ -1,5 +1,6 @@
 package com.varsel.GPS;
 
+
 /**
  * The "MainActivity" class checks if a user is within the "home" area
 
@@ -61,7 +62,7 @@ public class MainActivity {
      * @param args Command-line arguments (not used)
      */
 
-    public static void Main(String[] args){
+    public static void main(String[] args) {
         // Initialize components
         HomeChecker homeChecker = new HomeChecker();
         LocationService locationService = new LocationService(59.911491,  10.757933); // Set starting location
