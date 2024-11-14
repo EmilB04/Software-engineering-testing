@@ -9,12 +9,22 @@ public class UserRepository {
 
     private final String filePath;
 
+    /**
+     * Konstruktør som angir filbane og sørger for at filen eksisterer.
+     *
+     * @param filePath Stien til tekstfilen som brukes til å lagre brukerdata
+     * @throws IOException hvis det oppstår en feil ved filhåndtering
+     */
     public UserRepository(String filePath) throws IOException {
         this.filePath = filePath;
         ensureFileExists();  // Sørg for at filen eksisterer
     }
 
-    // Metode for å sjekke om filen finnes, og opprette den hvis den ikke gjør det
+    /**
+     * Sjekker om filen finnes, og oppretter den hvis den ikke gjør det.
+     *
+     * @throws IOException hvis det oppstår en feil ved opprettelse av filen
+     */
     private void ensureFileExists() throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -26,6 +36,12 @@ public class UserRepository {
         }
     }
 
+    /**
+     * Lagrer en ny bruker i tekstfilen.
+     *
+     * @param user Brukerobjekt som skal lagres
+     * @throws IOException hvis det oppstår en feil ved skriving til filen
+     */
     public void saveUser(User user) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(user.getEmail() + ":" + user.getHashedPassword());
@@ -33,6 +49,13 @@ public class UserRepository {
         }
     }
 
+    /**
+     * Finner en bruker i filen basert på e-postadresse.
+     *
+     * @param email E-postadresse til brukeren som skal finnes
+     * @return Brukerobjekt hvis brukeren finnes, ellers null
+     * @throws IOException hvis det oppstår en feil ved lesing fra filen
+     */
     public User findUserByEmail(String email) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
