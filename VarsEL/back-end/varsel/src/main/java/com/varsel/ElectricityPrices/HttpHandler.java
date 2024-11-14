@@ -38,7 +38,6 @@ public class HttpHandler {
             URI uri = new URI(urlInput);
             URL url = uri.toURL(); 
 
-
             HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
             connection.setRequestMethod("GET");
             logger.info("Koblet til: {}", urlInput);
@@ -52,12 +51,11 @@ public class HttpHandler {
             }
 
             in.close();
- 
             connection.disconnect();
 
-            logger.info("Hentet data fra siden"); 
+            logger.info("Fetched data from site: "); 
     } catch (Exception e) {
-        logger.error("Det skjedde en feil under henting av data fra siden ", e);
+        logger.error("An error occurred while retrieving data from the site ", e);
         e.printStackTrace();
     }
     return data.toString();
