@@ -1,4 +1,4 @@
-package varsel.login_related;
+package com.varsel.Users;
 
 // Path: varsel/src/main/java/varsel/login_related/User.java
 // Use-case: User.java is a class that represents a user in the system.

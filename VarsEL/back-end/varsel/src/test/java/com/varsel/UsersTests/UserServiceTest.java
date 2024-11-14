@@ -1,8 +1,8 @@
-package login_related;
+package com.varsel.UsersTests;
 
 import org.junit.jupiter.api.*;
-import varsel.login_related.UserRepository;
-import varsel.login_related.UserService;
+import com.varsel.Users.UserRepository;
+import com.varsel.Users.UserService;
 
 import java.io.File;
 import java.io.IOException;

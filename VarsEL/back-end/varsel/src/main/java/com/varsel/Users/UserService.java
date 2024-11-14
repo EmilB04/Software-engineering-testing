@@ -1,4 +1,4 @@
-package varsel.login_related;
+package com.varsel.Users;
 
 import org.mindrot.jbcrypt.BCrypt;
 import java.io.IOException;
