@@ -26,6 +26,14 @@ public class ElectricityPriceUrlBuilder {
      */
 
     public String buildUrl(String zone, LocalDate date) {
+
+        if (zone == null) {
+            throw new IllegalArgumentException("Zone can't be null");
+        }
+        if (date == null) {
+            throw new IllegalArgumentException("Date can't be null");
+        }
+        
         String year = String.valueOf(date.getYear());
         String month = String.format("%02d", date.getMonthValue());
         String day = String.format("%02d", date.getDayOfMonth());
