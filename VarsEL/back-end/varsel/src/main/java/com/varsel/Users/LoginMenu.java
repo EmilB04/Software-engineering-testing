@@ -16,6 +16,9 @@ public class LoginMenu {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Starter hovedmenyen for brukerinteraksjon, lar brukeren registrere seg, logge inn eller avslutte programmet.
+     */
     public void start() {
         System.out.println("Velkommen til brukerregistrering og innlogging!");
 
@@ -26,7 +29,6 @@ public class LoginMenu {
             System.out.println("3. Avslutt");
             System.out.print("Ditt valg: ");
             String choice = scanner.nextLine();
-
 
             switch (choice) {
                 case "1":
@@ -44,11 +46,31 @@ public class LoginMenu {
         }
     }
 
+    /**
+     * Metode for å registrere ny bruker ved å be om e-post og passord.
+     * Utfører input-validering og kaller registerUser på UserService.
+     */
     private void registerUser() {
-        System.out.print("Oppgi e-post for registrering: ");
-        String email = scanner.nextLine();
-        System.out.print("Oppgi passord: ");
-        String password = scanner.nextLine();
+        String email = "";
+        String password = "";
+
+        // Sjekker at e-postinput ikke er tom
+        while (email.isEmpty()) {
+            System.out.print("Oppgi e-post for registrering: ");
+            email = scanner.nextLine();
+            if (email.isEmpty()) {
+                System.out.println("E-post kan ikke være tom. Prøv igjen.");
+            }
+        }
+
+        // Sjekker at passordinput ikke er tom
+        while (password.isEmpty()) {
+            System.out.print("Oppgi passord: ");
+            password = scanner.nextLine();
+            if (password.isEmpty()) {
+                System.out.println("Passord kan ikke være tomt. Prøv igjen.");
+            }
+        }
 
         try {
             boolean success = userService.registerUser(email, password);
@@ -62,11 +84,31 @@ public class LoginMenu {
         }
     }
 
+    /**
+     * Metode for å logge inn en bruker ved å be om e-post og passord.
+     * Utfører input-validering og kaller loginUser på UserService.
+     */
     private void loginUser() {
-        System.out.print("Oppgi e-post for innlogging: ");
-        String email = scanner.nextLine();
-        System.out.print("Oppgi passord: ");
-        String password = scanner.nextLine();
+        String email = "";
+        String password = "";
+
+        // Sjekker at e-postinput ikke er tom
+        while (email.isEmpty()) {
+            System.out.print("Oppgi e-post for innlogging: ");
+            email = scanner.nextLine();
+            if (email.isEmpty()) {
+                System.out.println("E-post kan ikke være tom. Prøv igjen.");
+            }
+        }
+
+        // Sjekker at passordinput ikke er tom
+        while (password.isEmpty()) {
+            System.out.print("Oppgi passord: ");
+            password = scanner.nextLine();
+            if (password.isEmpty()) {
+                System.out.println("Passord kan ikke være tomt. Prøv igjen.");
+            }
+        }
 
         try {
             boolean success = userService.loginUser(email, password);
