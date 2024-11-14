@@ -56,6 +56,4 @@ public class MainActivityTest {
         // Assert
         verify(homeChecker).isWithinHomeRadius(userLatitude, userLongitude);
     }
-
-
 }
