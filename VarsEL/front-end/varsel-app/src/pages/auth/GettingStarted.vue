@@ -266,9 +266,9 @@ watch(step, (step) => {
 
 // Function for requesting notification permission
 async function requestNotificationPermission() {
-  // Sjekk om appen kjører på mobil
+  // Check if the platform is native or web
   if (Capacitor.isNativePlatform()) {
-    // Bruk Capacitor Push Notifications på mobil
+    // Use Capacitor Push Notifications on mobile
     try {
       const permission = await PushNotifications.requestPermissions()
       if (permission.receive === 'granted') {
@@ -285,7 +285,7 @@ async function requestNotificationPermission() {
     }
   }
   else {
-    // Bruk Notification API for web
+    // Notification API for web
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
         console.log('Notification permission granted.')
@@ -302,33 +302,6 @@ async function requestNotificationPermission() {
     notificationPermission.value = 'Ikke støttet'
   }
 }
-// ----------------- Check if web notifications are supported -----------------
-if ('Notification' in window && 'serviceWorker' in navigator) {
-  console.log('Web Notifications are supported!')
-}
-else {
-  console.error('Web Notifications are not supported in this browser.')
-}
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('/service-worker.js')
-    .then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope)
-    })
-    .catch((error) => {
-      console.error('Service Worker registration failed:', error)
-    })
-}
-if ('serviceWorker' in navigator && Notification.permission === 'granted') {
-  navigator.serviceWorker.ready.then((registration) => {
-    registration.showNotification('Testvarsel', {
-      body: 'Dette er et eksempelvarsel som vises på mobil.',
-      icon: '/path/to/icon.png',
-    })
-  })
-}
-
-// ----------------- -----------------
 
 // function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled
 function checkIfAllStepsAreFinished() {
