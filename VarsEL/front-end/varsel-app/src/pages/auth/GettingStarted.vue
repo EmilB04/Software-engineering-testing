@@ -32,6 +32,53 @@
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
+        <main>
+          <h3 class="text-center q-mt-lg q-mx-lg">Velg din nåværende strømleverandør <br> for å få den mest nøyaktige oversikten <br> over strømpriser.</h3>
+        </main>
+        <div class="text-center q-mt-xl">
+          <q-btn-dropdown
+            split
+            flat
+            no-caps
+            color="black"
+            label="Velg strømleverandør"
+            style="border: 1px solid black;"
+            class="q-pa-md"
+            v-close-popup
+          >
+            <q-list>
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Tibber</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Vibb</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Norges Energi</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Fjordkraft</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup>
+                <q-item-section>
+                  <q-item-label>Klarkraft</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
       </q-step>
 
       <q-step
@@ -61,9 +108,6 @@
           <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger får å få tilpassede varslet basert på din posisjon,
             slik at ladingen kan optimaliseres basert på strømpriser og din plassering.</h3>
         </main>
-        <div class="text-center q-mt-xl">
-          GPS position: <strong>{{ position }}</strong>
-        </div>
       </q-step>
 
       <q-step :name="3" title="Varslingsinnstillinger">
@@ -88,6 +132,10 @@
         <main>
           <h3 class="text-center q-mt-lg q-mx-lg">Få varsler når strømprisene er lave eller når du ankommer hjemmet for optimal lading</h3>
         </main>
+        <div>
+          <!-- When user lands here, ask for notification access, no button-->
+
+        </div>
       </q-step>
 
       <q-step :name="4" title="Oppsummering">
@@ -157,8 +205,12 @@ function getCurrentPosition() {
   Geolocation.getCurrentPosition().then(newPosition => {
     console.log('Current', newPosition)
     position.value = newPosition
+    if (position.value) {
+      console.log('Position determined: ', position.value)
+    }
   })
 }
+
 /* const registerNotifications = async () => {
   let permStatus = await PushNotifications.checkPermissions()
 
@@ -188,12 +240,29 @@ watch(step, (step) => {
   if (step === 5) {
     router.push('/auth/register')
   }
+  if (step === 3) {
+    requestNotificationPermission()
+  }
 })
 
 onBeforeUnmount(() => {
   // we do cleanup
   Geolocation.clearWatch(geoId)
 })
+
+function requestNotificationPermission() {
+  if (Notification.permission === 'default') {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.')
+      }
+      else {
+        console.log('Notification permission denied.')
+      }
+    })
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
