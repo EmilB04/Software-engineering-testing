@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.varsel.Utility.HttpGetClient;
+
 import java.time.LocalDate;
 
 /**
@@ -62,7 +64,7 @@ public class GetElectricityPrices {
      public static void main(String[] args) {
         // Initialiserer avhengigheter
         ElectricityPriceParser parser = new ElectricityPriceParser();
-        HttpHandler httpHandler = new HttpHandler();
+        HttpHandler httpHandler = new HttpHandler(new HttpGetClient());
         ElectricityPriceUrlBuilder urlBuilder = new ElectricityPriceUrlBuilder();
 
         // Oppretter GetElectricityPrices med nødvendige avhengigheter
