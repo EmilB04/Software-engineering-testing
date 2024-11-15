@@ -87,6 +87,14 @@
               color="transparent"
               style="border: 1px solid black;"
             />
+            <q-btn
+              @click="sendLocalNotification"
+              class="text-black align-center q-mt-lg q-pa-md"
+              no-caps
+              label="Tillat varsler"
+              color="transparent"
+              style="border: 1px solid black;"
+            />
           </div>
         </main>
       </q-step>
@@ -179,6 +187,7 @@
 <script setup>
 
 // import { Geolocation } from '@capacitor/geolocation'
+import { LocalNotifications } from '@capacitor/local-notifications'
 import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, watch } from 'vue'
@@ -301,6 +310,30 @@ async function requestNotificationPermission() {
   if (!('Notification' in window)) {
     console.error('Notifications are not supported on this device.')
     notificationPermission.value = 'Ikke støttet'
+  }
+}
+
+async function sendLocalNotification() {
+  try {
+    await LocalNotifications.requestPermissions()
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          id: 1,
+          title: 'VarselApp',
+          body: 'Det er lønnsomt å lade nå!',
+          schedule: { at: new Date(new Date().getTime() + 1000) }, // 1 sekund frem i tid
+          sound: null,
+          attachments: null,
+          actionTypeId: '',
+          extra: null,
+        },
+      ],
+    })
+    console.log('Varsel sendt!')
+  }
+  catch (error) {
+    console.error('Error sending local notification:', error)
   }
 }
 
