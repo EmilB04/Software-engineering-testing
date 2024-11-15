@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.stream.Location;
-
 public class LocationServiceTest {
     //Test for initialization of position
     @Test

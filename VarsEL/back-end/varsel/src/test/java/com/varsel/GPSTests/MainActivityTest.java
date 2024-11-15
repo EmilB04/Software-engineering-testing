@@ -4,11 +4,9 @@ import com.varsel.GPS.MainActivity;
 import com.varsel.GPS.LocationService;
 import com.varsel.GPS.HomeChecker;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
 public class MainActivityTest {
