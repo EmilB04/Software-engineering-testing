@@ -32,53 +32,22 @@
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
+
         <main>
           <h3 class="text-center q-mt-lg q-mx-lg">Velg din nåværende strømleverandør <br> for å få den mest nøyaktige oversikten <br> over strømpriser.</h3>
+
+          <!-- Dropdown for strømleverandør -->
+          <div class="text-center q-mt-xl">
+            <q-select
+              outlined
+              v-model="selectedSupplier"
+              :options="suppliers"
+              label="Velg strømleverandør"
+              class="q-pa-md"
+              style="max-width: 400px; margin: 0 auto;"
+            />
+          </div>
         </main>
-        <div class="text-center q-mt-xl">
-          <q-btn-dropdown
-            split
-            flat
-            no-caps
-            color="black"
-            label="Velg strømleverandør"
-            style="border: 1px solid black;"
-            class="q-pa-md"
-            v-close-popup
-          >
-            <q-list>
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Tibber</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Vibb</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Norges Energi</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Fjordkraft</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup>
-                <q-item-section>
-                  <q-item-label>Klarkraft</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-        </div>
       </q-step>
 
       <q-step
@@ -179,7 +148,7 @@
         <main class="flex column content-center q-mx-auto">
           <h3 class="text-center q-mt-lg q-mx-lg">Her er en oppsummering av dine valg. Trykk på fullfør for å gå videre til registrering.</h3>
           <!-- Show which option the user selected from the drop-down-menu-->
-          <p class="q-mt-lg"><strong>Valgt strømleverandør:</strong> Tibber</p>
+          <p class="q-mt-lg"><strong>Valgt strømleverandør:</strong> {{ getSupplierLabel(selectedSupplier) }}</p>
 
           <!-- Show if the user accepted or denied notifications-->
           <p class="q-mt-lg"><strong>Varsler:</strong> {{ notificationPermission }}</p>
@@ -222,6 +191,22 @@ const position = ref('Ukjent')
 const city = ref('Ukjent')
 const country = ref('Ukjent')
 const notificationPermission = ref('Ukjent')
+
+const suppliers = [
+  { label: 'Tibber', value: 'tibber' },
+  { label: 'Vibb', value: 'vibb' },
+  { label: 'Norges Energi', value: 'norges-energi' },
+  { label: 'Fjordkraft', value: 'fjordkraft' },
+  { label: 'Klarkraft', value: 'klarkraft' },
+  { label: 'Agva Kraft', value: 'agva-kraft' },
+]
+
+const selectedSupplier = ref('') // Holder verdien til valgt strømleverandør
+
+// Function for only getting label from suppliers
+function getSupplierLabel(supplier) {
+  return supplier.label
+}
 
 // Function for getting current position using browser's Geolocation API
 function getCurrentPosition() {
