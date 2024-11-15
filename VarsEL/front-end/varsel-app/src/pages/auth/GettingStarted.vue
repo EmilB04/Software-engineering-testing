@@ -192,6 +192,7 @@ const city = ref('Ukjent')
 const country = ref('Ukjent')
 const notificationPermission = ref('Ukjent')
 
+const selectedSupplier = ref('')
 const suppliers = [
   { label: 'Tibber', value: 'tibber' },
   { label: 'Vibb', value: 'vibb' },
@@ -201,11 +202,14 @@ const suppliers = [
   { label: 'Agva Kraft', value: 'agva-kraft' },
 ]
 
-const selectedSupplier = ref('') // Holder verdien til valgt strømleverandør
-
 // Function for only getting label from suppliers
 function getSupplierLabel(supplier) {
-  return supplier.label
+  if (supplier) {
+    return supplier.label
+  }
+  else {
+    return 'Ukjent'
+  }
 }
 
 // Function for getting current position using browser's Geolocation API
@@ -237,7 +241,7 @@ function getCityName(lat, lng) {
       if (data.results && data.results.length > 0) {
         city.value = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village || 'Unknown'
         country.value = data.results[0].components.country || 'Unknown'
-        console.log('City:', city.value, 'Country:', country.value)
+        console.log('City:', city.value, '\nCountry:', country.value)
       }
       else {
         console.log('No results found')
