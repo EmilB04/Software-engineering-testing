@@ -164,6 +164,7 @@
             @click="step++"
             color="primary"
             :label="step === 4 ? 'Fullfør' : 'Fortsett'"
+            :disable="step === 4 && !checkIfAllStepsAreFinished()"
             title="Fortsett"
             class="custom-btn"
             text-color="black"
@@ -271,6 +272,17 @@ function requestNotificationPermission() {
       notificationPermission.value = 'Avslått'
     }
   })
+}
+
+// function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled
+function checkIfAllStepsAreFinished() {
+  console.log('All steps are not finished')
+  return (
+    selectedSupplier.value !== null &&
+    notificationPermission.value !== 'Ukjent' &&
+    city.value !== 'Ukjent' &&
+    country.value !== 'Ukjent'
+  )
 }
 
 </script>
