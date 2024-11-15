@@ -298,6 +298,10 @@ async function requestNotificationPermission() {
       }
     })
   }
+  if (!('Notification' in window)) {
+    console.error('Notifications are not supported on this device.')
+    notificationPermission.value = 'Ikke støttet'
+  }
 }
 
 // function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled

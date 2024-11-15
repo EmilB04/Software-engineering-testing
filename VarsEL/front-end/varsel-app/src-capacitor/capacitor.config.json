@@ -1,5 +1,11 @@
 {
   "appId": "varsel.quasar.app",
   "appName": "Varsel",
-  "webDir": "www"
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
 }
