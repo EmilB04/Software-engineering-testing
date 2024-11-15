@@ -107,6 +107,13 @@
         <main>
           <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger får å få tilpassede varslet basert på din posisjon,
             slik at ladingen kan optimaliseres basert på strømpriser og din plassering.</h3>
+          <MainButton
+            @click="getCurrentPosition"
+            class="text-black align-center"
+            no-caps
+            label="Tillat posisjon"
+            color="primary"
+          />
         </main>
       </q-step>
 
@@ -133,8 +140,14 @@
           <h3 class="text-center q-mt-lg q-mx-lg">Få varsler når strømprisene er lave eller når du ankommer hjemmet for optimal lading</h3>
         </main>
         <div>
-          <!-- When user lands here, ask for notification access, no button-->
-
+          <!-- When user lands here, ask for notification access, with button-->
+          <MainButton
+            @click="requestNotificationPermission"
+            class="text-black align-center"
+            no-caps
+            label="Tillat varsler"
+            color="primary"
+          />
         </div>
       </q-step>
 
@@ -157,16 +170,26 @@
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
+        <main>
+          <h3 class="text-center q-mt-lg q-mx-lg">Her er en oppsummering av dine valg. Trykk på fullfør for å gå videre til registrering.</h3>
+          <!-- Show which option the user selected from the drop-down-menu-->
+          <p class="text-center q-mt-lg">Valgt strømleverandør: Tibber</p>
+
+          <!-- Show if the user accepted or denied gps services-->
+          <p class="text-center q-mt-lg">Posisjon: {{ city }}</p>
+
+          <!-- Show if the user accepted or denied notifications-->
+        </main>
       </q-step>
 
       <template v-slot:navigation>
         <q-stepper-navigation class="flex flex-center">
-          <q-btn
+          <MainButton
             @click="step++"
             color="primary"
             :label="step === 4 ? 'Fullfør' : 'Fortsett'"
             title="Fortsett"
-            class="custom-btn text-black"
+            class=""
             no-caps
           />
         </q-stepper-navigation>
@@ -175,16 +198,7 @@
   </q-page>
 </template>
 <style scoped>
-.custom-btn {
-  position: absolute;
-  bottom: 106px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 20px;
-  padding: 20px 36px;
-  font-size: 16px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
+
 </style>
 
 <script setup>
@@ -195,53 +209,48 @@ import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, onBeforeUnmount, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
+import MainButton from 'components/MainButton.vue'
+
 const router = useRouter()
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
 
 const position = ref('determining...')
+const city = ref('Unknown')
 
 function getCurrentPosition() {
   Geolocation.getCurrentPosition().then(newPosition => {
     console.log('Current', newPosition)
     position.value = newPosition
-    if (position.value) {
-      console.log('Position determined: ', position.value)
-    }
+    getCityName(newPosition.coords.latitude, newPosition.coords.longitude)
   })
 }
+// Function for getting city name from coordinates
+function getCityName(lat, lng) {
+  const apiKey = '0156a3ba4e2042e0a237b949ab6a87b7' // personal key
+  const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${apiKey}`
 
-/* const registerNotifications = async () => {
-  let permStatus = await PushNotifications.checkPermissions()
-
-  if (permStatus.receive === 'prompt') {
-    permStatus = await PushNotifications.requestPermissions()
-  }
-
-  if (permStatus.receive !== 'granted') {
-    throw new Error('User denied permissions!')
-  }
-
-  await PushNotifications.register()
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.results && data.results.length > 0) {
+        city.value = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village || 'Unknown'
+        console.log('City:', city.value)
+      }
+      else {
+        console.log('No results found')
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching city name:', error)
+    })
 }
-  */
+
 let geoId
 
 watch(step, (step) => {
-  console.log('Step', step)
-  if (step === 2) {
-    getCurrentPosition()
-    // we start listening
-    geoId = Geolocation.watchPosition({}, newPosition => {
-      console.log('New GPS position')
-      position.value = newPosition
-    })
-  }
   if (step === 5) {
     router.push('/auth/register')
-  }
-  if (step === 3) {
-    requestNotificationPermission()
   }
 })
 
