@@ -87,14 +87,6 @@
               color="transparent"
               style="border: 1px solid black;"
             />
-            <q-btn
-              @click="sendLocalNotification"
-              class="text-black align-center q-mt-lg q-pa-md"
-              no-caps
-              label="Tillat varsler"
-              color="transparent"
-              style="border: 1px solid black;"
-            />
           </div>
         </main>
       </q-step>
@@ -187,7 +179,6 @@
 <script setup>
 
 // import { Geolocation } from '@capacitor/geolocation'
-import { LocalNotifications } from '@capacitor/local-notifications'
 import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, watch } from 'vue'
@@ -274,7 +265,6 @@ watch(step, (step) => {
 })
 
 // Function for requesting notification permission
-
 async function requestNotificationPermission() {
   // Sjekk om appen kjører på mobil
   if (Capacitor.isNativePlatform()) {
@@ -312,30 +302,33 @@ async function requestNotificationPermission() {
     notificationPermission.value = 'Ikke støttet'
   }
 }
-
-async function sendLocalNotification() {
-  try {
-    await LocalNotifications.requestPermissions()
-    await LocalNotifications.schedule({
-      notifications: [
-        {
-          id: 1,
-          title: 'VarselApp',
-          body: 'Det er lønnsomt å lade nå!',
-          schedule: { at: new Date(new Date().getTime() + 1000) }, // 1 sekund frem i tid
-          sound: null,
-          attachments: null,
-          actionTypeId: '',
-          extra: null,
-        },
-      ],
-    })
-    console.log('Varsel sendt!')
-  }
-  catch (error) {
-    console.error('Error sending local notification:', error)
-  }
+// ----------------- Check if web notifications are supported -----------------
+if ('Notification' in window && 'serviceWorker' in navigator) {
+  console.log('Web Notifications are supported!')
 }
+else {
+  console.error('Web Notifications are not supported in this browser.')
+}
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/service-worker.js')
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope)
+    })
+    .catch((error) => {
+      console.error('Service Worker registration failed:', error)
+    })
+}
+if ('serviceWorker' in navigator && Notification.permission === 'granted') {
+  navigator.serviceWorker.ready.then((registration) => {
+    registration.showNotification('Testvarsel', {
+      body: 'Dette er et eksempelvarsel som vises på mobil.',
+      icon: '/path/to/icon.png',
+    })
+  })
+}
+
+// ----------------- -----------------
 
 // function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled
 function checkIfAllStepsAreFinished() {
