@@ -261,18 +261,16 @@ watch(step, (step) => {
 
 // Function for requesting notification permission
 function requestNotificationPermission() {
-  if (Notification.permission === 'default') {
-    Notification.requestPermission().then(permission => {
-      if (permission === 'granted') {
-        console.log('Notification permission granted.')
-        notificationPermission.value = 'Godkjent'
-      }
-      else {
-        console.log('Notification permission denied.')
-        notificationPermission.value = 'Avslått'
-      }
-    })
-  }
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      console.log('Notification permission granted.')
+      notificationPermission.value = 'Godkjent'
+    }
+    else {
+      console.log('Notification permission denied.')
+      notificationPermission.value = 'Avslått'
+    }
+  })
 }
 
 </script>
