@@ -84,40 +84,8 @@
       <q-step
         :name="2"
         :done="step > 2"
-        title="Lokaliseringsinnstillinger"
+        title="Varslingsinnstillinger"
       >
-        <q-btn
-          @click="step--"
-          class="q-mt-lg"
-          title="Tilbake"
-          flat
-        >
-          <img :src="backButtonImg" alt="Tilbake">
-        </q-btn>
-        <h1 class="text-center q-mx-auto">Lokaliserings- <br> innstillinger</h1>
-        <q-linear-progress
-          rounded
-          size="20px"
-          :value="progress"
-          color="primary"
-          class="q-mt-lg q-mx-auto"
-          style="width: 50%; border-radius: 20px;"
-          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
-        />
-        <main>
-          <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger får å få tilpassede varslet basert på din posisjon,
-            slik at ladingen kan optimaliseres basert på strømpriser og din plassering.</h3>
-          <q-btn
-            @click="getCurrentPosition"
-            class="text-black text-center q-mt-lg"
-            no-caps
-            label="Tillat posisjon"
-            color="white"
-          />
-        </main>
-      </q-step>
-
-      <q-step :name="3" title="Varslingsinnstillinger">
         <q-btn
           @click="step--"
           class="q-mt-lg"
@@ -137,18 +105,56 @@
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
         <main>
-          <h3 class="text-center q-mt-lg q-mx-lg">Få varsler når strømprisene er lave eller når du ankommer hjemmet for optimal lading</h3>
+          <h3 class="text-center q-mt-lg q-mx-lg">Aktiver varslinger for å holde deg oppdatert på når du burde lade. <br>
+            Få tips og anbefalinger basert på strømpriser og din posisjon.
+          </h3>
+          <div class="row justify-center q-mt-lg">
+            <!-- When user lands here, ask for notification access, with button-->
+            <q-btn
+              @click="requestNotificationPermission"
+              class="text-black align-center q-mt-lg q-pa-md"
+              no-caps
+              label="Tillat varsler"
+              color="transparent"
+              style="border: 1px solid black;"
+            />
+          </div>
         </main>
-        <div>
-          <!-- When user lands here, ask for notification access, with button-->
-          <q-btn
-            @click="requestNotificationPermission"
-            class="text-black align-center"
-            no-caps
-            label="Tillat varsler"
-            color="primary"
-          />
-        </div>
+      </q-step>
+
+      <q-step :name="3" title="Lokalsiseringsinnstillinger">
+        <q-btn
+          @click="step--"
+          class="q-mt-lg"
+          title="Tilbake"
+          flat
+        >
+          <img :src="backButtonImg" alt="Tilbake">
+        </q-btn>
+        <h1 class="text-center q-mx-auto">Lokaliserings- <br> innstillinger</h1>
+        <q-linear-progress
+          rounded
+          size="20px"
+          :value="progress"
+          color="primary"
+          class="q-mt-lg q-mx-auto"
+          style="width: 50%; border-radius: 20px;"
+          :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
+        />
+        <main>
+          <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger for å få tilpassede varslet basert <br> på din posisjon,
+            slik at ladingen kan optimaliseres basert på <br> strømpriser og din plassering.</h3>
+          <div class="row justify-center q-mt-lg">
+            <q-btn
+              @click="getCurrentPosition"
+              class="text-black text-center q-mt-lg q-pa-md"
+              no-caps
+              label="Tillat posisjon"
+              color="transparent"
+              style="border: 1px solid black;"
+            />
+          </div>
+        </main>
       </q-step>
 
       <q-step :name="4" title="Oppsummering">
@@ -170,16 +176,16 @@
           style="width: 50%; border-radius: 20px;"
           :style="{ background: 'linear-gradient(to right, #fff, #fff)' }"
         />
-        <main>
+        <main class="flex column content-center q-mx-auto">
           <h3 class="text-center q-mt-lg q-mx-lg">Her er en oppsummering av dine valg. Trykk på fullfør for å gå videre til registrering.</h3>
           <!-- Show which option the user selected from the drop-down-menu-->
-          <p class="text-center q-mt-lg">Valgt strømleverandør: Tibber</p>
-
-          <!-- Show if the user accepted or denied gps services-->
-          <p class="text-center q-mt-lg">Posisjon: {{ city }}</p>
+          <p class="q-mt-lg"><strong>Valgt strømleverandør:</strong> Tibber</p>
 
           <!-- Show if the user accepted or denied notifications-->
-          <p class="text-center q-mt-lg">Varsler: {{ notificationPermission }}</p>
+          <p class="q-mt-lg"><strong>Varsler:</strong> {{ notificationPermission }}</p>
+
+          <!-- Show if the user accepted or denied gps services-->
+          <p class="q-mt-lg"> <strong>Posisjon:</strong> {{ city }}, {{ country }}</p>
         </main>
       </q-step>
 
@@ -214,6 +220,7 @@ const progress = computed(() => step.value * 0.25)
 
 const position = ref('Ukjent')
 const city = ref('Ukjent')
+const country = ref('Ukjent')
 const notificationPermission = ref('Ukjent')
 
 // Function for getting current position using browser's Geolocation API
@@ -221,7 +228,7 @@ function getCurrentPosition() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (newPosition) => {
-        console.log('Current', newPosition)
+        console.log('Current position', newPosition)
         position.value = newPosition
         getCityName(newPosition.coords.latitude, newPosition.coords.longitude)
       },
@@ -244,7 +251,8 @@ function getCityName(lat, lng) {
     .then(data => {
       if (data.results && data.results.length > 0) {
         city.value = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village || 'Unknown'
-        console.log('City:', city.value)
+        country.value = data.results[0].components.country || 'Unknown'
+        console.log('City:', city.value, 'Country:', country.value)
       }
       else {
         console.log('No results found')
