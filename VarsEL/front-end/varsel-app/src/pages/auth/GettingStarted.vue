@@ -287,30 +287,30 @@ async function requestNotificationPermission() {
   }
   else {
     // Bruk Notification API for web
-    if (Notification.permission === 'default') {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          console.log('Notification permission granted.')
-          notificationPermission.value = 'Godkjent'
-        }
-        else {
-          console.log('Notification permission denied.')
-          notificationPermission.value = 'Avslått'
-        }
-      })
-    }
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.')
+        notificationPermission.value = 'Godkjent'
+      }
+      else {
+        console.log('Notification permission denied.')
+        notificationPermission.value = 'Avslått'
+      }
+    })
   }
 }
 
 // function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled
 function checkIfAllStepsAreFinished() {
-  console.log('All steps are not finished')
-  return (
-    selectedSupplier.value !== null &&
-    notificationPermission.value !== 'Ukjent' &&
-    city.value !== 'Ukjent' &&
-    country.value !== 'Ukjent'
-  )
+  if (selectedSupplier.value !== '' && notificationPermission.value !== 'Ukjent' &&
+    city.value !== 'Ukjent' && country.value !== 'Ukjent') {
+    console.log('All steps are finished')
+    return true
+  }
+  else {
+    console.log('All steps are not finished')
+    return false
+  }
 }
 
 </script>
