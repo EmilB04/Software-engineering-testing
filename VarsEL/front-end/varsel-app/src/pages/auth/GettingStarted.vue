@@ -107,12 +107,12 @@
         <main>
           <h3 class="text-center q-mx-lg q-mt-lg">Aktiver posisjonsinnstillinger får å få tilpassede varslet basert på din posisjon,
             slik at ladingen kan optimaliseres basert på strømpriser og din plassering.</h3>
-          <MainButton
+          <q-btn
             @click="getCurrentPosition"
-            class="text-black align-center"
+            class="text-black text-center q-mt-lg"
             no-caps
             label="Tillat posisjon"
-            color="primary"
+            color="white"
           />
         </main>
       </q-step>
@@ -141,7 +141,7 @@
         </main>
         <div>
           <!-- When user lands here, ask for notification access, with button-->
-          <MainButton
+          <q-btn
             @click="requestNotificationPermission"
             class="text-black align-center"
             no-caps
@@ -179,17 +179,19 @@
           <p class="text-center q-mt-lg">Posisjon: {{ city }}</p>
 
           <!-- Show if the user accepted or denied notifications-->
+          <p class="text-center q-mt-lg">Varsler: {{ notificationPermission }}</p>
         </main>
       </q-step>
 
       <template v-slot:navigation>
         <q-stepper-navigation class="flex flex-center">
-          <MainButton
+          <q-btn
             @click="step++"
             color="primary"
             :label="step === 4 ? 'Fullfør' : 'Fortsett'"
             title="Fortsett"
-            class=""
+            class="custom-btn"
+            text-color="black"
             no-caps
           />
         </q-stepper-navigation>
@@ -197,33 +199,40 @@
     </q-stepper>
   </q-page>
 </template>
-<style scoped>
-
-</style>
 
 <script setup>
 
-import { Geolocation } from '@capacitor/geolocation'
+// import { Geolocation } from '@capacitor/geolocation'
 // import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
-import { computed, ref, onBeforeUnmount, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-
-import MainButton from 'components/MainButton.vue'
 
 const router = useRouter()
 const step = ref(1)
 const progress = computed(() => step.value * 0.25)
 
-const position = ref('determining...')
-const city = ref('Unknown')
+const position = ref('Ukjent')
+const city = ref('Ukjent')
+const notificationPermission = ref('Ukjent')
 
+// Function for getting current position using browser's Geolocation API
 function getCurrentPosition() {
-  Geolocation.getCurrentPosition().then(newPosition => {
-    console.log('Current', newPosition)
-    position.value = newPosition
-    getCityName(newPosition.coords.latitude, newPosition.coords.longitude)
-  })
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (newPosition) => {
+        console.log('Current', newPosition)
+        position.value = newPosition
+        getCityName(newPosition.coords.latitude, newPosition.coords.longitude)
+      },
+      (error) => {
+        console.error('Error getting position:', error)
+      },
+    )
+  }
+  else {
+    console.error('Geolocation is not supported by this browser.')
+  }
 }
 // Function for getting city name from coordinates
 function getCityName(lat, lng) {
@@ -246,27 +255,24 @@ function getCityName(lat, lng) {
     })
 }
 
-let geoId
-
+// Watcher for stepper
 watch(step, (step) => {
   if (step === 5) {
     router.push('/auth/register')
   }
 })
 
-onBeforeUnmount(() => {
-  // we do cleanup
-  Geolocation.clearWatch(geoId)
-})
-
+// Function for requesting notification permission
 function requestNotificationPermission() {
   if (Notification.permission === 'default') {
     Notification.requestPermission().then(permission => {
       if (permission === 'granted') {
         console.log('Notification permission granted.')
+        notificationPermission.value = 'Godkjent'
       }
       else {
         console.log('Notification permission denied.')
+        notificationPermission.value = 'Avslått'
       }
     })
   }
@@ -279,5 +285,15 @@ function requestNotificationPermission() {
   .q-stepper__header {
     display: none;
   }
+}
+.custom-btn {
+  position: absolute;
+  bottom: 106px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  padding: 20px 36px;
+  font-size: 16px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 </style>
