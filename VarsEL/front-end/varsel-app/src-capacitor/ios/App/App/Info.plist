@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>UIBackgroundModes</key>
-  <array>
-  <string>remote-notification</string>
-  </array>
-  <key>FirebaseAppDelegateProxyEnabled</key>
-  <false/>
-  <key>NSUserTrackingUsageDescription</key>
-  <string>Vi bruker varsler for å holde deg oppdatert om strømpriser.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
