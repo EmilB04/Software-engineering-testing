@@ -179,7 +179,7 @@
 <script setup>
 
 // import { Geolocation } from '@capacitor/geolocation'
-// import { PushNotifications } from '@capacitor/push-notifications'
+import { PushNotifications } from '@capacitor/push-notifications'
 import backButtonImg from 'assets/c_icons/backButton.svg'
 import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
@@ -224,11 +224,15 @@ function getCurrentPosition() {
       },
       (error) => {
         console.error('Error getting position:', error)
+        city.value = 'Avslått'
+        country.value = 'Avslått'
       },
     )
   }
   else {
     console.error('Geolocation is not supported by this browser.')
+    city.value = 'Avslått'
+    country.value = 'Avslått'
   }
 }
 // Function for getting city name from coordinates
@@ -261,17 +265,41 @@ watch(step, (step) => {
 })
 
 // Function for requesting notification permission
-function requestNotificationPermission() {
-  Notification.requestPermission().then(permission => {
-    if (permission === 'granted') {
-      console.log('Notification permission granted.')
-      notificationPermission.value = 'Godkjent'
+
+async function requestNotificationPermission() {
+  // Sjekk om appen kjører på mobil
+  if (Capacitor.isNativePlatform()) {
+    // Bruk Capacitor Push Notifications på mobil
+    try {
+      const permission = await PushNotifications.requestPermissions()
+      if (permission.receive === 'granted') {
+        console.log('Notification permission granted for mobile.')
+        notificationPermission.value = 'Godkjent'
+      }
+      else {
+        console.log('Notification permission denied for mobile.')
+        notificationPermission.value = 'Avslått'
+      }
     }
-    else {
-      console.log('Notification permission denied.')
-      notificationPermission.value = 'Avslått'
+    catch (error) {
+      console.error('Error requesting notification permission:', error)
     }
-  })
+  }
+  else {
+    // Bruk Notification API for web
+    if (Notification.permission === 'default') {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.')
+          notificationPermission.value = 'Godkjent'
+        }
+        else {
+          console.log('Notification permission denied.')
+          notificationPermission.value = 'Avslått'
+        }
+      })
+    }
+  }
 }
 
 // function which checks that every step is finished, meaning there are none "ukjent" at step 4. If true, the user can continue to the next step, else the button is disabled
