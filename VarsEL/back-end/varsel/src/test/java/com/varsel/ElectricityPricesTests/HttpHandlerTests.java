@@ -1,6 +1,7 @@
 package com.varsel.ElectricityPricesTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,7 +35,7 @@ public class HttpHandlerTests {
 
     @Test
     @DisplayName("Testing to see if JSON data can extracted from a valid URL")
-    void HttpHandlerGetJsonDataFromUrl() throws IOException, URISyntaxException {
+    void HttpHandlerGetJsonDataFromValidUrl() throws IOException, URISyntaxException {
         // Arrange
         String testUrl = "https://api.examplesite.com";
         String testResponse = "{\"key\": \"value\"}";
@@ -46,7 +47,32 @@ public class HttpHandlerTests {
         // Assert
         assertEquals(testResponse, response);
         verify(mockHttpClient, times(1)).get(testUrl);
-
-        
     }
+
+    @Test
+    @DisplayName("Testing to see if IOException is thrown when network errors occur")
+    void HttpHandlerTestExceptionWhenNetworkError() throws IOException, URISyntaxException {
+        // Arrange
+        String testUrl = "https://api.examplesite.com";
+        when(mockHttpClient.get(testUrl)).thenThrow(new IOException("Network error"));
+
+        // Act and assert
+        IOException exception = assertThrows(IOException.class, () -> httpHandler.getJSONDataFromUrl(testUrl));
+        assertEquals("Network error", exception.getMessage());
+        verify(mockHttpClient, times(1)).get(testUrl);
+    }
+
+    @Test
+    @DisplayName("Testing to see if URISynstaxException is thrown if an invalid URL is used")
+    void HttpHandlerTestExceptionWhenInvalidUrl() throws IOException, URISyntaxException {
+        // Arrange
+        String invalidUrl = "invalid.dummy.url";
+        when(mockHttpClient.get(invalidUrl)).thenThrow(new URISyntaxException(invalidUrl, "Invalid URI"));
+
+        // Act and assert
+        URISyntaxException exception = assertThrows(URISyntaxException.class, () -> httpHandler.getJSONDataFromUrl(invalidUrl));
+        assertEquals("Invalid URI", exception.getReason());
+        verify(mockHttpClient, times(1)).get(invalidUrl);
+    }
+
 }
