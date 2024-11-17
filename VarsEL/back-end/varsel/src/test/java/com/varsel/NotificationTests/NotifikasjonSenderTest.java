@@ -1,4 +1,4 @@
-package com.varsling.modules;
+package com.varsel.NotificationTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,10 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+import com.varsel.Notifications.PushNotifikasjonSender;
+import com.varsel.Notifications.Notifikasjon;
+import com.varsel.Notifications.NotifikasjonService;
 
 public class NotifikasjonSenderTest {
 

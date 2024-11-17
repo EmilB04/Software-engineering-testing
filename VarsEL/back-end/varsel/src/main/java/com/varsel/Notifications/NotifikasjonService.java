@@ -1,4 +1,4 @@
-package com.varsling.modules;
+package com.varsel.Notifications;
 
 public class NotifikasjonService {
 

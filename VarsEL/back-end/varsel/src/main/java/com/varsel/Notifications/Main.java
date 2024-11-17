@@ -1,7 +1,7 @@
-package com.varsling;
+package com.varsel.Notifications;
 
-import com.varsling.modules.FirebaseInitializer;
-import com.varsling.modules.PushNotifikasjonSender;
+import com.varsel.Notifications.PushNotifikasjonSender;
+import com.varsel.Notifications.FirebaseInitializer;
 
 public class Main {
     public static void main(String[] args) {

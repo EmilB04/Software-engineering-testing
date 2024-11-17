@@ -1,4 +1,4 @@
-package com.varsling.modules;
+package com.varsel.Notifications;
 
 import com.google.firebase.messaging.Notification;
 import com.google.firebase.messaging.Message;

@@ -1,7 +1,10 @@
-package com.varsling.modules;
+package com.varsel.NotificationTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import com.varsel.Notifications.NotifikasjonService;
+import com.varsel.Notifications.Notifikasjon;
 
 public class NotifikasjonServiceTest {
 
