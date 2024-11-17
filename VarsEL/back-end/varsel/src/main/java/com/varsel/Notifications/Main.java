@@ -1,7 +1,7 @@
 package com.varsel.Notifications;
 
-import com.varsel.Notifications.PushNotifikasjonSender;
-import com.varsel.Notifications.FirebaseInitializer;
+//import com.varsel.Notifications.PushNotifikasjonSender;
+//import com.varsel.Notifications.FirebaseInitializer;
 
 public class Main {
     public static void main(String[] args) {
