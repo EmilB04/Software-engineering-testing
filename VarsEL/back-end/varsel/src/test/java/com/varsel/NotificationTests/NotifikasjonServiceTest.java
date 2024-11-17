@@ -18,7 +18,7 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("23451", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
         assertEquals("Strømmen er gratis nå, du burde lade", notifikasjon.getBody());
     }
@@ -42,9 +42,9 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("34512", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
-        assertEquals("Strømmen er over 1.5 kr pre Kw, du burde vente med å lade", notifikasjon.getBody());
+        assertEquals("Strømmen er over 1.5 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
     }
 
     @Test
@@ -54,9 +54,9 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("45123", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
-        assertEquals("Strømmen er over 5 kr pre Kw, du burde ikke lade nå hvis du ikke må", notifikasjon.getBody());
+        assertEquals("Strømmen er over 1.5 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
     }
     
 
@@ -68,7 +68,7 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("54321", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Batterinotifikasjon", notifikasjon.getTitle());
         assertEquals("Batterinivået er under 5%, du burde lade", notifikasjon.getBody());
     }
@@ -80,7 +80,7 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("15432", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Batterinotifikasjon", notifikasjon.getTitle());
         assertEquals("Batterinivået er under 20%, du burde lade", notifikasjon.getBody());
     }
@@ -93,9 +93,9 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("21543", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Batterinotifikasjon", notifikasjon.getTitle());
-        assertEquals("Batterinivået er under 50%", notifikasjon.getBody());
+        assertEquals("Batterinivået er over 50%", notifikasjon.getBody());
     }
 
     @Test
@@ -105,9 +105,9 @@ public class NotifikasjonServiceTest {
         
         //Assert
         assertNotNull(notifikasjon);
-        assertEquals("32154", notifikasjon.getToken());
+        assertEquals("12345", notifikasjon.getToken());
         assertEquals("Batterinotifikasjon", notifikasjon.getTitle());
-        assertEquals("Batteriet er over 80%, det er ikke henisktsmessig å lade nå", notifikasjon.getBody());
+        assertEquals("Batteriet er over 80%, det er ikke hensiktsmessig å lade nå", notifikasjon.getBody());
     }
 
 }
