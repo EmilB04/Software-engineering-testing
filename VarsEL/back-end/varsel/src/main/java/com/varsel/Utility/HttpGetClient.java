@@ -24,7 +24,8 @@ import org.slf4j.LoggerFactory;
 public class HttpGetClient implements HttpClient {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpGetClient.class);
-
+    
+    
     /**
      * Sends GET requests to a URL and makes the response into a String
      * 
@@ -33,37 +34,52 @@ public class HttpGetClient implements HttpClient {
      * @throws IoException If there's problems during HTTP requests or when reading the response
      * @throws URISyntaxException if there's a problem with the URL. 
      */
+
+    private HttpURLConnection connection;
+
+    public HttpGetClient() {}
+
+    public HttpGetClient(HttpURLConnection connection) {
+        this.connection = connection;
+    }
+    
     @Override
     public String get(String urlInput) throws IOException, URISyntaxException {
-
         StringBuilder data = new StringBuilder();
-        HttpURLConnection connection = null;
+        HttpURLConnection connectionToUse = this.connection;
 
         try {
-            URI uri = new URI(urlInput);
+            URI uri = new URI(urlInput); 
             URL url = uri.toURL();
 
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            logger.info("Connected to: {}", urlInput);
+            if (connectionToUse == null) {
+                connectionToUse = (HttpURLConnection) url.openConnection();
+            }
 
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                String infoLine; 
+            connectionToUse.setRequestMethod("GET");
+            logger.info("Sending GET request to: {}", urlInput);
+
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(connectionToUse.getInputStream()))) {
+                String infoLine;
                 while ((infoLine = in.readLine()) != null) {
                     data.append(infoLine);
                 }
             }
             logger.info("Fetched data from: {}", urlInput);
-        } catch (IOException | URISyntaxException e) {
-            logger.error("An error occurred while retrieving data from the site", e);
-            throw e; 
+
+        } catch (URISyntaxException e) {
+            logger.error("Invalid URI for URL: {}", urlInput, e);
+            throw e;
+        } catch (IOException e) {
+            logger.error("An error occurred while making the request to: {}", urlInput, e);
+            throw e;
+
         } finally {
-            if (connection != null) {
-                connection.disconnect();
+            if (connectionToUse != null) {
+                connectionToUse.disconnect();
             }
         }
-
+    
         return data.toString();
     }
-    
 }
