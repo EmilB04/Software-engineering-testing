@@ -58,8 +58,4 @@ public class ElectricityPriceDataTests {
         Assertions.assertEquals(timeStopNull, data.getTimeStop(), "Expected time stop should be: null");
     }
 
-
-
-
-
 }

@@ -114,6 +114,39 @@ public class GetElectricityPricesTests {
         verifyNoInteractions(mockParser);
     }
 
+    @Test
+    @DisplayName("Testing fetchElectricityPrices when PriceParser fails")
+    public void GetElectricityPricesTestWhenPriceParserFails () throws Exception {
+    
+        //Arrange
+        String testZone = "N01"; 
+        String mockUrl = "https://api.examplesite.com";
+        String mockJsonData = "[{\"price\":0.46143}, \"time_start\":\"2024-11-18T12:02:00\", \"time_stop\":\"2024-11-18T13:03:00\"]";
 
+        when(mockUrlBuilder.buildUrl(testZone, LocalDate.now())).thenReturn(mockUrl);
+        when(mockHttpHandler.getJSONDataFromUrl(mockUrl)).thenReturn(mockJsonData);
+        when(mockParser.parse(mockJsonData)).thenThrow(new RuntimeException("Mock parser Exception"));
 
+        // Act 
+        List<ElectricityPriceData> testResults = getElectricityPrices.fetchElectricityPrices(testZone);
+
+        // Assert
+        assertEquals(Collections.emptyList(), testResults);
+        verify(mockUrlBuilder).buildUrl(eq(testZone), any(LocalDate.class));
+        verify(mockHttpHandler).getJSONDataFromUrl(mockUrl);
+        verify(mockParser).parse(mockJsonData);
+
+    }
+
+    @Test
+    @DisplayName("Testing fetchElectricityPrices with null zone")
+    public void GetElectricityPricesTestWhenNullZone ()  {
+
+        // Act 
+        List<ElectricityPriceData> testResults = getElectricityPrices.fetchElectricityPrices(null);
+
+        // Assert
+        assertEquals(Collections.emptyList(), testResults);
+        verifyNoInteractions(mockUrlBuilder, mockHttpHandler, mockParser);
+    }
 }

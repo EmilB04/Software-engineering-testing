@@ -41,6 +41,12 @@ public class GetElectricityPrices {
      * @throws Exception if an error occurs during data retrieval or parsing.
      */
     public List<ElectricityPriceData> fetchElectricityPrices(String zone) {
+
+        if (zone == null) {
+            logger.warn("'zone' is null. Please input price zone before using function. Returning empty electriticy prices list");
+            return new ArrayList<>();
+        }
+
         List<ElectricityPriceData> electricityPrices = new ArrayList<>();
 
         try {
