@@ -52,15 +52,15 @@ public class GetElectricityPrices {
         try {
             LocalDate today = LocalDate.now();
             String electricityUrl = urlBuilder.buildUrl(zone, today);
-            logger.info("Henter data fra: {}", electricityUrl);
+            logger.info("Fetching data from: {}", electricityUrl);
 
             String fetchedData = httpHandler.getJSONDataFromUrl(electricityUrl);
             electricityPrices = parser.parse(fetchedData);
-            logger.info("Hentet: {} objekter", electricityPrices.size());
+            logger.info("Fetched: {} electricity price objects", electricityPrices.size());
 
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("Det skjedde en feil under henting av strømpriser: ", e);
+            logger.error("There was an error while fetching electricity prices.: ", e);
         }
 
         return electricityPrices; 
