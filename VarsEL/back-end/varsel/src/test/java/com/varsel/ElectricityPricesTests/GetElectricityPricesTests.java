@@ -1,11 +1,15 @@
 package com.varsel.ElectricityPricesTests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,12 +37,12 @@ public class GetElectricityPricesTests {
     private ElectricityPriceUrlBuilder mockUrlBuilder; 
 
     @InjectMocks
-    private GetElectricityPrices electricityPriceFetcher;
+    private GetElectricityPrices getElectricityPrices;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        electricityPriceFetcher = new GetElectricityPrices(mockParser, mockHttpHandler, mockUrlBuilder);
+        getElectricityPrices = new GetElectricityPrices(mockParser, mockHttpHandler, mockUrlBuilder);
     }
 
     @Test 
@@ -57,7 +61,7 @@ public class GetElectricityPricesTests {
         when(mockParser.parse(mockJsonData)).thenReturn(mockParsedData);
 
         // Act
-        List<ElectricityPriceData> testResults = electricityPriceFetcher.fetchElectricityPrices(testZone);
+        List<ElectricityPriceData> testResults = getElectricityPrices.fetchElectricityPrices(testZone);
 
         // Assert
         assertEquals(1, testResults.size());
@@ -69,5 +73,47 @@ public class GetElectricityPricesTests {
         verify(mockHttpHandler).getJSONDataFromUrl(mockUrl);
         verify(mockParser).parse(mockJsonData);
     }
+
+    @Test
+    @DisplayName("Testing fetchElectricityPrices when UrlBuilder fails")
+    public void GetElectricityPricesTestWhenUrlBuilderFails () throws Exception {
+    
+        //Arrange
+        String testZone = "N01"; 
+
+        when(mockUrlBuilder.buildUrl(eq(testZone), any(LocalDate.class))).thenThrow(new RuntimeException("Mock URL exception")); 
+
+        // Act 
+        List<ElectricityPriceData> testResults = getElectricityPrices.fetchElectricityPrices(testZone);
+
+        // Assert
+        assertEquals(Collections.emptyList(), testResults);
+        verify(mockUrlBuilder).buildUrl(eq(testZone), any(LocalDate.class));
+        verifyNoInteractions(mockHttpHandler);
+        verifyNoInteractions(mockParser);
+    }
+
+    @Test
+    @DisplayName("Testing fetchElectricityPrices when HttpHandler fails")
+    public void GetElectricityPricesTestWhenHttpHandlerFails () throws Exception {
+    
+        //Arrange
+        String testZone = "N01"; 
+        String mockUrl = "https://api.examplesite.com";
+
+        when(mockUrlBuilder.buildUrl(testZone, LocalDate.now())).thenReturn(mockUrl);
+        when(mockHttpHandler.getJSONDataFromUrl(mockUrl)).thenThrow(new RuntimeException("Mock HTTP Exception"));
+
+        // Act 
+        List<ElectricityPriceData> testResults = getElectricityPrices.fetchElectricityPrices(testZone);
+
+        // Assert
+        assertEquals(Collections.emptyList(), testResults);
+        verify(mockUrlBuilder).buildUrl(eq(testZone), any(LocalDate.class));
+        verify(mockHttpHandler).getJSONDataFromUrl(mockUrl);
+        verifyNoInteractions(mockParser);
+    }
+
+
 
 }
