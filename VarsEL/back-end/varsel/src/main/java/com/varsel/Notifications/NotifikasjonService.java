@@ -2,6 +2,8 @@ package com.varsel.Notifications;
 
 public class NotifikasjonService {
 
+    private boolean tillatelse;
+
     
     public Notifikasjon getStromprisNotifikasjon(boolean tillatelse, double strompris) {
         if (tillatelse) {
@@ -31,5 +33,14 @@ public class NotifikasjonService {
             }
         }
         return null; // Returner null hvis ingen notifikasjon skal sendes
+    }
+
+    //Getter og setter
+    public boolean getTillatelse() {
+        return tillatelse;
+    }
+
+    public void setTillatelse(boolean tillatelse) {
+        this.tillatelse = tillatelse;
     }
 }
