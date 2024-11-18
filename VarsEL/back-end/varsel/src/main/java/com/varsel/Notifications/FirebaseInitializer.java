@@ -52,4 +52,14 @@ public class FirebaseInitializer {
             }
         }
     }
+
+    //Getter og setter
+    public static boolean getInitialized() {
+        return initialized;
+    }
+
+    public static void setInitialized(boolean initialized) {
+        FirebaseInitializer.initialized = initialized;
+    }
+
 }
