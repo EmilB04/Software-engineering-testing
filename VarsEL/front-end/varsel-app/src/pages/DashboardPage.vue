@@ -3,7 +3,7 @@
     <q-dialog v-model="showPopup" persistent>
       <q-card class="onMountNotification" style="height: 100%;">
         <q-card-section align="center">
-          <q-img style="height: calc(100vh/2);">
+          <q-img style="height:386px; width: 320px;">
             <img
               :src="VarsELLogo"
               alt="VarsEL logo"
