@@ -1,22 +1,41 @@
-# Software Engineering og Testing - Gruppe 9
+# Oppsett av prosjekt: Quasar og Vue 
 
-Gruppemedlemmer: 
-- Emil Berglund 
-- Andreas B. Olaussen
-- Khalid H. Osman
-- Sebastian W. Thomsen
-- Ida K. Tollaksen
+## **Førstegangsinstallasjon**
 
-Branchen "Main" er stedet hvor vi samler alt som skal innleveres, enten det er Sprint eller en annen form for innlevering.
+1. **Klon repository**  
+   Klon repositoryet til din lokale maskin:
+   ```bash
+   git clone <repository-link>
+   cd <repository-folder>
 
-# Inndeling
+2. **Installer Bun**  
+   Kjør følgende kommando i terminalen for å installere Bun: 
+   ```bash
+   curl -fsSL https://bun.sh/install | bash
 
-Dokumentasjon: Inneholder filer og dokumenter som er med på å skjønne og dokumentere for Front-End og Back-End
+3. **Installer Quasar CLI**  
+   Bruk Bun til å installere Quasar CLI globalt:
+   ```bash
+   bun install -g @quasar/cli
 
-- Klassediagram-hendelsesforløp: Denne viser hvordan prototypens funksjoner/klasser virker og når de brukes i hendelsesforløpet.
-- Prosjektinnlevering: Denne inneholder dokumenter som har med innelveringen å gjøre. Dette vil si; innleveringsdokumentet og timelisten
-- Prototype-figma: Denne inneholder en kopi av alle prototype-sidene i Figma.
+4. Installer Homebre (Kun MacOS)  
+   Kjør følgende kommando for å installere Homebrew:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-VarsEL: Inneholder filer som har med front-end og back-end å gjøre. Dette vil si kildekoden til prosjektet vårt.
-- front-end: Inneholder front-end kode som er laget med Vue og Quasar
-- back-end: Inneholder back-end kode som er laget med Java, og litt SQL
+6. Installer Node.js og Nodenv (Kun MacOS)  
+   Bruk Homebrew til å installere Node.js og Nodenv:
+   ```bash
+   brew install node
+   brew install nodenv
+
+7. Installer prosjektavhengigheter  
+   Gå til prosjektmappen og installer de nødvendige avhengighetene:
+   ```bash
+   bun install
+
+## **Kjør prosjektet lokalt**  
+   Etter at oppsettet er fullført, kan du kjøre prosjektet lokalt ved hjelp av Quasar sin utviklingsserver.  
+   Gå til prosjektmappen og kjør:
+   ```bash
+   quasar dev
