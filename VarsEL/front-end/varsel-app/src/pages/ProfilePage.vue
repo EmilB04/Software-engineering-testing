@@ -94,6 +94,7 @@ const router = useRouter()
 const logOut = () => {
   signOut(auth)
   router.push('/auth/welcome')
+  localStorage.removeItem('dashboardPopupShown')
 }
 const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
 const lastName = ref(auth.currentUser?.displayName?.split(' ').slice(1).join(' '))

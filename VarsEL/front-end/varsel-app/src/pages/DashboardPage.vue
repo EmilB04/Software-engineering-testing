@@ -1,5 +1,45 @@
 <template>
   <q-page class="q-pa-none column bg-grey-2" style="font-size: 1rem; font-family: Arial, Helvetica, sans-serif;">
+    <q-dialog v-model="showPopup" persistent>
+      <q-card class="onMountNotification" style="height: 100%;">
+        <q-card-section align="center">
+          <q-img style="height:386px; width: 320px;">
+            <img
+              :src="VarsELLogo"
+              alt="VarsEL logo"
+              style="height: 100%; width: 100%;"
+            >
+          </q-img>
+        </q-card-section>
+        <q-card-section align="center" class="text-h6">
+          Lad senere i kveld, strømmen blir billigere!
+        </q-card-section>
+        <q-card-section align="center">
+          Gjeldene pris: 2.34 øre/kWh <br>
+          Fremtidige pris: 2.12 øre/kWh
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn
+            flat
+            label="Mer info"
+            @click="() => { $router.push('/power-graph'), closePopup() }"
+            color="primary"
+            text-color="black"
+            style="border-radius: 20px; padding: 20px 36px; font-size: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); background-color: #32E4C3;"
+            no-caps
+          />
+          <q-btn
+            flat
+            label="Lukk"
+            @click="closePopup"
+            color="primary"
+            text-color="black"
+            style="border-radius: 20px; padding: 20px 36px; font-size: 16px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); background-color: #32E4C3;"
+            no-caps
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
     <div class="q-mx-md">
       <section id="userHeader"> <!-- Bruker-->
         <article class="q-ma-none q-pa-none">
@@ -193,8 +233,9 @@ import HomeButtonSVG from 'assets/c_icons/home.svg'
 import ProfilePictureSVG from 'assets/c_icons/profile.svg'
 import SettingsButtonSVG from 'assets/c_icons/settings.svg'
 import ID3Car from 'assets/c_icons/VW_ID3.svg'
+import VarsELLogo from 'assets/Illustrasjonsbilde.png'
 import { getAuth } from 'firebase/auth'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const auth = getAuth()
 const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
@@ -203,6 +244,7 @@ const firstName = ref(auth.currentUser?.displayName?.split(' ')[0])
 const targetPrice = ref(3.60) // Vippepunkt mellom billig og dyrt
 const previousKwhValue = ref(3.64) // Verdier fra API / database
 const futureKwhValue = ref(2.12) // Verdier fra API / database
+const showPopup = ref(false)
 
 // previousKwhValue.value = 4.32 // Eksempel
 
@@ -210,4 +252,16 @@ const futureKwhValue = ref(2.12) // Verdier fra API / database
 const checkTargetPriceDiff = (kwhValue: number) => {
   return kwhValue > targetPrice.value
 }
+function closePopup() { // "localSroage.clear()" to show popup again
+  showPopup.value = false
+  // Set a flag in localStorage so the popup doesn't show again
+  localStorage.setItem('dashboardPopupShown', 'true')
+}
+onMounted(() => {
+  // Check if the popup has been shown before
+  const isPopupShown = localStorage.getItem('dashboardPopupShown')
+  if (!isPopupShown) {
+    showPopup.value = true // Show the popup
+  }
+})
 </script>
