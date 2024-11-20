@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.varsel.Utility.HttpGetClient;
+
 import java.time.LocalDate;
 
 /**
@@ -39,20 +41,26 @@ public class GetElectricityPrices {
      * @throws Exception if an error occurs during data retrieval or parsing.
      */
     public List<ElectricityPriceData> fetchElectricityPrices(String zone) {
+
+        if (zone == null) {
+            logger.warn("'zone' is null. Please input price zone before using function. Returning empty electriticy prices list");
+            return new ArrayList<>();
+        }
+
         List<ElectricityPriceData> electricityPrices = new ArrayList<>();
 
         try {
             LocalDate today = LocalDate.now();
             String electricityUrl = urlBuilder.buildUrl(zone, today);
-            logger.info("Henter data fra: {}", electricityUrl);
+            logger.info("Fetching data from: {}", electricityUrl);
 
             String fetchedData = httpHandler.getJSONDataFromUrl(electricityUrl);
             electricityPrices = parser.parse(fetchedData);
-            logger.info("Hentet: {} objekter", electricityPrices.size());
+            logger.info("Fetched: {} electricity price objects", electricityPrices.size());
 
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("Det skjedde en feil under henting av strømpriser: ", e);
+            logger.error("There was an error while fetching electricity prices.: ", e);
         }
 
         return electricityPrices; 
@@ -62,7 +70,7 @@ public class GetElectricityPrices {
      public static void main(String[] args) {
         // Initialiserer avhengigheter
         ElectricityPriceParser parser = new ElectricityPriceParser();
-        HttpHandler httpHandler = new HttpHandler();
+        HttpHandler httpHandler = new HttpHandler(new HttpGetClient());
         ElectricityPriceUrlBuilder urlBuilder = new ElectricityPriceUrlBuilder();
 
         // Oppretter GetElectricityPrices med nødvendige avhengigheter

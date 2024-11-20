@@ -27,9 +27,14 @@ public class ElectricityPriceParser {
      * 
      * @param jsonData JSON string containing electricity price data.
      * @return A list of `ElectricityPriceData` objects.
+     * @throws IllegalArgumentException if JSON data is empty or null.
      * @throws JSONException if the data is invalid or required fields are missing.
      */
     public List<ElectricityPriceData> parse(String jsonData) {
+        if (jsonData == null || jsonData.trim().isEmpty()) {
+            throw new IllegalArgumentException("ElectricityPriceParser fant ingen JSON-data å parse");
+        }
+
         List<ElectricityPriceData> prices = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(jsonData);
 
@@ -43,6 +48,7 @@ public class ElectricityPriceParser {
 
             prices.add(data);
         }
+
         return prices; 
 
     }

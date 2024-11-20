@@ -1,10 +1,8 @@
 package com.varsel.ElectricityPrices;
+import com.varsel.Utility.HttpClient;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URI;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +13,18 @@ import org.slf4j.LoggerFactory;
  * 
  * Example usage:
  * <pre>
- * HttpHandler httpHandler = HttpHandler();
+ * HttpHandler httpHandler = new HttpHandler(new HttpGetClient());
  * String jsonData = httpHandler.getJSONDataFromUrl("exampleURL");
  * </pre>
  */
 public class HttpHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(HttpHandler.class);
+    private final HttpClient httpClient; 
+
+    public HttpHandler(HttpClient httpClient) {
+        this.httpClient = httpClient; 
+    }
 
     /**
      * Retrieves JSON-data from a URL
@@ -29,37 +32,16 @@ public class HttpHandler {
      * @param urlInput the URL for the API
      * @return JSON data as a String
      * @throws IOException if a network error occurs
+     * @throws URISyntaxException if URL is invalid
      */
-    public String getJSONDataFromUrl (String urlInput){
-
-        StringBuilder data = new StringBuilder(); 
-
+    public String getJSONDataFromUrl (String urlInput) throws IOException, URISyntaxException { 
         try {
-            URI uri = new URI(urlInput);
-            URL url = uri.toURL(); 
-
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
-            connection.setRequestMethod("GET");
-            logger.info("Koblet til: {}", urlInput);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-            String infoLine;
-
-             while ((infoLine = in.readLine()) != null) {
-                data.append(infoLine);
-            }
-
-            in.close();
- 
-            connection.disconnect();
-
-            logger.info("Hentet data fra siden"); 
-    } catch (Exception e) {
-        logger.error("Det skjedde en feil under henting av data fra siden ", e);
-        e.printStackTrace();
-    }
-    return data.toString();
+            String fetchedData = httpClient.get(urlInput);
+            logger.info("Fetched data from site: "); 
+            return fetchedData;
+        } catch (IOException | URISyntaxException e) {
+            logger.error("An error occurred while retrieving data from the site ", e);
+            throw e;
         }
+    }
 }

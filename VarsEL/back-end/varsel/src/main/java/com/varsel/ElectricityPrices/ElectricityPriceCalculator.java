@@ -50,7 +50,7 @@ public class ElectricityPriceCalculator {
      */ 
     public double calculateHighestPrice(List<ElectricityPriceData> prices) {
         if (prices.isEmpty()) {
-            throw new IllegalArgumentException("Could not calculate the average price as the list is empty. Please check the input list");
+            throw new IllegalArgumentException("Could not calculate the highest price as the list is empty. Please check the input list");
         }
 
         double highest = Double.MIN_VALUE; 
