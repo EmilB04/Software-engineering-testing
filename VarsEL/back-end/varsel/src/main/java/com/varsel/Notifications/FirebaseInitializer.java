@@ -28,7 +28,7 @@ public class FirebaseInitializer {
     public static void initializeFirebaseApp() {
         if (initialized == false) {
             try {
-                String serviceAccountPath = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
+                String serviceAccountPath = System.getProperty("GOOGLE_APPLICATION_CREDENTIALS");
                 
                 if (serviceAccountPath == null || serviceAccountPath.isEmpty()) {
                     throw new IllegalStateException("Miljøvariabelen 'GOOGLE_APPLICATION_CREDENTIALS' er ikke satt.");

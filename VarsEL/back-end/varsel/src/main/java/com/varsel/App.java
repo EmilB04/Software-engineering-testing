@@ -21,6 +21,8 @@ public class App
     public static void main(String[] args ) throws IOException {
         System.out.println( "Velkommen til test-siden" );
 
+        System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", "C:\\path\\to\\your\\service-account-file.json");
+
         /*
         Under er kode som tester registrering og innlogging ved hjelp av et enkelt brukergrensesnitt.
         Det lager en tekstfil som lagrer input email og passord(kryptert), og leser input fra bruker
