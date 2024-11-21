@@ -56,7 +56,7 @@ public class NotifikasjonServiceTest {
         assertNotNull(notifikasjon);
         assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
-        assertEquals("Strømmen er over 5 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
+        assertEquals("Strømmen er over 5 kr per kWh, du burde ikke lade nå hvis du ikke må", notifikasjon.getBody());
     }
     
 
