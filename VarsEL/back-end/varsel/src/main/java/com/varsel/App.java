@@ -8,6 +8,7 @@ import com.varsel.GPS.LocationService;
 import com.varsel.GPS.MainActivity;
 import com.varsel.GPS.GPSMenu;
 import com.varsel.Notifications.FirebaseInitializer;
+import com.varsel.Notifications.NotificationMenu;
 import com.varsel.Notifications.PushNotifikasjonSender;
 
 import java.io.IOException;
@@ -36,6 +37,13 @@ public class App
         MainActivity mainActivity = new MainActivity(homeChecker, locationService);
         GPSMenu gpsMenu = new GPSMenu(homeChecker, locationService, mainActivity);
 
+        // Varsling - komponenter
+        FirebaseInitializer.initializeFirebaseApp();
+        PushNotifikasjonSender pushNotifikasjonSender = new PushNotifikasjonSender();
+        NotificationMenu notificationMenu = new NotificationMenu(pushNotifikasjonSender);
+
+
+
         try (Scanner scanner = new Scanner(System.in)) {
             String input;
             while (true) {
@@ -54,16 +62,13 @@ public class App
             } 
             else if ("Strømpris".equalsIgnoreCase(input) || "2".equals(input)) {
                 System.out.println("\n");
-                // Strømprisfunksjon
             } 
             else if ("GPS".equalsIgnoreCase(input) || "3".equals(input)) {
                 System.out.println("\n");
                 gpsMenu.showMenu(scanner);
-               // GPSfunksjon
             } 
             else if ("Varsling".equalsIgnoreCase(input) || "4".equals(input)) {
-                System.out.println("\n");
-                // Varslingsfunksjon
+                notificationMenu.showMenu(scanner);
             }
             else if ("Avslutt".equalsIgnoreCase(input) || "5".equals(input)) {
                 System.out.println("Avslutter programmet.");
@@ -97,10 +102,8 @@ public class App
          * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
          */
 
-        FirebaseInitializer.initializeFirebaseApp();
-
-        PushNotifikasjonSender pushNotifikasjonSender = new PushNotifikasjonSender();
-
+        
+        /*
         //Strømmprisbaserte notifikasjoner
         //Eksempel 1
         boolean tillatelse = true;
@@ -136,6 +139,7 @@ public class App
         stromniva = 82;
         pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
         //Forventet output: "Batteriet er over 80%, det er ikke hensiktsmessig å lade nå"
+        */
     }
     
 }
