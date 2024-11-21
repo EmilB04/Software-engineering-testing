@@ -68,6 +68,7 @@ public class App
                 gpsMenu.showMenu(scanner);
             } 
             else if ("Varsling".equalsIgnoreCase(input) || "4".equals(input)) {
+                System.out.println("\n");
                 notificationMenu.showMenu(scanner);
             }
             else if ("Avslutt".equalsIgnoreCase(input) || "5".equals(input)) {

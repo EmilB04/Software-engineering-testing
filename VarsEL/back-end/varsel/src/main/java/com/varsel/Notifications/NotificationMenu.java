@@ -12,8 +12,9 @@ public class NotificationMenu {
 
     // Method to display the notification menu
     public void showMenu(Scanner scanner) {
+        System.out.println("Velkommen til varslingssiden!\n");
         while (true) {
-            System.out.println("\nVarslingsmeny:");
+            System.out.println("Velg et alternativ:\n");
             System.out.println("1: Test strømprisbasert varsling (Eksempel 1)");
             System.out.println("2: Test strømprisbasert varsling (Eksempel 2)");
             System.out.println("3: Test strømprisbasert varsling (Eksempel 3)");

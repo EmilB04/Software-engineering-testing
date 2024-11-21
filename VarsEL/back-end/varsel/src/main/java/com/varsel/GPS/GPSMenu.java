@@ -33,12 +33,13 @@ public class GPSMenu {
     // GPS-menu
     public void showMenu(Scanner scanner) {
         String gpsInput;
+        System.out.println("Velkommen til GPS siden!");
         while (true) {
-            System.out.print("\nGPS-meny:\n" +
-                    "1. Sett ny hjemposisjon\n" +
-                    "2. Sjekk om brukeren er hjemme\n" +
-                    "3. Tilbake til hovedmeny\n" +
-                    "Ditt valg: ");
+            System.out.println("\nVelg et alternativ:");
+            System.out.println("1. Sett ny hjemposisjon");
+            System.out.println("2. Sjekk om brukeren er hjemme");
+            System.out.println("3. Tilbake til hovedmeny");
+            System.out.print("Ditt valg: ");
             gpsInput = scanner.nextLine();
 
             if ("1".equals(gpsInput)) {
