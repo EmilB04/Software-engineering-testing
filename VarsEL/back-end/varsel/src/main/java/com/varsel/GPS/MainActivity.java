@@ -50,9 +50,9 @@ public class MainActivity {
 
         // Output result to the console
         if (isAtHome){
-            System.out.println("The user is within the home area.");
+            System.out.println("Brukeren er innenfor hjemmeområdet.");
         } else {
-            System.out.println("The user is outside the home area.");
+            System.out.println("Brukeren er utenfor hjemmeområdet.");
         }
     }
 
