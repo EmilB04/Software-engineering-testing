@@ -102,45 +102,7 @@ public class App
          * dette kan gjøres ved å kjøre følgende kommando i terminalen:
          * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
          */
-
-        
-        /*
-        //Strømmprisbaserte notifikasjoner
-        //Eksempel 1
-        boolean tillatelse = true;
-        double strompris = 0.3;  
-        pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
-        //Forventet output: "Strømmen er billig nå, du burde lade"
-
-        //Eksempel 2
-        tillatelse = true;
-        strompris = 5.2;
-        pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
-        //Forventet output: "Strømmen er over 5 kr per kWh, du burde ikke lade nå hvis du ikke må"
-
-        //Eksempel 3
-        tillatelse = false; //Brukeren har ikke gitt tillatelse til å motta notifikasjoner
-        strompris = 0.5;
-        pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
-        //Forventet output: null(siden brukeren ikke har gitt tillatelse)
-
-
-        //Batterinivåbaserte notifikasjoner
-        //Eksempel 3
-        int stromniva = 4;
-        pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
-        //Forventet output: "Batterinivået er under 5%, du burde lade"
-
-        //Eksempel 4:
-        stromniva = 26;
-        pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
-        //Forventet output: "Batterinivået er mellom 20 og 50%, det er kanskje lurt å lade"
-
-        //Eksempel 5:
-        stromniva = 82;
-        pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
-        //Forventet output: "Batteriet er over 80%, det er ikke hensiktsmessig å lade nå"
-        */
+    
     }
     
 }

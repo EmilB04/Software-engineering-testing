@@ -26,7 +26,7 @@ public class LoginMenu {
             System.out.println("\nVelg et alternativ:");
             System.out.println("1. Registrer ny bruker");
             System.out.println("2. Logg inn");
-            System.out.println("3. Avslutt");
+            System.out.println("3. Tilbake til hovedmenyen");
             System.out.print("Ditt valg: ");
             String choice = scanner.nextLine();
 
