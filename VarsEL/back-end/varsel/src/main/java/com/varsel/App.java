@@ -3,9 +3,31 @@ package com.varsel;
 import com.varsel.Notifications.FirebaseInitializer;
 import com.varsel.Notifications.PushNotifikasjonSender;
 
-public class App {
-    public static void main(String[] args) {
-        
+import com.varsel.Users.LoginMenu;
+import com.varsel.Users.UserRepository;
+import com.varsel.Users.UserService;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    //private static final String FILE_PATH = "users.txt";
+
+    public static void main(String[] args ) throws IOException {
+        System.out.println( "Velkommen til test-siden" );
+
+        /*
+        Under er kode som tester registrering og innlogging ved hjelp av et enkelt brukergrensesnitt.
+        Det lager en tekstfil som lagrer input email og passord(kryptert), og leser input fra bruker
+        dersom man ønsker å logge inn og sjekker om det er likt noe av det som er lagret i filen.
+         */
+
+    
         /**
          * Koden under viser hvordan push-notifikasjoner kan sendes til en bruker
          * ved hjelp av Firebase Cloud Messaging (FCM) og en service account.
@@ -21,6 +43,10 @@ public class App {
          *   håndteres i FirebaseInitializer-klassen.
          * - Eventuelle feil som kan oppstå når notifikasjoner sendes til 
          *   Firebase håndteres i PushNotifikasjonSender-klassen.
+         * 
+         * For at koden skal funke må Miljøvariabelen 'GOOGLE_APPLICATION_CREDENTIALS' settes,
+         * dette kan gjøres ved å kjøre følgende kommando i terminalen:
+         * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
          */
 
         FirebaseInitializer.initializeFirebaseApp();
