@@ -36,7 +36,7 @@ public class NotifikasjonServiceTest {
     }
 
     @Test
-    public void testStromOver1_5() {
+    public void testStromMellom1_3() {
         //Act
         Notifikasjon notifikasjon = notifikasjonService.getStromprisNotifikasjon(true, 2);
         
@@ -44,7 +44,7 @@ public class NotifikasjonServiceTest {
         assertNotNull(notifikasjon);
         assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
-        assertEquals("Strømmen er over 1.5 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
+        assertEquals("Strømmen er mellom 1 og 3 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class NotifikasjonServiceTest {
         assertNotNull(notifikasjon);
         assertEquals("12345", notifikasjon.getToken());
         assertEquals("Strømprisvarsel", notifikasjon.getTitle());
-        assertEquals("Strømmen er over 1.5 kr per kWh, du burde vente med å lade", notifikasjon.getBody());
+        assertEquals("Strømmen er over 5 kr per kWh, du burde ikke lade nå hvis du ikke må", notifikasjon.getBody());
     }
     
 
@@ -64,7 +64,7 @@ public class NotifikasjonServiceTest {
     @Test
     public void testStromnivaUnder5() {
         //Act
-        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon("Home", 4);
+        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon( 4);
         
         //Assert
         assertNotNull(notifikasjon);
@@ -76,7 +76,7 @@ public class NotifikasjonServiceTest {
     @Test
     public void testStromnivaUnder20() {
         //Act
-        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon("Home", 15);
+        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon( 15);
         
         //Assert
         assertNotNull(notifikasjon);
@@ -89,19 +89,19 @@ public class NotifikasjonServiceTest {
     @Test
     public void testStromnivaOver50() {
         //Act
-        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon("Home", 60);
+        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon( 60);
         
         //Assert
         assertNotNull(notifikasjon);
         assertEquals("12345", notifikasjon.getToken());
         assertEquals("Batterinotifikasjon", notifikasjon.getTitle());
-        assertEquals("Batterinivået er over 50%", notifikasjon.getBody());
+        assertEquals("Batterinivået er mellom 50 og 80%, du kan vente med å lade", notifikasjon.getBody());
     }
 
     @Test
     public void testStromnivaOver80() {
         //Act
-        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon("Home", 85);
+        Notifikasjon notifikasjon = notifikasjonService.getStromnivaNotifikasjon( 85);
         
         //Assert
         assertNotNull(notifikasjon);

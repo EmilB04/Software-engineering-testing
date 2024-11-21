@@ -19,7 +19,7 @@ public class NotifikasjonSenderTest {
     private NotifikasjonService notifikasjonServiceMock; // Mock NotifikasjonService
 
     @InjectMocks
-    private PushNotifikasjonSender pushNotifikasjonSender; // Inject mock service into PushNotifikasjonSender
+    private PushNotifikasjonSender pushNotifikasjonSender; // Injecter NotifikasjonService
 
     @BeforeEach
     void setUp() {
