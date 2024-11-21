@@ -16,9 +16,9 @@ package com.varsel.GPS;
 
 public class HomeChecker {
     // Home coordinates (latitude and longitude) and radius in meters
-    private static final double HOME_LATITUDE = 59.911491;   // Latitude
-    private static final double HOME_LONGITUDE = 10.757933; // LONGITUDE
-    private static final float HOME_RADIUS = 100;            // RADIUS IN METER
+    private double HOME_LATITUDE = 59.911491;   // Latitude
+    private double HOME_LONGITUDE = 10.757933; // Longitude
+    private static final float HOME_RADIUS = 100; // Radius in meters
 
     /**
      * Checks if a user is within the "home" radius
@@ -50,5 +50,16 @@ public class HomeChecker {
 
         // This Return returns true if the calculated distance is less than the home radius
         return distance <= HOME_RADIUS;
+    }
+     /**
+     * Updates the home latitude and longitude
+     *
+     * @param latitude The new home latitude
+     * @param longitude The new home longitude
+     */
+    public void setHomePosition(double latitude, double longitude) {
+        this.HOME_LATITUDE = latitude;
+        this.HOME_LONGITUDE = longitude;
+        System.out.println("Hjemmeposisjonen er oppdatert til: Latitude=" + latitude + ", Longitude=" + longitude);
     }
 }
