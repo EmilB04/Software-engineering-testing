@@ -26,7 +26,7 @@ public class App
         Det lager en tekstfil som lagrer input email og passord(kryptert), og leser input fra bruker
         dersom man ønsker å logge inn og sjekker om det er likt noe av det som er lagret i filen.
          */
-
+        // Bruker - komponenter
         UserRepository userRepository = new UserRepository("users.txt");
         UserService userService = new UserService(userRepository);
         LoginMenu loginMenu = new LoginMenu(userService);
