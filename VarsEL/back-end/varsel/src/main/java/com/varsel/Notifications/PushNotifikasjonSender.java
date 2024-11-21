@@ -56,7 +56,7 @@ public class PushNotifikasjonSender {
         try {
             // Forsøk å sende meldingen til Firebase
             FirebaseMessaging.getInstance().send(message);
-            // Bekreftelse i konsollen (kan eventuelt fjernes i produksjon)
+            // Utskriften kan fjærnes når koden er ferdig testet
             System.out.println("Notifikasjonen ble sendt til Firebase.");
         } catch (Exception e) {
             // Hvis det oppstår en feil under sendingen, skriv ut feilmeldingen
