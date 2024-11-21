@@ -5,7 +5,7 @@ import com.varsel.Notifications.PushNotifikasjonSender;
 
 public class App 
 {
-    public static void main(String[] args) {
+    public static void main(String[] args){
             
         /**
          * Koden under viser hvordan push-notifikasjoner kan sendes til en bruker
@@ -53,17 +53,17 @@ public class App
 
 
         //Batterinivåbaserte notifikasjoner
-        //Eksempel 3
+        //Eksempel 4
         int stromniva = 4;
         pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
         //Forventet output: "Batterinivået er under 5%, du burde lade"
 
-        //Eksempel 4:
+        //Eksempel 5:
         stromniva = 26;
         pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
         //Forventet output: "Batterinivået er mellom 20 og 50%, det er kanskje lurt å lade"
 
-        //Eksempel 5:
+        //Eksempel 6:
         stromniva = 82;
         pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
         //Forventet output: "Batteriet er over 80%, det er ikke hensiktsmessig å lade nå"
