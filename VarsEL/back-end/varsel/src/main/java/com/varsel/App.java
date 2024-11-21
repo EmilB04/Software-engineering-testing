@@ -13,13 +13,9 @@ import com.varsel.Notifications.PushNotifikasjonSender;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
-    //private static final String FILE_PATH = "users.txt";
+    private static final String FILE_PATH = "users.txt";
 
     public static void main(String[] args ) throws IOException {
         System.out.println( "Velkommen til test-siden" );
@@ -30,7 +26,7 @@ public class App
         dersom man ønsker å logge inn og sjekker om det er likt noe av det som er lagret i filen.
          */
         // Bruker - komponenter
-        UserRepository userRepository = new UserRepository("users.txt");
+        UserRepository userRepository = new UserRepository(FILE_PATH);
         UserService userService = new UserService(userRepository);
         LoginMenu loginMenu = new LoginMenu(userService);
 
