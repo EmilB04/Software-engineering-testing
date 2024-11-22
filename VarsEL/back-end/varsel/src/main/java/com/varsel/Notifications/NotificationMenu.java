@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /*
     * Koden under viser hvordan push-notifikasjoner kan sendes til en bruker
-    * ved hjelp av Firebase Cloud Messaging (FCM) og en service account.
+    * ved hjelp av Firebase Cloud Messaging "FCM" og en service account.
     * Koden viser både strømprisbaserte og batterinivåbaserte notifikasjoner.
     * 
     * Først blir Firebase initialisert. Deretter opprettes en instans av 
@@ -18,6 +18,11 @@ import java.util.Scanner;
     *   håndteres i FirebaseInitializer-klassen.
     * - Eventuelle feil som kan oppstå når notifikasjoner sendes til 
     *   Firebase håndteres i PushNotifikasjonSender-klassen.
+
+    * For at koden skal funke må Miljøvariabelen 'GOOGLE_APPLICATION_CREDENTIALS' settes,
+    * dette kan gjøres ved å kjøre følgende kommando i terminalen:
+    * WIN: set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
+    * Mac: export GOOGLE_APPLICATION_CREDENTIALS="path/to/your/service-account-file.json"
 */
 
 
