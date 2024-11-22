@@ -24,6 +24,10 @@ import java.util.Scanner;
 public class NotificationMenu {
     private final PushNotifikasjonSender pushNotifikasjonSender;
 
+    /**
+    * Konstruktør for NotificationMenu.
+    * @param pushNotifikasjonSender Instans av PushNotifikasjonSender
+    */ 
     public NotificationMenu(PushNotifikasjonSender pushNotifikasjonSender) {
         this.pushNotifikasjonSender = pushNotifikasjonSender;
     }

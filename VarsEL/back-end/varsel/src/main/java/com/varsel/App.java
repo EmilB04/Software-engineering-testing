@@ -23,11 +23,6 @@ public class App
 
         System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", "C:\\path\\to\\your\\service-account-file.json");
 
-        /*
-        Under er kode som tester registrering og innlogging ved hjelp av et enkelt brukergrensesnitt.
-        Det lager en tekstfil som lagrer input email og passord(kryptert), og leser input fra bruker
-        dersom man ønsker å logge inn og sjekker om det er likt noe av det som er lagret i filen.
-         */
         // Bruker - komponenter
         UserRepository userRepository = new UserRepository(FILE_PATH);
         UserService userService = new UserService(userRepository);
@@ -82,29 +77,6 @@ public class App
                 }
             }
         }
-        
-    
-        /**
-         * Koden under viser hvordan push-notifikasjoner kan sendes til en bruker
-         * ved hjelp av Firebase Cloud Messaging (FCM) og en service account.
-         * Koden viser både strømprisbaserte og batterinivåbaserte notifikasjoner.
-         * 
-         * Først blir Firebase initialisert. Deretter opprettes en instans av 
-         * PushNotifikasjonSender, som håndterer sendingen av notifikasjoner.
-         * Testene demonstrerer hvordan notifikasjoner kan sendes basert på strømpris
-         * og batterinivå ved hjelp av Firebase.
-         * 
-         * Feilhåndtering:
-         * - Firebase-initialisering og eventuelle feil ved oppkobling til Firebase 
-         *   håndteres i FirebaseInitializer-klassen.
-         * - Eventuelle feil som kan oppstå når notifikasjoner sendes til 
-         *   Firebase håndteres i PushNotifikasjonSender-klassen.
-         * 
-         * For at koden skal funke må Miljøvariabelen 'GOOGLE_APPLICATION_CREDENTIALS' settes,
-         * dette kan gjøres ved å kjøre følgende kommando i terminalen:
-         * set GOOGLE_APPLICATION_CREDENTIALS=C:\path\to\your\service-account-file.json
-         */
-    
     }
     
 }
