@@ -21,6 +21,7 @@ Dokumentasjon: Inneholder filer og dokumenter som er med på å skjønne og doku
 - Prosjektinnlevering: Filer som er spesielt relevant for innelveringen
     - Besvarelse: Hoveddokument i form av PDF
     - Individuelle-refleksjonsdokumenter: Individuelle dokumenter fra hvert medlem. Inneholder refleksjon.
+    - Timeliste: Inneholder timelister for alle medlemmene i gruppa.
 
 
 VarsEL: Inneholder filer som har med front-end og back-end å gjøre. Dette vil si kildekoden til prosjektet vårt.
