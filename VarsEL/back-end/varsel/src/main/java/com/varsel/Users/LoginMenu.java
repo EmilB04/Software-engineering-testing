@@ -3,8 +3,11 @@ package com.varsel.Users;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * LoginMenu tilbyr brukergrensesnitt for registrering og innlogging.
+
+/*
+    Under er kode som tester registrering og innlogging ved hjelp av et enkelt brukergrensesnitt.
+    Det lager en tekstfil som lagrer input email og passord(kryptert), og leser input fra bruker
+    dersom man ønsker å logge inn og sjekker om det er likt noe av det som er lagret i filen.
  */
 public class LoginMenu {
 
@@ -18,7 +21,10 @@ public class LoginMenu {
 
     /**
      * Starter hovedmenyen for brukerinteraksjon, lar brukeren registrere seg, logge inn eller avslutte programmet.
+     * Programmet kjører i en evig løkke til brukeren velger å av
+     * @param scanner Scanner-objekt for å lese input fra brukeren
      */
+
     public void start() {
         System.out.println("Velkommen til brukerregistrering og innlogging!");
 
@@ -26,7 +32,7 @@ public class LoginMenu {
             System.out.println("\nVelg et alternativ:");
             System.out.println("1. Registrer ny bruker");
             System.out.println("2. Logg inn");
-            System.out.println("3. Avslutt");
+            System.out.println("3. Tilbake til hovedmenyen");
             System.out.print("Ditt valg: ");
             String choice = scanner.nextLine();
 

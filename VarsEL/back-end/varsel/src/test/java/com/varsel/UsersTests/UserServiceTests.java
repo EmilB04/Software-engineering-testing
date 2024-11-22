@@ -2,7 +2,6 @@ package com.varsel.UsersTests;
 
 import com.varsel.Users.UserService;
 import com.varsel.Users.UserRepository;
-import com.varsel.Users.User;
 import org.junit.jupiter.api.*;
 import java.io.*;
 import static org.junit.jupiter.api.Assertions.*;
