@@ -24,17 +24,20 @@ public class App
         System.setProperty("GOOGLE_APPLICATION_CREDENTIALS", "C:\\path\\to\\your\\service-account-file.json");
 
         // Bruker - komponenter
+        // Se LoginMenu.java for mer informasjon
         UserRepository userRepository = new UserRepository(FILE_PATH);
         UserService userService = new UserService(userRepository);
         LoginMenu loginMenu = new LoginMenu(userService);
 
         // GPS - komponenter 
+        // Se GPSMenu.java for mer informasjon
         HomeChecker homeChecker = new HomeChecker();
         LocationService locationService = new LocationService(59.911491, 10.757933);
         MainActivity mainActivity = new MainActivity(homeChecker, locationService);
         GPSMenu gpsMenu = new GPSMenu(homeChecker, locationService, mainActivity);
 
         // Varsling - komponenter
+        // Se NotificationMenu.java for mer informasjon
         FirebaseInitializer.initializeFirebaseApp();
         PushNotifikasjonSender pushNotifikasjonSender = new PushNotifikasjonSender();
         NotificationMenu notificationMenu = new NotificationMenu(pushNotifikasjonSender);
@@ -59,6 +62,7 @@ public class App
             } 
             else if ("Strømpris".equalsIgnoreCase(input) || "2".equals(input)) {
                 System.out.println("\n");
+                // Strømprismeny her
             } 
             else if ("GPS".equalsIgnoreCase(input) || "3".equals(input)) {
                 System.out.println("\n");
