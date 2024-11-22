@@ -2,54 +2,90 @@ package com.varsel.Notifications;
 
 import java.util.Scanner;
 
+
+/*
+    * Koden under viser hvordan push-notifikasjoner kan sendes til en bruker
+    * ved hjelp av Firebase Cloud Messaging (FCM) og en service account.
+    * Koden viser både strømprisbaserte og batterinivåbaserte notifikasjoner.
+    * 
+    * Først blir Firebase initialisert. Deretter opprettes en instans av 
+    * PushNotifikasjonSender, som håndterer sendingen av notifikasjoner.
+    * Testene demonstrerer hvordan notifikasjoner kan sendes basert på strømpris
+    * og batterinivå ved hjelp av Firebase.
+    * 
+    * Feilhåndtering:
+    * - Firebase-initialisering og eventuelle feil ved oppkobling til Firebase 
+    *   håndteres i FirebaseInitializer-klassen.
+    * - Eventuelle feil som kan oppstå når notifikasjoner sendes til 
+    *   Firebase håndteres i PushNotifikasjonSender-klassen.
+*/
+
+
 public class NotificationMenu {
     private final PushNotifikasjonSender pushNotifikasjonSender;
 
-    // Constructor for dependency injection
     public NotificationMenu(PushNotifikasjonSender pushNotifikasjonSender) {
         this.pushNotifikasjonSender = pushNotifikasjonSender;
     }
 
-    // Method to display the notification menu
+    /**
+     * Viser varslingstestmenyen og lar brukeren velge hvilken type varsling som skal testes.
+     * @param scanner Scanner-objekt for å lese input fra brukeren
+     */
     public void showMenu(Scanner scanner) {
-        System.out.println("Velkommen til varslingssiden!\n");
+        String input;
+        System.out.println("Velkommen til varslingstestmenyen!\n");
         while (true) {
-            System.out.println("Velg et alternativ:\n");
-            System.out.println("1: Test strømprisbasert varsling (Eksempel 1)");
-            System.out.println("2: Test strømprisbasert varsling (Eksempel 2)");
-            System.out.println("3: Test strømprisbasert varsling (Eksempel 3)");
-            System.out.println("4: Test batterinivåbasert varsling (Eksempel 1)");
-            System.out.println("5: Test batterinivåbasert varsling (Eksempel 2)");
-            System.out.println("6: Test batterinivåbasert varsling (Eksempel 3)");
-            System.out.println("7: Tilbake til hovedmenyen");
+            System.out.print("Velg et alternativ\n" +
+                "1. Test varsling med tillatelse\n" +
+                "2. Test varsling uten tillatelse\n" +
+                "3. Test batterinivåvarsling (under 5%)\n" +
+                "4. Test batterinivåvarsling (20-50%)\n" +
+                "5. Test batterinivåvarsling (over 80%)\n" +
+                "6. Tilbake til hovedmenyen\n" +
+                "Ditt valg: ");
+            input = scanner.nextLine();
 
-            String choice = scanner.nextLine();
-
-            switch (choice) {
-                case "1" -> testStromprisNotifikasjon(true, 0.3);
-                case "2" -> testStromprisNotifikasjon(true, 5.2);
-                case "3" -> testStromprisNotifikasjon(false, 0.5);
-                case "4" -> testStromnivaNotifikasjon(4);
-                case "5" -> testStromnivaNotifikasjon(26);
-                case "6" -> testStromnivaNotifikasjon(82);
-                case "7" -> {
-                    System.out.println("Tilbake til hovedmenyen.");
-                    return;
-                }
-                default -> System.out.println("Ugyldig input. Prøv igjen.");
+            if ("1".equals(input)) {
+                // Test varsling med tillatelse
+                System.out.println("Tester varsling med tillatelse...");
+                boolean tillatelse = true;
+                double strompris = 0.3;  // Eksempel strømpris
+                pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
+            } 
+            else if ("2".equals(input)) {
+                // Test varsling uten tillatelse
+                System.out.println("Tester varsling uten tillatelse...");
+                boolean tillatelse = false;
+                double strompris = 5.2;  // Eksempel strømpris
+                pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
+            } 
+            else if ("3".equals(input)) {
+                // Test batterinivåbasert varsling for nivå under 5%
+                System.out.println("Tester batterinivåvarsling for nivå under 5%...");
+                int stromniva = 4;
+                pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
+            }
+            else if ("4".equals(input)) {
+                // Test batterinivåbasert varsling for nivå mellom 20% og 50%
+                System.out.println("Tester batterinivåvarsling for nivå mellom 20% og 50%...");
+                int stromniva = 26;
+                pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
+            }
+            else if ("5".equals(input)) {
+                // Test batterinivåbasert varsling for nivå over 80%
+                System.out.println("Tester batterinivåvarsling for nivå over 80%...");
+                int stromniva = 82;
+                pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
+            }
+            else if ("6".equals(input)) {
+                // Gå tilbake til hovedmenyen
+                System.out.println("Tilbake til hovedmenyen.");
+                return;
+            } 
+            else {
+                System.out.println("Ugyldig input. Prøv igjen.");
             }
         }
-    }
-
-    // Helper method to test strømprisbasert varsling
-    private void testStromprisNotifikasjon(boolean tillatelse, double strompris) {
-        System.out.println("\nTester strømprisbasert varsling...");
-        pushNotifikasjonSender.sendStromprisNotifikasjon(tillatelse, strompris);
-    }
-
-    // Helper method to test batterinivåbasert varsling
-    private void testStromnivaNotifikasjon(int stromniva) {
-        System.out.println("\nTester batterinivåbasert varsling...");
-        pushNotifikasjonSender.sendStromnivaNotifikasjon(stromniva);
     }
 }
