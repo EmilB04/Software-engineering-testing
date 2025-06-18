@@ -1,0 +1,6 @@
+com/varsel/ElectricityPricesTests/ElectricityPriceDataTests.class
+com/varsel/ElectricityPricesTests/ElectricityPriceParserTests.class
+com/varsel/ElectricityPricesTests/ElectricityPriceCalculatorTests.class
+com/varsel/ElectricityPricesTests/GetElectricityPricesTests.class
+com/varsel/ElectricityPricesTests/HttpHandlerTests.class
+com/varsel/ElectricityPricesTests/ElectricityPriceUrlBuilder.class
